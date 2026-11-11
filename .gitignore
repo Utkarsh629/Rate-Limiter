@@ -1,0 +1,26 @@
+# Build
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# IDE / OS
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# Logs
+*.log
+
+# Benchmark/smoke tokens (minted locally from JWT_SECRET)
+load-tests/k6/.tokens/
+# Smoke and benchmark outputs that are regenerated
+benchmarks/smoke/
+
+# Python cache
+__pycache__/
+*.py[cod]

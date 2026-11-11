@@ -1,0 +1,146 @@
+# =====================================================================================
+# Base configuration. Defaults here are the SAFE / production-like ones.
+# Developer conveniences live in application-dev.yml. Secrets have no defaults:
+# a missing secret fails startup instead of silently using a known value.
+# =====================================================================================
+
+spring:
+  application:
+    name: distributed-rate-limiter
+
+  # ---------- MySQL: persistent policy store (never on the request hot path) ----------
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:ratelimiter}?sslMode=REQUIRED&connectionTimeZone=UTC
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+    hikari:
+      pool-name: policy-db
+      maximum-pool-size: ${MYSQL_POOL_SIZE:10}
+      minimum-idle: 2
+      # Hikari takes plain milliseconds (not Duration strings).
+      connection-timeout: 3000   # fail fast; CRUD returns an error instead of hanging
+      validation-timeout: 1000
+
+  jpa:
+    open-in-view: false          # no lazy DB access from the web layer
+    # The application must be able to START while MySQL is unreachable (it then reports NOT READY
+    # and retries; see DeferredFlywayMigration). So Hibernate must not touch the database at boot:
+    # database declared up front (so Hibernate picks its dialect without connecting), no JDBC
+    # metadata access, no schema validation here. Flyway owns the schema (validate-on-migrate); the
+    # entity mapping is validated against real MySQL by every integration test (test profile:
+    # ddl-auto=validate).
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.jdbc.time_zone: UTC
+      hibernate.boot.allow_jdbc_metadata_access: false
+      jakarta.persistence.database-product-name: MySQL
+      jakarta.persistence.database-major-version: 8
+      jakarta.persistence.database-minor-version: 4
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    validate-on-migrate: true
+    clean-disabled: true         # never allow 'flyway clean' to wipe a real database
+
+  # ---------- Redis: authoritative, shared rate-limit state ----------
+  data:
+    redis:
+      client-type: lettuce
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      # Command timeout. The limiter sits on every request, so a slow Redis must fail fast and
+      # hand over to the fail-open/closed policy instead of stalling Tomcat threads.
+      timeout: ${REDIS_COMMAND_TIMEOUT:50ms}
+      connect-timeout: ${REDIS_CONNECT_TIMEOUT:2s}
+      lettuce:
+        shutdown-timeout: 200ms
+        # Lettuce multiplexes all commands over one thread-safe connection, which is the right
+        # default for single-command workloads. Pooling is optional and benchmarked in Phase 8.
+        pool:
+          enabled: ${REDIS_POOL_ENABLED:false}
+          max-active: ${REDIS_POOL_MAX_ACTIVE:16}
+          max-idle: ${REDIS_POOL_MAX_ACTIVE:16}
+          min-idle: 0
+          max-wait: ${REDIS_POOL_MAX_WAIT:20ms}
+
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+
+server:
+  port: ${SERVER_PORT:8080}
+  shutdown: graceful             # finish in-flight requests on SIGTERM
+  # Client IP: Tomcat's RemoteIpValve replaces the socket peer address with the X-Forwarded-For
+  # client ONLY when the peer matches internal-proxies (a regex of trusted proxy IPs, e.g. the
+  # Nginx container). Empty (default) = trust no proxy: X-Forwarded-For is ignored entirely, so
+  # clients cannot spoof their IP to dodge per-IP limits.
+  forward-headers-strategy: native
+  tomcat:
+    mbeanregistry:
+      enabled: true              # exposes tomcat_threads_* metrics (busy threads) for the dashboard
+    remoteip:
+      internal-proxies: ${TRUSTED_PROXIES:}
+      remote-ip-header: X-Forwarded-For
+      protocol-header: X-Forwarded-Proto
+
+management:
+  metrics:
+    tags:
+      application: ${spring.application.name}   # instance identity comes from the Prometheus target label
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true             # server-time percentiles aggregated in Prometheus
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true            # /actuator/health/liveness and /actuator/health/readiness
+      show-details: never
+      group:
+        # Readiness (decision R1) = initialised AND a usable policy snapshot is loaded. Redis and MySQL
+        # outages do NOT remove instances from the load balancer: failure modes and the circuit breaker
+        # handle Redis, and the last good policy snapshot covers MySQL. Gating traffic on them would turn
+        # any dependency outage into a total outage, regardless of fail-open.
+        readiness:
+          include: readinessState,policies
+        # Dependency health stays visible on its own: /actuator/health/dependencies (and /actuator/health).
+        dependencies:
+          include: db,redis,rateLimitStore
+        liveness:
+          include: livenessState
+
+springdoc:                       # OpenAPI document + Swagger UI: dev profile only
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+ratelimiter:
+  security:
+    jwt:
+      secret: ${JWT_SECRET}      # base64, >= 32 bytes; no default: startup fails without it
+      issuer: distributed-rate-limiter
+      clock-skew: 30s
+  dev-endpoints:
+    enabled: false               # demo token + identity echo; never available with the prod profile
+  instance-id: ${INSTANCE_ID:${HOSTNAME:local}}
+  key-prefix: rl
+  default-failure-mode: FAIL_OPEN
+  policy:
+    reload-interval: 30s
+    fallback-enabled: false      # production never serves config fallbacks in place of MySQL policies
+  stats:
+    flush-interval: 5s
+  # Redis circuit breaker (docs/proposals/2D-redis-circuit-breaker.md; decisions R2, R5)
+  circuit-breaker:
+    enabled: true
+    sliding-window-size: 20
+    minimum-number-of-calls: 10
+    failure-rate-threshold: 50
+    wait-duration-in-open-state: 5s
+    permitted-calls-in-half-open: 3
+    max-wait-in-half-open: 2s       # per in-flight probe, not per collection period

@@ -1,0 +1,231 @@
+# Full stack (Phase 3A): Nginx -> 3 application instances -> Redis + MySQL, with Prometheus,
+# Grafana and redis_exporter. k6 is available under the "loadtest" profile.
+#
+#   cp .env.example .env          # set every change-me value
+#   docker compose up -d --build --wait     # everything, health-checked
+#   docker compose up -d --wait redis mysql # infrastructure only (local ./mvnw spring-boot:run)
+#   docker compose down            # stop (keeps volumes)   |  docker compose down -v  # also delete data
+#
+# Host ports: 8080 Nginx (the only entry point for API traffic), 127.0.0.1:3000 Grafana,
+# 127.0.0.1:9090 Prometheus, 127.0.0.1:6379 Redis and 127.0.0.1:3307 MySQL (local development).
+# Application instances publish no ports: all traffic goes through Nginx.
+
+name: ratelimiter
+
+x-app: &app
+  image: ratelimiter-app:local      # built once by app1; app2/app3 reuse it (never pulled)
+  depends_on:
+    redis: { condition: service_healthy }
+    mysql: { condition: service_healthy }
+  healthcheck:
+    # Readiness, not /actuator/health: Redis/MySQL outages must not take instances out of rotation (R1).
+    test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://localhost:8080/actuator/health/readiness"]
+    interval: 5s
+    timeout: 3s
+    retries: 30
+    start_period: 40s
+  stop_grace_period: 30s
+  restart: unless-stopped
+  deploy:
+    resources:
+      limits: { cpus: "1.5", memory: 1g }
+
+x-app-env: &app-env
+  SPRING_PROFILES_ACTIVE: prod
+  MYSQL_HOST: mysql
+  MYSQL_PORT: "3306"
+  MYSQL_DATABASE: ${MYSQL_DATABASE:?set MYSQL_DATABASE in .env}
+  MYSQL_USER: ${MYSQL_USER:?set MYSQL_USER in .env}
+  MYSQL_PASSWORD: ${MYSQL_PASSWORD:?set MYSQL_PASSWORD in .env}
+  REDIS_HOST: redis
+  REDIS_PORT: "6379"
+  REDIS_POOL_ENABLED: ${REDIS_POOL_ENABLED:-false}
+  # Redis command timeout for THIS deployment: 250 ms (approved Phase 3A decision; the application-wide
+  # default stays 50 ms, decision D14). With 50 ms, 1,000-request bursts on these CPU-limited (1.5 CPU)
+  # instances produced client-side Lettuce timeouts -> fail-open -> open breakers, although Redis's own
+  # EVALSHA p99 was ~61 us. 250 ms passed every validation round here; it is validated for this
+  # deployment, not established as a universal production optimum. Tunable via STACK_REDIS_COMMAND_TIMEOUT
+  # (a separate name, so a local-dev REDIS_COMMAND_TIMEOUT in .env cannot change the stack by accident).
+  REDIS_COMMAND_TIMEOUT: ${STACK_REDIS_COMMAND_TIMEOUT:-250ms}
+  SERVER_TOMCAT_THREADS_MAX: ${TOMCAT_MAX_THREADS:-200}   # the application's own default
+  JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in .env}
+  # Only Nginx (static address below) may set X-Forwarded-For.
+  TRUSTED_PROXIES: "172\\.28\\.0\\.10"
+
+services:
+  nginx:
+    image: nginx:1.28-alpine
+    volumes:
+      - ./infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "${NGINX_HOST_PORT:-8080}:8080"
+    networks:
+      ratelimiter-net: { ipv4_address: 172.28.0.10 }
+    depends_on:
+      app1: { condition: service_healthy }
+      app2: { condition: service_healthy }
+      app3: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/nginx-health"]
+      interval: 5s
+      timeout: 2s
+      retries: 10
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits: { cpus: "1.0", memory: 128m }
+
+  app1:
+    <<: *app
+    build: .
+    environment: { <<: *app-env, INSTANCE_ID: app-1 }
+    networks:
+      ratelimiter-net: { ipv4_address: 172.28.0.11 }
+
+  app2:
+    <<: *app
+    pull_policy: never
+    environment: { <<: *app-env, INSTANCE_ID: app-2 }
+    networks:
+      ratelimiter-net: { ipv4_address: 172.28.0.12 }
+
+  app3:
+    <<: *app
+    pull_policy: never
+    environment: { <<: *app-env, INSTANCE_ID: app-3 }
+    networks:
+      ratelimiter-net: { ipv4_address: 172.28.0.13 }
+
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    volumes:
+      - ./infra/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    ports:
+      # Loopback only: Redis has no password in local development.
+      - "127.0.0.1:${REDIS_HOST_PORT:-6379}:6379"
+    networks: [ratelimiter-net]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 2s
+      retries: 10
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits: { cpus: "1.0", memory: 512m }
+
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:?set MYSQL_DATABASE in .env}
+      MYSQL_USER: ${MYSQL_USER:?set MYSQL_USER in .env}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?set MYSQL_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?set MYSQL_ROOT_PASSWORD in .env}
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./infra/mysql/ratelimiter.cnf:/etc/mysql/conf.d/ratelimiter.cnf:ro
+    ports:
+      - "127.0.0.1:${MYSQL_HOST_PORT:-3307}:3306"
+    networks: [ratelimiter-net]
+    healthcheck:
+      # Passes only after first-time initialisation has finished (see Phase 1 notes).
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 20s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits: { cpus: "0.5", memory: 512m }
+
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.78.0-alpine
+    environment:
+      REDIS_ADDR: redis://redis:6379
+    networks: [ratelimiter-net]
+    depends_on:
+      redis: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:9121/metrics"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits: { cpus: "0.1", memory: 64m }
+
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=7d
+    volumes:
+      - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    ports:
+      - "127.0.0.1:9090:9090"
+    networks: [ratelimiter-net]
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:9090/-/ready"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits: { cpus: "0.5", memory: 512m }
+
+  grafana:
+    image: grafana/grafana:12.2.0
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?set GRAFANA_ADMIN_PASSWORD in .env}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+    volumes:
+      - ./infra/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./infra/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "127.0.0.1:3000:3000"
+    networks: [ratelimiter-net]
+    depends_on:
+      prometheus: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:3000/api/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits: { cpus: "0.25", memory: 256m }
+
+  k6:
+    image: grafana/k6:2.3.0
+    profiles: [loadtest]           # not started by "up"; run with: docker compose run --rm k6 run /scripts/<file>.js
+    volumes:
+      - ./load-tests/k6:/scripts:ro
+      - ./load-tests/k6/.tokens:/tokens:ro
+      - ./benchmarks/smoke:/out
+    networks: [ratelimiter-net]
+    deploy:
+      resources:
+        limits: { cpus: "2.0", memory: 1g }
+
+networks:
+  ratelimiter-net:
+    ipam:
+      config:
+        - subnet: 172.28.0.0/24
+
+volumes:
+  mysql-data:
+  prometheus-data:
+  grafana-data:

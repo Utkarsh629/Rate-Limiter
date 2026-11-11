@@ -1,0 +1,24 @@
+# Integration tests. Datasource and Redis connection details come from Testcontainers
+# (@ServiceConnection), which take precedence over application.yml.
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate         # every integration test checks the entity mapping against real MySQL
+    properties:
+      hibernate.boot.allow_jdbc_metadata_access: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+
+ratelimiter:
+  instance-id: test-instance
+  security:
+    jwt:
+      # TEST-ONLY key, generated for this repository's tests; never used outside src/test.
+      secret: 0Q+sk6ss8Ibqq47U0WU71CNcxdMZF5MGwH5RIma3Stohrg8aoLcwz2S550tbgOOC
+  # Demo token + identity echo are available to tests (never with the prod profile; see DevEndpointsDisabledIT).
+  dev-endpoints:
+    enabled: true

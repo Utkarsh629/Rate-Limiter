@@ -1,0 +1,15 @@
+# Build context: only what the image build needs. Secrets and local state never enter the image.
+.env
+.env.*
+!.env.example
+.git
+target
+docs
+benchmarks
+load-tests
+infra
+scripts
+*.md
+.idea
+.vscode
+.DS_Store

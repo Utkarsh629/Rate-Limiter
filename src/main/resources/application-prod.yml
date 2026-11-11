@@ -1,0 +1,19 @@
+# Production-like profile (used by the full Docker Compose stack in Phase 7).
+# Everything security-relevant is restated explicitly so it cannot drift from a dev override.
+
+management:
+  endpoint:
+    health:
+      show-details: never
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+ratelimiter:
+  dev-endpoints:
+    enabled: false               # and the controllers are @Profile("!prod") regardless
+  policy:
+    fallback-enabled: false      # never serve possibly stale policies; report not-ready instead

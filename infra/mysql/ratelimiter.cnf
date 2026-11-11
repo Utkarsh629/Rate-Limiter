@@ -1,0 +1,6 @@
+[mysqld]
+character-set-server = utf8mb4
+collation-server     = utf8mb4_0900_ai_ci
+default-time-zone    = '+00:00'
+# Avoid DNS lookups on every new connection from the app containers.
+skip-name-resolve
