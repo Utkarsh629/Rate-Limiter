@@ -1,6 +1,6 @@
 # 12 — Monitoring and Observability
 
-> Status: **implemented and verified in Phase 3A** (metrics, Prometheus, Grafana, `/stats`). Panels are used for measurement in Phase 3B.
+> Status: **implemented and verified in Phase 3A** (metrics, Prometheus, Grafana, `/stats`); **used for the Phase 3B measurements** (below).
 
 ## Endpoints
 
@@ -88,6 +88,31 @@ Provisioned automatically (`infra/grafana/provisioning/`, dashboard JSON generat
 **Verified (smoke run 20261111-091138):** the dashboard is provisioned (Grafana API 200), the datasource is healthy, and every required panel returned data after the 60 s load. Series per panel: 1 → 4, 2 → 4, 3 → 6, 4 → 4, 5 → 14, and 6, 7, 8 non-empty.
 
 Screenshots are not saved automatically: Grafana's image renderer is not installed in this stack, so panel data is verified through the API. Screenshots for the README are a Phase 4 task.
+
+## How Phase 3B measured with these metrics
+
+`scripts/bench/collect.py` reads the same meters the dashboard shows, but only from saved data (the dashboard was
+not used to produce any number). Per run:
+
+| What | Source |
+|---|---|
+| Limiter overhead P50/P95/P99/P99.9, avg, max | `histogram_quantile(q, sum by (le) (increase(ratelimiter_request_duration_seconds_bucket{algorithm=…}[180s])))` at the end of the measurement window; also split by `result` (allowed/rejected) |
+| Redis round trip (client) | the same over `ratelimiter_redis_duration_seconds_bucket` |
+| Redis server latency | `INFO latencystats` (EVALSHA percentiles, after `CONFIG RESETSTAT` at the run start), `SLOWLOG` before/after |
+| Decision counts | `ratelimiter_requests_total` read from every instance's `/actuator/prometheus` while idle, and from Prometheus at two idle instants after the final scrape (exact, decision O2) |
+| JVM / Tomcat | `process_cpu_usage`, heap, GC pauses (`jvm_gc_pause_seconds`), live threads, `tomcat_threads_busy_threads` (range queries, 5 s steps) |
+| Redis resources | redis_exporter: CPU (total and main thread), memory, commands/s, clients; `MEMORY USAGE` of sample keys |
+| Containers | `docker stats` every second (CPU %, memory) — independent of Prometheus; k6's own CPU for the validity rule |
+| Scrape completeness | `count_over_time(up{job="app"}[window])` per instance |
+| Breaker transitions (F1–F5) | `resilience4j_circuitbreaker_state` and `ratelimiter_circuit_breaker_transitions_total`, queried at 1 s over 5 s scrapes |
+
+Every query and its raw answer is saved in each run's `prometheus/queries.json`. Measured values:
+`11-performance-benchmarks.md`.
+
+Observations from the campaign: the meters' per-request cost is included in the measured limiter overhead (in-process
+P99 0.78–1.07 ms at 5,000 RPS); histogram buckets start at 50 µs, so sub-50 µs values are not resolved (Redis server
+latency comes from `latencystats` instead); `ratelimiter_redis_duration_seconds_max` is a decaying window maximum and
+was used only as an indicator in the cold-start investigation (`13-failure-handling.md`).
 
 ## Alert suggestions (not deployed)
 | Alert | Expression (sketch) |

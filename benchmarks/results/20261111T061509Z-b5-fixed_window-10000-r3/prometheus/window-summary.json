@@ -1,0 +1,213 @@
+{
+  "errors": [],
+  "instant": {
+    "gc_pause_max": null,
+    "gc_pause_seconds": null,
+    "gc_pauses": null,
+    "http_server_p99": null,
+    "overhead_allowed_p50": null,
+    "overhead_allowed_p99": null,
+    "overhead_avg": null,
+    "overhead_count": null,
+    "overhead_max": null,
+    "overhead_p5": null,
+    "overhead_p95": null,
+    "overhead_p99": null,
+    "overhead_p999": null,
+    "overhead_rejected_p50": null,
+    "overhead_rejected_p99": null,
+    "redis_cmd_rate": null,
+    "redis_cpu_cores": null,
+    "redis_main_thread_cpu_cores": null,
+    "redis_rtt_avg": null,
+    "redis_rtt_count": null,
+    "redis_rtt_max": null,
+    "redis_rtt_p5": null,
+    "redis_rtt_p95": null,
+    "redis_rtt_p99": null,
+    "redis_rtt_p999": null
+  },
+  "range": {
+    "breaker_state_half_open": {
+      "app-1": {
+        "avg": 0.0,
+        "max": 0.0,
+        "min": 0.0,
+        "samples": 1
+      },
+      "app-2": {
+        "avg": 0.0,
+        "max": 0.0,
+        "min": 0.0,
+        "samples": 1
+      },
+      "app-3": {
+        "avg": 0.0,
+        "max": 0.0,
+        "min": 0.0,
+        "samples": 1
+      }
+    },
+    "breaker_state_open": {
+      "app-1": {
+        "avg": 0.0,
+        "max": 0.0,
+        "min": 0.0,
+        "samples": 1
+      },
+      "app-2": {
+        "avg": 0.0,
+        "max": 0.0,
+        "min": 0.0,
+        "samples": 1
+      },
+      "app-3": {
+        "avg": 0.0,
+        "max": 0.0,
+        "min": 0.0,
+        "samples": 1
+      }
+    },
+    "heap_used_bytes": {
+      "app-1": {
+        "avg": 103198624.0,
+        "max": 103198624.0,
+        "min": 103198624.0,
+        "samples": 1
+      },
+      "app-2": {
+        "avg": 90264376.0,
+        "max": 90264376.0,
+        "min": 90264376.0,
+        "samples": 1
+      },
+      "app-3": {
+        "avg": 109490632.0,
+        "max": 109490632.0,
+        "min": 109490632.0,
+        "samples": 1
+      }
+    },
+    "process_cpu": {
+      "app-1": {
+        "avg": 0.08133333333333333,
+        "max": 0.08133333333333333,
+        "min": 0.08133333333333333,
+        "samples": 1
+      },
+      "app-2": {
+        "avg": 0.07733333333333334,
+        "max": 0.07733333333333334,
+        "min": 0.07733333333333334,
+        "samples": 1
+      },
+      "app-3": {
+        "avg": 0.07733333333333334,
+        "max": 0.07733333333333334,
+        "min": 0.07733333333333334,
+        "samples": 1
+      }
+    },
+    "redis_clients": {
+      "redis": {
+        "avg": 7.0,
+        "max": 7.0,
+        "min": 7.0,
+        "samples": 1
+      }
+    },
+    "redis_cpu_cores": {
+      "redis": {
+        "avg": 0.04210462092418513,
+        "max": 0.04210462092418513,
+        "min": 0.04210462092418513,
+        "samples": 1
+      }
+    },
+    "redis_memory_bytes": {
+      "redis": {
+        "avg": 3204072.0,
+        "max": 3204072.0,
+        "min": 3204072.0,
+        "samples": 1
+      }
+    },
+    "redis_ops": {
+      "redis": {
+        "avg": 4009.701940388077,
+        "max": 4009.701940388077,
+        "min": 4009.701940388077,
+        "samples": 1
+      }
+    },
+    "threads_live": {
+      "app-1": {
+        "avg": 202.0,
+        "max": 202.0,
+        "min": 202.0,
+        "samples": 1
+      },
+      "app-2": {
+        "avg": 138.0,
+        "max": 138.0,
+        "min": 138.0,
+        "samples": 1
+      },
+      "app-3": {
+        "avg": 145.0,
+        "max": 145.0,
+        "min": 145.0,
+        "samples": 1
+      }
+    },
+    "tomcat_busy": {
+      "app-1": {
+        "avg": 1.0,
+        "max": 1.0,
+        "min": 1.0,
+        "samples": 1
+      },
+      "app-2": {
+        "avg": 1.0,
+        "max": 1.0,
+        "min": 1.0,
+        "samples": 1
+      },
+      "app-3": {
+        "avg": 1.0,
+        "max": 1.0,
+        "min": 1.0,
+        "samples": 1
+      }
+    },
+    "tomcat_current": {
+      "app-1": {
+        "avg": 184.0,
+        "max": 184.0,
+        "min": 184.0,
+        "samples": 1
+      },
+      "app-2": {
+        "avg": 120.0,
+        "max": 120.0,
+        "min": 120.0,
+        "samples": 1
+      },
+      "app-3": {
+        "avg": 127.0,
+        "max": 127.0,
+        "min": 127.0,
+        "samples": 1
+      }
+    }
+  },
+  "scrape": {
+    "expected_per_instance": 0.4,
+    "samples": {}
+  },
+  "window": {
+    "end": 1794377799.941291,
+    "seconds": 2,
+    "start": 1794377798.141
+  }
+}

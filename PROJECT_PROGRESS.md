@@ -2,9 +2,9 @@
 
 A feature is checked only when it is **implemented and verified** (test or measured run), not when code exists.
 
-Last updated: 2026-11-11 — Phase 2 completed and approved. **Phase 3A (Observability & Deployment) implemented and verified, awaiting review.** Phase 3B not started (blocked until 3A is approved).
+Last updated: 2026-11-12 — Phases 1, 2 and 3A approved. **Phase 3B (Performance & Optimization) completed and approved (2026-11-12)** (cold-start issue documented as open). Branch `phase-3b/benchmark-infrastructure`, nothing committed.
 
-> **Session handoff:** see [PROJECT_HANDOFF.md](PROJECT_HANDOFF.md) for architecture, evidence, configuration, the full 3B scope and method, open items (U1–U11) and the exact next steps for 3B.1 (benchmark infrastructure). **Nothing is committed yet** (branch `main` has no commits). Latest verification: `./mvnw clean verify` 310/310 (158 unit + 152 integration); clean-state smoke run `20261111-091138` passed 37/37.
+> **Phase 3B evidence:** `benchmarks/reports/phase-3b-final/` (`report.md` generated from `benchmarks/results/`, `analysis.md` with the acceptance checklist), `benchmarks/investigations/cold-start/`. Earlier handoff: [PROJECT_HANDOFF.md](PROJECT_HANDOFF.md). Latest verification (2026-11-12): `./mvnw clean verify` 310/310; smoke 37/37 on the warm stack (AC14 fails shortly after a restart: open cold-start issue).
 
 ## Roadmap (four consolidated phases)
 
@@ -12,7 +12,7 @@ Last updated: 2026-11-11 — Phase 2 completed and approved. **Phase 3A (Observa
 |---|---|---|
 | 1 | Foundation & Architecture | ✅ Completed and approved |
 | 2 | Core Backend & Distributed Logic | ✅ **Completed and approved** (2A, 2B, 2C, 2D) |
-| 3 | Observability, Deployment & Performance (two parts: 3A, 3B) | 🔄 3A done, **awaiting review**; 3B not started |
+| 3 | Observability, Deployment & Performance (two parts: 3A, 3B) | ✅ **Completed and approved** (3A, 3B) |
 | 4 | Documentation, Audit & Release | ⏳ Not started |
 
 ### Phase 1 — Foundation & Architecture ✅
@@ -40,8 +40,8 @@ Exactly two parts. **3A must be fully implemented, tested and approved before 3B
 
 | Part | Name | Status |
 |---|---|---|
-| **3A** | **Observability & Deployment** | ✅ Implemented and verified, **awaiting review** |
-| **3B** | **Performance & Optimization** | ⏳ Blocked until 3A is approved |
+| **3A** | **Observability & Deployment** | ✅ Approved |
+| **3B** | **Performance & Optimization** | ✅ **Approved** (212 runs: 153 valid, 59 invalid kept with reasons) |
 
 **3A — Observability & Deployment** (acceptance 3A-AC1…AC20 in the plan)
 
@@ -61,14 +61,14 @@ Exactly two parts. **3A must be fully implemented, tested and approved before 3B
 
 | Scope item | Status |
 |---|---|
-| k6 tooling: run script, collectors, `docker stats` sampler, reconciliation, validity checks, report/charts | ⏳ |
-| Benchmark scenarios B0–B10 (baseline 100 RPS; load levels 1,000 / 2,500 / 5,000 / 7,500 / 10,000 RPS; stress ramp to 15,000; overhead A/B; headroom vs throttled; burst; 1,000 concurrency; distributed; hot key; pooling; correctness under load) | ⏳ |
-| Token Bucket / Fixed Window / Sliding Window comparison | ⏳ |
-| Redis pooling enabled vs disabled | ⏳ |
-| P50/P95/P99 (limiter overhead, Redis round trip, E2E kept separate), throughput, error rate, CPU, memory, Redis latency/resources | ⏳ |
-| Failure and recovery under load F1–F5 (Redis pause, Redis restart, app kill, MySQL stop, Redis slowed) | ⏳ |
-| Bottleneck analysis and evidence-based optimisation | ⏳ |
-| 3B documentation (docs 06, 10, 11, 12, 13, 14) | ⏳ |
+| k6 tooling: run script, collectors, `docker stats` sampler, reconciliation, validity checks, report (tables; charts deferred, O1) | ✅ `scripts/bench/`, `load-tests/k6/`; 49 Python tests + 75-case selftest |
+| Benchmark scenarios B0–B10 | ✅ 3 valid runs per configuration; **7,500 RPS** highest validated B1 level and maximum sustainable throughput (laptop); 10,000 RPS attempted, all invalid (target not achieved); B2 knee 11,000 RPS (load-generator bound) |
+| Token Bucket / Fixed Window / Sliding Window comparison | ✅ docs/11 |
+| Redis pooling enabled vs disabled | ✅ pool-16 no better (slightly worse P99); shared connection kept |
+| P50/P95/P99 (limiter overhead, Redis round trip, E2E kept separate), throughput, error rate, CPU, memory, Redis latency/resources | ✅ docs/11 (limiter P99 ≤ 1.7 ms up to 7,500 RPS) |
+| Failure and recovery under load F1–F5 (Redis pause, Redis restart, app kill, MySQL stop, Redis slowed) | ✅ docs/13 (timelines; fail-open/closed as designed, no 429 for infrastructure failures) |
+| Bottleneck analysis and evidence-based optimisation | ✅ no optimisation justified; every candidate rejected with evidence (`benchmarks/reports/phase-3b-final/analysis.md`) |
+| 3B documentation (docs 10, 11, 12, 13, 14; per-key memory in docs/11) | ✅ approved |
 
 Targets stay targets until a valid run shows them: 5,000 RPS throughput, limiter overhead < 5 / 10 / 20 ms (avg / P95 / P99), zero over-admission, < 0.1 % non-429 errors, load levels up to **10,000 RPS (target, not achieved)**.
 
@@ -244,19 +244,20 @@ Targets stay targets until a valid run shows them: 5,000 RPS throughput, limiter
 
 **Phase 2**: none (closed).
 
-**Phase 3A**: all implemented; awaiting review.
+**Phase 3A**: approved.
 
 **Phase 3B**
-- [ ] k6 runs from the `grafana/k6` container (v2.3.0 verified to run; not installed on the host)
-- [ ] Benchmark Lettuce pooling on/off (pool mode now really applies to script calls)
-- [ ] Per-key `MEMORY USAGE` measurements (docs/06 figures are estimates)
-- [ ] Decide chart tooling: `matplotlib` is not installed (Python 3.14.2); virtualenv install needs approval, or dependency-free charts (handoff U6)
-- [ ] Measure whether the 2-CPU k6 container and the Nginx stdout access log limit high-RPS runs (handoff U7, U8)
-- [ ] Mint benchmark tokens with a `--ttl` longer than the session (default 1 h, handoff U10)
+- [x] k6 runs from the `grafana/k6` container (v2.3.0)
+- [x] Benchmark Lettuce pooling on/off (B9)
+- [x] Per-key `MEMORY USAGE` measurements (docs/11: 104–112 bytes per key; docs/06 not yet updated)
+- [ ] Charts: deferred (decision O1; tables only)
+- [x] k6 limits measured: CPU-bound from ~12,000 RPS (B2); memory fixed with `GOMEMLIMIT`
+- [x] Benchmark tokens minted with a 48 h TTL
+- [ ] **Open:** cold-start fail-open under 1,000-request bursts shortly after a restart (CPU-quota throttling during JIT; docs/13). Not fixed; options listed for review
 
 **Repository (before 3B)** (handoff U1, U3, U4)
-- [ ] Move the project out of the session-scoped folder and make the first commit (approval required)
-- [ ] Add `__pycache__/` to `.gitignore`
+- [x] Move the project out of the session-scoped folder and make the first commit
+- [x] Add `__pycache__/` to `.gitignore`
 - [ ] Decide whether to keep the 3A smoke report (`benchmarks/smoke/20261111-091138/`, git-ignored) as committed evidence
 
 **Phase 4**
@@ -273,10 +274,10 @@ Targets stay targets until a valid run shows them: 5,000 RPS throughput, limiter
 | Dynamic policies work | 2 | ✅ |
 | HTTP 429 responses are correct | 2 | ✅ |
 | Concurrency tests pass | 2 | ✅ |
-| Distributed correctness is verified | 2 / 3A / 3B | ✅ HTTP, 3 instances; ✅ Compose + Nginx + k6 functional (3A); ⏳ under benchmark load (3B) |
+| Distributed correctness is verified | 2 / 3A / 3B | ✅ HTTP, 3 instances; ✅ Compose + Nginx + k6 functional (3A); ✅ under benchmark load (3B: B6, B10, zero over-admission) |
 | Redis failure handling is tested | 2 | ✅ fail-open/closed, circuit breaker, pool exhaustion, NOSCRIPT |
-| Performance tests are executed | 3B | ⏳ |
-| Actual benchmark results are documented | 3B / 4 | ⏳ |
+| Performance tests are executed | 3B | ✅ |
+| Actual benchmark results are documented | 3B / 4 | ✅ docs/11 (generated); README in Phase 4 |
 | Prometheus metrics are available | 3A | ✅ (awaiting 3A review) |
 | Grafana dashboard is functional | 3A | ✅ (awaiting 3A review) |
 | Docker Compose starts the complete environment | 3A | ✅ (awaiting 3A review) |

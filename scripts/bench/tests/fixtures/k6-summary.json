@@ -1,0 +1,79 @@
+{
+ "setup_data": {
+  "t0": 1794374015148
+ },
+ "metrics": {
+  "http_reqs{phase:measure}": {
+   "type": "counter",
+   "contains": "default",
+   "values": {
+    "count": 180000,
+    "rate": 1
+   }
+  },
+  "http_reqs{phase:warmup}": {
+   "type": "counter",
+   "contains": "default",
+   "values": {
+    "count": 60000,
+    "rate": 1
+   }
+  },
+  "http_reqs": {
+   "type": "counter",
+   "contains": "default",
+   "values": {
+    "count": 240000,
+    "rate": 1
+   }
+  },
+  "accepted{phase:measure}": {
+   "type": "counter",
+   "contains": "default",
+   "values": {
+    "count": 170000,
+    "rate": 1
+   }
+  },
+  "rejected{phase:measure}": {
+   "type": "counter",
+   "contains": "default",
+   "values": {
+    "count": 9990,
+    "rate": 1
+   }
+  },
+  "unexpected{phase:measure}": {
+   "type": "counter",
+   "contains": "default",
+   "values": {
+    "count": 10,
+    "rate": 1
+   }
+  },
+  "accepted": {
+   "type": "counter",
+   "contains": "default",
+   "values": {
+    "count": 226000,
+    "rate": 1
+   }
+  },
+  "rejected": {
+   "type": "counter",
+   "contains": "default",
+   "values": {
+    "count": 13990,
+    "rate": 1
+   }
+  },
+  "unexpected": {
+   "type": "counter",
+   "contains": "default",
+   "values": {
+    "count": 10,
+    "rate": 1
+   }
+  }
+ }
+}

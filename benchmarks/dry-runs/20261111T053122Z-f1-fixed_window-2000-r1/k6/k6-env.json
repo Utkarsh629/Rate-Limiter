@@ -1,0 +1,12 @@
+{
+  "ALGORITHM": "fixed_window",
+  "ENT_TOKENS_FILE": "/tokens/bench-enterprise.json",
+  "FAULT": "F1",
+  "MEASURE_S": "180",
+  "OUT_DIR": "/results",
+  "PROFILE": "mixed",
+  "RATE": "2000",
+  "RUN_ID": "20261111T053122Z-f1-fixed_window-2000-r1",
+  "TOKENS_FILE": "/tokens/bench.json",
+  "WARMUP_S": "60"
+}

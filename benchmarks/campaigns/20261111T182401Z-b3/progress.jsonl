@@ -1,0 +1,5 @@
+{"event": "campaign_start", "plan": "b3", "configs": 4, "reps": 3, "at": "2026-11-11T23:54:01"}
+{"event": "run", "config": ["B3", "token_bucket", 1000, "mixed", "default", "nginx"], "attempt": 1, "rc": 0, "seconds": 285, "result": "RESULT 20261111T182604Z-b3-token_bucket-1000-r1: VALID", "valid_so_far": 1, "at": "2026-11-12T00:00:49"}
+{"event": "run", "config": ["B3", "token_bucket", 1000, "mixed", "default", "nginx"], "attempt": 2, "rc": 0, "seconds": 284, "result": "RESULT 20261111T183049Z-b3-token_bucket-1000-r2: VALID", "valid_so_far": 2, "at": "2026-11-12T00:05:33"}
+{"event": "run", "config": ["B3", "token_bucket", 1000, "mixed", "default", "nginx"], "attempt": 3, "rc": 0, "seconds": 284, "result": "RESULT 20261111T183534Z-b3-token_bucket-1000-r3: VALID", "valid_so_far": 3, "at": "2026-11-12T00:10:18"}
+{"event": "config_done", "config": ["B3", "token_bucket", 1000, "mixed", "default", "nginx"], "valid": 3, "attempts": 3, "outcome": "complete", "at": "2026-11-12T00:10:18"}

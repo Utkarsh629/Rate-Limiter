@@ -1,0 +1,19 @@
+{
+  "benchmark": "B1",
+  "runId": "20261111T112229Z-b1-fixed_window-7500-r4",
+  "rate": 7500,
+  "warmupS": 60,
+  "measureS": 180,
+  "latencyMs": 100,
+  "preVUs": 750,
+  "maxVUs": 938,
+  "warmPreVUs": 375,
+  "algorithm": "fixed_window",
+  "profile": "mixed",
+  "baseUrl": "http://nginx:8080",
+  "baseUrls": [],
+  "uaUser": false,
+  "hotToken": "",
+  "tokensFile": "/tokens/bench.json",
+  "outDir": "/results"
+}

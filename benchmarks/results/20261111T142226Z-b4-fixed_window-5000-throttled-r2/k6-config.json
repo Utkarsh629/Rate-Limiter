@@ -1,0 +1,19 @@
+{
+  "benchmark": "B4",
+  "runId": "20261111T142226Z-b4-fixed_window-5000-throttled-r2",
+  "rate": 5000,
+  "warmupS": 60,
+  "measureS": 180,
+  "latencyMs": 200,
+  "preVUs": 1000,
+  "maxVUs": 1250,
+  "warmPreVUs": 500,
+  "algorithm": "fixed_window",
+  "profile": "throttled",
+  "baseUrl": "http://nginx:8080",
+  "baseUrls": [],
+  "uaUser": false,
+  "hotToken": "",
+  "tokensFile": "/tokens/bench.json",
+  "outDir": "/results"
+}

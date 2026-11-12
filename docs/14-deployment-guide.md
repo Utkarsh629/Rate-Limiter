@@ -1,6 +1,6 @@
 # 14 — Deployment Guide
 
-> Status: **Phase 1 (infrastructure + single local instance).** Phase 7 adds Nginx, three app instances, Prometheus and Grafana.
+> Status: **current through Phase 3B**: local development (§1–5b), the full Compose stack (§5c) and the benchmark tooling (§5d).
 
 ## Prerequisites
 
@@ -215,6 +215,58 @@ scripts/stack-smoke.sh --clean
 ```
 
 `--clean` deletes this project's containers and volumes first (policies are re-seeded by Flyway). Without it, the smoke test runs against the current stack. It takes about 2.5 minutes; the report is written to `benchmarks/smoke/<run-id>/report.json`.
+
+## 5d. Running the benchmarks (Phase 3B)
+
+Requires the full stack (§5c), healthy. Tokens are minted offline from `JWT_SECRET` (git-ignored output):
+
+```bash
+python3 scripts/bench/mint-tokens.py --free 10000 --hot 100 --ttl 172800 --out load-tests/k6/.tokens/bench.json
+```
+
+```bash
+python3 scripts/bench/mint-tokens.py --enterprise 2000 --ttl 172800 --out load-tests/k6/.tokens/bench-enterprise.json
+```
+
+Check the tooling, then do a dry run (no request is sent, Redis is not reset):
+
+```bash
+python3 -m unittest discover -s scripts/bench/tests -t scripts/bench/tests
+```
+
+```bash
+scripts/bench/run.sh run --scenario B1 --algorithm token_bucket --rate 1000 --rep 1 --dry-run
+```
+
+One run (about 5 minutes: preflight, policy verification, Redis reset, 60 s warm-up, 180 s measurement, cooldown,
+collection):
+
+```bash
+scripts/bench/run.sh run --scenario B1 --algorithm token_bucket --rate 1000 --rep 1
+```
+
+A whole campaign (3 valid repetitions per configuration; resumes, never overwrites; `touch benchmarks/campaigns/STOP`
+stops it after the current run):
+
+```bash
+python3 scripts/bench/campaign.py benchmarks
+```
+
+Report from the saved runs:
+
+```bash
+python3 scripts/bench/report.py --out benchmarks/reports/<name>
+```
+
+| Item | Detail |
+|---|---|
+| Scenarios | B0–B10 and F1–F5 as defined in `docs/proposals/phase-3-plan.md`; `runner.py` refuses other scenarios, rates (unless `--nonstandard-rate`), profiles, variants and targets |
+| Results | `benchmarks/results/<UTC time>-<scenario>-<algorithm>-<rps>[-profile][-variant][-target]-r<n>/`: k6 summary, configuration and the exact script used, Prometheus queries, docker stats, Redis INFO/latency/SLOWLOG, Nginx summary, raw per-instance counters, `/stats`, `sources.json`, `reconcile.json`, `validity.json`, `correctness.json` (B5/B6/B10), `environment.txt` |
+| Benchmark policy | `scripts/bench/setup-policies.sh apply\|verify\|show\|delete` (`bench-profile`, 120 per 60 s; `POLICY_VARIANT=concurrency` for B6). Delete it before running `scripts/stack-smoke.sh`: both use the same endpoint and tier |
+| Stack variants | `scripts/bench/run.sh variant <default\|limiter-off\|pool-8\|pool-16\|pool-32>` recreates app1–3 with an extra Compose file from `scripts/bench/compose/` (the main `docker-compose.yml` is unchanged); `default` restores the normal stack |
+| Redis safety | `FLUSHDB`, `CONFIG RESETSTAT` and `SLOWLOG RESET` run only after the Compose project, service, image, working directory, Redis configuration and key prefixes are verified, and only against that container; check without changing anything: `scripts/bench/run.sh redis-safety` |
+| Load generator | k6 2.3.0 in the Compose network (`--profile loadtest`), 2 CPU / 1 GiB, `GOMEMLIMIT=850MiB` |
+| Machine | keep the lid open: system sleep invalidates the running run |
 
 ## 6. Inspect the data stores
 

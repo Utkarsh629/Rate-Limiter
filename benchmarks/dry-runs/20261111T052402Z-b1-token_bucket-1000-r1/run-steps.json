@@ -1,0 +1,20 @@
+{
+  "steps": [
+    {
+      "at": 1794374642.561307,
+      "step": "preflight"
+    },
+    {
+      "at": 1794374649.297318,
+      "step": "policy setup and verification on all three instances (probes)"
+    },
+    {
+      "at": 1794374651.144358,
+      "step": "idle 6 s: pending statistics flushes complete"
+    },
+    {
+      "at": 1794374657.154444,
+      "step": "Redis identity and safety check"
+    }
+  ]
+}

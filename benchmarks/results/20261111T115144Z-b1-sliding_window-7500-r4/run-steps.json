@@ -1,0 +1,49 @@
+{
+  "steps": [
+    {
+      "at": 1794397904.340269,
+      "step": "preflight"
+    },
+    {
+      "at": 1794397911.25453,
+      "step": "policy setup and verification on all three instances (probes)"
+    },
+    {
+      "at": 1794397913.174007,
+      "step": "idle 6 s: pending statistics flushes complete"
+    },
+    {
+      "at": 1794397919.184119,
+      "step": "Redis identity and safety check"
+    },
+    {
+      "at": 1794397919.554914,
+      "step": "Redis reset: FLUSHDB + CONFIG RESETSTAT + SLOWLOG RESET on the verified container"
+    },
+    {
+      "at": 1794397920.356695,
+      "step": "idle 11 s: Prometheus scrapes the idle state"
+    },
+    {
+      "at": 1794397931.365381,
+      "step": "snapshots before the run (raw counters, Prometheus, Redis)"
+    },
+    {
+      "at": 1794397932.11493,
+      "script": "b1-load-levels.js",
+      "step": "k6 run"
+    },
+    {
+      "at": 1794398173.518974,
+      "step": "cooldown 12 s: final Prometheus scrape (2 \u00d7 5 s) and final statistics flush (5 s)"
+    },
+    {
+      "at": 1794398185.526324,
+      "step": "snapshots after the run"
+    },
+    {
+      "at": 1794398186.9527628,
+      "step": "collect: Prometheus measure window, Nginx, docker stats"
+    }
+  ]
+}

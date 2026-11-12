@@ -1,0 +1,19 @@
+{
+  "benchmark": "B8",
+  "runId": "20261111T152433Z-b8-sliding_window-2000-r3",
+  "rate": 2000,
+  "warmupS": 60,
+  "measureS": 180,
+  "latencyMs": 200,
+  "preVUs": 400,
+  "maxVUs": 500,
+  "warmPreVUs": 200,
+  "algorithm": "sliding_window",
+  "profile": "hotkey",
+  "baseUrl": "http://nginx:8080",
+  "baseUrls": [],
+  "uaUser": false,
+  "hotToken": "<redacted: expired test JWT>",
+  "tokensFile": "/tokens/bench.json",
+  "outDir": "/results"
+}

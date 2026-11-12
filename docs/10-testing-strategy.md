@@ -1,6 +1,6 @@
 # 10 — Testing Strategy
 
-> Status: **Phase 1, Phase 2 algorithms, policy management & identity, Phase 2 HTTP filter integration and Phase 2 circuit-breaker tests implemented and passing** (288 tests). Later workstreams add their own sections.
+> Status: **Phases 1, 2 and 3A test suites implemented and passing (310 tests); Phase 3B benchmark tooling tested (49 Python unit tests + 75-case policy-guard selftest) and the benchmark campaign executed (below).**
 
 ## Layout and commands
 
@@ -207,7 +207,55 @@ One command against the full Compose stack; `--clean` first deletes this project
 | 20261111-001933, -002034 | AC14 failed: 573 and 865 accepted; AC18 counts reconciled exactly (57,382 allowed + 8 fail-open = 57,390 k6 accepted) |
 | Diagnostic bursts (4 rounds each) | 50 ms: 425–909 fail-open per round; 50 ms + 32 threads: 285–841; **250 ms: 100/900 ×4, 0 fail-open; 500 ms: 100/900 ×4, 0 fail-open** (decision D42) |
 
-## Planned (later workstreams)
-Algorithm script tests, concurrency tests (1,000 threads, start-gate latch, repeated), policy resolution
-truth table, filter/HTTP tests, Redis failure tests (container stop/pause), 3-context distributed test,
-3-container k6 correctness test.
+## Phase 3B — benchmark tooling tests and campaign validation
+
+Benchmark tooling lives in `scripts/bench/` (runner, collection, reconciliation, validity, report, campaign driver)
+and `load-tests/k6/` (one script per scenario on a shared library). It is tested outside Maven:
+
+```bash
+python3 -m unittest discover -s scripts/bench/tests -t scripts/bench/tests
+```
+
+```bash
+scripts/bench/setup-policies.sh selftest
+```
+
+| Suite | Tests | Covers |
+|---|---|---|
+| `test_parsing.py` | Prometheus text, Redis `INFO`, Nginx access log (run marker, phases, per-user, timeline), docker stats (5-second k6 CPU window), k6 summary | parsers incl. missing metrics and garbage lines |
+| `test_reconcile.py` | exact match; k6≠Nginx with explanation (499/502); incomplete final scrape; pending stats flush; foreign traffic; missing source; direct mode (Nginx n/a); fail-open; limiter off | decision O2 |
+| `test_validity.py` | valid run; dropped iterations; achieved < 99 % (boundary); k6 CPU > 85 % or no samples; unexpected > 0.1 %; missing metrics; incomplete scrapes; reconcile/reset failures; warm-up overlap; failure-campaign outcome rules; correctness bounds (token bucket, windows, over-admission, B6) | approved invalid-run rules |
+| `test_safety.py` | every Redis identity mismatch refused; destructive commands only on the allow-list and only against the verified container; container change detected; unhealthy stack refused before any action; approved scenario definitions enforced | Redis and stack safety |
+| `test_report.py` | median/min–max, spread flag, missing values, formatting | report aggregation |
+| `setup-policies.sh selftest` | 75 cases: PathPattern matching superset, Java/Python regex subset, conflict classification | benchmark policy guard |
+
+Result (2026-11-12): 49/49 Python tests OK; selftest 75/75; `./mvnw clean verify` → unit 158/158, integration
+152/152 (**310**), BUILD SUCCESS (no application code changed in Phase 3B).
+
+**Dry run and safety evidence.** `scripts/bench/run.sh run … --dry-run` performs the preflight, policy verification
+and Redis identity check, then runs `k6 inspect` instead of `k6 run` (no request sent) and never resets Redis. Every
+scenario script (B0–B10, F1–F5) passed a dry run. The Redis safety check refused the stack that had been created from
+another working directory (`working_dir` mismatch) before any destructive command.
+
+**Tooling validation runs (3B-AC1–AC4).** Three valid B1 token-bucket runs at 1,000 RPS produced complete artefact
+directories, automatic validity verdicts, exact reconciliation (k6 = Nginx = per-instance counters = Prometheus =
+`/stats` = EVALSHA = 240,002 requests) and a generated report. Defects found and fixed during the campaign (each
+recorded in the code): VU pre-allocation too small for latency stalls; k6 memory limit (fixed with `GOMEMLIMIT`);
+scrape-completeness and k6-CPU checks not applicable to ~1-second B5/B6 windows; F5 `TIME`-based loop (Redis 7 freezes
+`TIME` in scripts); JIT warm-up verifying policies while the limiter was off. Invalid runs produced before these
+fixes are kept with their original verdicts.
+
+Benchmark results: `11-performance-benchmarks.md`. Failure campaigns: `13-failure-handling.md`.
+
+### Smoke tests after the campaign (2026-11-12)
+| Run | Result |
+|---|---|
+| 20261111-105425 (`--clean`, freshly built stack, before the campaign) | AC14 failed in 2 of 4 rounds (113 and 110 accepted; 13 and 10 fail-open); all other checks passed |
+| 20261112-045040 (~3 min after the instances were recreated) | AC14 failed in 3 of 4 rounds (11 / 333 / 15 fail-open; app2 breaker opened); all other checks passed |
+| 20261112-045257 (same stack, warm) | **PASSED 37/37** |
+
+The AC14 failures are the cold-start issue documented as open in `13-failure-handling.md`.
+
+## Not covered by automated tests
+The benchmark campaign itself (hours of load on one laptop) is run manually with `scripts/bench/campaign.py`; its
+evidence is the saved run directories, not a test suite.

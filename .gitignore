@@ -24,3 +24,18 @@ benchmarks/smoke/
 # Python cache
 __pycache__/
 *.py[cod]
+
+# Phase 3B raw benchmark data: kept on disk (never deleted) and listed with checksums in
+# benchmarks/results/MANIFEST.sha256; the compact per-run evidence used by the reports is committed.
+benchmarks/results/*/docker-stats.csv
+benchmarks/results/*/docker-stats.jsonl
+benchmarks/results/*/docker-stats.jsonl.gz
+benchmarks/results/*/raw-counters/
+benchmarks/results/*/prometheus/queries.json
+benchmarks/results/*/nginx/access-run.log.gz
+
+# Untracked snapshot of the earlier session folder (no unique content; contains an expired test-token file).
+# Kept on disk until its removal is approved; never committed.
+/distributed-rate-limiter/
+# Local archives of original evidence files (e.g. pre-redaction copies); listed in benchmarks/results/MANIFEST-NOTES.md
+benchmarks/archive/

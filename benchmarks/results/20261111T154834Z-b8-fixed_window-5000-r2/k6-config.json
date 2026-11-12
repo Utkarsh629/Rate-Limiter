@@ -1,0 +1,19 @@
+{
+  "benchmark": "B8",
+  "runId": "20261111T154834Z-b8-fixed_window-5000-r2",
+  "rate": 5000,
+  "warmupS": 60,
+  "measureS": 180,
+  "latencyMs": 200,
+  "preVUs": 1000,
+  "maxVUs": 1250,
+  "warmPreVUs": 500,
+  "algorithm": "fixed_window",
+  "profile": "hotkey",
+  "baseUrl": "http://nginx:8080",
+  "baseUrls": [],
+  "uaUser": false,
+  "hotToken": "<redacted: expired test JWT>",
+  "tokensFile": "/tokens/bench.json",
+  "outDir": "/results"
+}

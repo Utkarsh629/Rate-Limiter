@@ -1,0 +1,341 @@
+{
+  "breakers": {
+    "app1": {
+      "openings": 0,
+      "state_after": "closed",
+      "state_before": "closed"
+    },
+    "app2": {
+      "openings": 0,
+      "state_after": "closed",
+      "state_before": "closed"
+    },
+    "app3": {
+      "openings": 0,
+      "state_after": "closed",
+      "state_before": "closed"
+    }
+  },
+  "config": {
+    "algorithms": [
+      "fixed_window"
+    ],
+    "filter_enabled": true,
+    "k6_end": 1794389336.6438148
+  },
+  "k6": {
+    "accepted": 529864,
+    "phases": {
+      "measure": {
+        "accepted": 395935,
+        "rejected": 53984,
+        "requests": 449919,
+        "unexpected": 0
+      },
+      "warmup": {
+        "accepted": 133929,
+        "rejected": 16072,
+        "requests": 150001,
+        "unexpected": 0
+      }
+    },
+    "rejected": 70056,
+    "requests": 599920,
+    "unexpected": 0
+  },
+  "nginx": {
+    "paths": {
+      "/api/v1/demo/profile": {
+        "200": 529864,
+        "429": 70056
+      }
+    },
+    "phases": {
+      "measure": {
+        "200": 395935,
+        "429": 53984
+      },
+      "warmup": {
+        "200": 133929,
+        "429": 16072
+      }
+    },
+    "total": {
+      "200": 529864,
+      "429": 70056
+    },
+    "upstream": {
+      "app1": 199973,
+      "app2": 199974,
+      "app3": 199973
+    }
+  },
+  "prom": {
+    "per_instance": {
+      "app-1": {
+        "fixed_window": {
+          "allowed": 176618,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 23355
+        },
+        "sliding_window": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "token_bucket": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "app-2": {
+        "fixed_window": {
+          "allowed": 176620,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 23354
+        },
+        "sliding_window": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "token_bucket": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "app-3": {
+        "fixed_window": {
+          "allowed": 176626,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 23347
+        },
+        "sliding_window": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "token_bucket": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      }
+    },
+    "sample_timestamps_after": {
+      "app-1": 1794389347.099,
+      "app-2": 1794389345.484,
+      "app-3": 1794389345.066
+    },
+    "total": {
+      "fixed_window": {
+        "allowed": 529864,
+        "fail_closed": 0,
+        "fail_open": 0,
+        "rejected": 70056
+      },
+      "sliding_window": {
+        "allowed": 0,
+        "fail_closed": 0,
+        "fail_open": 0,
+        "rejected": 0
+      },
+      "token_bucket": {
+        "allowed": 0,
+        "fail_closed": 0,
+        "fail_open": 0,
+        "rejected": 0
+      }
+    }
+  },
+  "raw": {
+    "per_app": {
+      "app1": {
+        "fixed_window": {
+          "allowed": 176618,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 23355
+        },
+        "sliding_window": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "token_bucket": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "app2": {
+        "fixed_window": {
+          "allowed": 176620,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 23354
+        },
+        "sliding_window": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "token_bucket": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "app3": {
+        "fixed_window": {
+          "allowed": 176626,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 23347
+        },
+        "sliding_window": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "token_bucket": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      }
+    },
+    "total": {
+      "fixed_window": {
+        "allowed": 529864,
+        "fail_closed": 0,
+        "fail_open": 0,
+        "rejected": 70056
+      },
+      "sliding_window": {
+        "allowed": 0,
+        "fail_closed": 0,
+        "fail_open": 0,
+        "rejected": 0
+      },
+      "token_bucket": {
+        "allowed": 0,
+        "fail_closed": 0,
+        "fail_open": 0,
+        "rejected": 0
+      }
+    }
+  },
+  "redis": {
+    "after": {
+      "connected_clients": "7",
+      "dbsize": 6,
+      "eval_calls": 148,
+      "evalsha_calls": 599921,
+      "latencystats_evalsha": {
+        "p50": "7.007",
+        "p99": "41.215",
+        "p99.9": "77.311"
+      },
+      "slowlog_len": "4",
+      "total_commands_processed": "2380090",
+      "used_cpu_sys": "181.069074",
+      "used_cpu_sys_main_thread": "180.983745",
+      "used_cpu_user": "270.135622",
+      "used_cpu_user_main_thread": "269.947327",
+      "used_memory": "1574560"
+    },
+    "before": {
+      "connected_clients": "7",
+      "dbsize": 2,
+      "eval_calls": 1,
+      "evalsha_calls": 1,
+      "latencystats_evalsha": {
+        "p50": "61.183",
+        "p99": "61.183",
+        "p99.9": "61.183"
+      },
+      "slowlog_len": "0",
+      "total_commands_processed": "56",
+      "used_cpu_sys": "173.948376",
+      "used_cpu_sys_main_thread": "173.864709",
+      "used_cpu_user": "262.262964",
+      "used_cpu_user_main_thread": "262.080962",
+      "used_memory": "1534472"
+    },
+    "evalsha_delta": 599920
+  },
+  "stats": {
+    "11": {
+      "algorithm": "fixed_window",
+      "before": {
+        "body": {
+          "allowed": 0,
+          "consistency": "eventual: each instance flushes every 5 s; unflushed counts of a crashed instance are lost",
+          "failClosed": 0,
+          "failOpen": 0,
+          "generatedAt": "2026-11-11T09:24:43.894918884Z",
+          "instances": [],
+          "policyId": 11,
+          "rejected": 0,
+          "rejectionRate": 0.0
+        },
+        "status": 200
+      },
+      "body": {
+        "allowed": 529864,
+        "consistency": "eventual: each instance flushes every 5 s; unflushed counts of a crashed instance are lost",
+        "failClosed": 0,
+        "failOpen": 0,
+        "generatedAt": "2026-11-11T09:29:09.531627924Z",
+        "instances": [
+          {
+            "allowed": 176618,
+            "failClosed": 0,
+            "failOpen": 0,
+            "instanceId": "app-1",
+            "lastFlushAt": "2026-11-11T09:29:01.077Z",
+            "rejected": 23355
+          },
+          {
+            "allowed": 176620,
+            "failClosed": 0,
+            "failOpen": 0,
+            "instanceId": "app-2",
+            "lastFlushAt": "2026-11-11T09:28:56.357Z",
+            "rejected": 23354
+          },
+          {
+            "allowed": 176626,
+            "failClosed": 0,
+            "failOpen": 0,
+            "instanceId": "app-3",
+            "lastFlushAt": "2026-11-11T09:29:00.757Z",
+            "rejected": 23347
+          }
+        ],
+        "policyId": 11,
+        "rejected": 70056,
+        "rejectionRate": 0.11677557007601014
+      },
+      "status": 200
+    }
+  }
+}

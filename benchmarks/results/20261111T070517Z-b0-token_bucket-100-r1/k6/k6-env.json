@@ -1,0 +1,10 @@
+{
+  "ALGORITHM": "token_bucket",
+  "MEASURE_S": "180",
+  "OUT_DIR": "/results",
+  "PROFILE": "mixed",
+  "RATE": "100",
+  "RUN_ID": "20261111T070517Z-b0-token_bucket-100-r1",
+  "TOKENS_FILE": "/tokens/bench.json",
+  "WARMUP_S": "60"
+}

@@ -1,0 +1,303 @@
+git.commit: 5d938e1006c21e7dbe18da981838a238431a5da3
+git.branch: phase-3b/benchmark-infrastructure
+git.status_porcelain:
+  ?? benchmarks/campaigns/
+  ?? benchmarks/dry-runs/
+  ?? benchmarks/reports/
+  ?? benchmarks/results/20261111T053559Z-b1-token_bucket-1000-r1/
+  ?? benchmarks/results/20261111T054044Z-b1-token_bucket-1000-r2/
+  ?? benchmarks/results/20261111T054529Z-b1-token_bucket-1000-r3/
+  ?? benchmarks/results/20261111T055014Z-b1-token_bucket-1000-r4/
+  ?? benchmarks/results/20261111T055531Z-b1-token_bucket-1000-r5/
+  ?? benchmarks/results/20261111T060049Z-b6-token_bucket-1000-r1/
+  ?? benchmarks/results/20261111T060135Z-b6-token_bucket-1000-r2/
+  ?? benchmarks/results/20261111T060221Z-b6-token_bucket-1000-r3/
+  ?? benchmarks/results/20261111T060305Z-b6-token_bucket-1000-r4/
+  ?? benchmarks/results/20261111T060349Z-b6-token_bucket-1000-r5/
+  ?? benchmarks/results/20261111T060433Z-b5-token_bucket-10000-r1/
+  ?? benchmarks/results/20261111T060620Z-b5-token_bucket-10000-r2/
+  ?? benchmarks/results/20261111T060805Z-b5-token_bucket-10000-r3/
+  ?? benchmarks/results/20261111T060951Z-b5-token_bucket-10000-r4/
+  ?? benchmarks/results/20261111T061136Z-b5-fixed_window-10000-r1/
+  ?? benchmarks/results/20261111T061323Z-b5-fixed_window-10000-r2/
+  ?? benchmarks/results/20261111T061509Z-b5-fixed_window-10000-r3/
+  ?? benchmarks/results/20261111T061655Z-b5-sliding_window-10000-r1/
+  ?? benchmarks/results/20261111T061842Z-b5-sliding_window-10000-r2/
+  ?? benchmarks/results/20261111T062028Z-b5-sliding_window-10000-r3/
+  ?? benchmarks/results/20261111T062214Z-b10-token_bucket-2000-r1/
+  ?? benchmarks/results/20261111T062701Z-b10-token_bucket-2000-r2/
+  ?? benchmarks/results/20261111T063148Z-b10-token_bucket-2000-r3/
+  ?? benchmarks/results/20261111T063635Z-b10-fixed_window-2000-r1/
+  ?? benchmarks/results/20261111T064122Z-b10-fixed_window-2000-r2/
+  ?? benchmarks/results/20261111T064608Z-b10-fixed_window-2000-r3/
+  ?? benchmarks/results/20261111T065055Z-b10-sliding_window-2000-r1/
+  ?? benchmarks/results/20261111T065543Z-b10-sliding_window-2000-r2/
+  ?? benchmarks/results/20261111T070030Z-b10-sliding_window-2000-r3/
+  ?? benchmarks/results/20261111T070517Z-b0-token_bucket-100-r1/
+  ?? benchmarks/results/20261111T071001Z-b0-token_bucket-100-r2/
+  ?? benchmarks/results/20261111T071445Z-b0-token_bucket-100-r3/
+  ?? benchmarks/results/20261111T071929Z-b0-fixed_window-100-r1/
+  ?? benchmarks/results/20261111T072412Z-b0-fixed_window-100-r2/
+  ?? benchmarks/results/20261111T072857Z-b0-fixed_window-100-r3/
+  ?? benchmarks/results/20261111T073341Z-b0-sliding_window-100-r1/
+  ?? benchmarks/results/20261111T073825Z-b0-sliding_window-100-r2/
+  ?? benchmarks/results/20261111T074310Z-b0-sliding_window-100-r3/
+  ?? benchmarks/results/20261111T074755Z-b1-fixed_window-1000-r1/
+  ?? benchmarks/results/20261111T075240Z-b1-fixed_window-1000-r2/
+  ?? benchmarks/results/20261111T075725Z-b1-fixed_window-1000-r3/
+  ?? benchmarks/results/20261111T080209Z-b1-sliding_window-1000-r1/
+  ?? benchmarks/results/20261111T080655Z-b1-sliding_window-1000-r2/
+  ?? benchmarks/results/20261111T081140Z-b1-sliding_window-1000-r3/
+  ?? benchmarks/results/20261111T081625Z-b1-token_bucket-2500-r1/
+  ?? benchmarks/results/20261111T082111Z-b1-token_bucket-2500-r2/
+  ?? benchmarks/results/20261111T082558Z-b1-token_bucket-2500-r3/
+  ?? benchmarks/results/20261111T083044Z-b1-fixed_window-2500-r1/
+  ?? benchmarks/results/20261111T091941Z-b1-fixed_window-2500-r2/
+  ?? benchmarks/results/20261111T092428Z-b1-fixed_window-2500-r3/
+  ?? benchmarks/results/20261111T092914Z-b1-fixed_window-2500-r4/
+  ?? benchmarks/results/20261111T093401Z-b1-fixed_window-2500-r5/
+  ?? benchmarks/results/20261111T093847Z-b1-sliding_window-2500-r1/
+  ?? benchmarks/results/20261111T094334Z-b1-sliding_window-2500-r2/
+  ?? benchmarks/results/20261111T094820Z-b1-sliding_window-2500-r3/
+  ?? benchmarks/results/20261111T095307Z-b1-token_bucket-5000-r1/
+  ?? benchmarks/results/20261111T095756Z-b1-token_bucket-5000-r2/
+  ?? benchmarks/results/20261111T100246Z-b1-token_bucket-5000-r3/
+  ?? benchmarks/results/20261111T100735Z-b1-fixed_window-5000-r1/
+  ?? benchmarks/results/20261111T101224Z-b1-fixed_window-5000-r2/
+  ?? benchmarks/results/20261111T101713Z-b1-fixed_window-5000-r3/
+  ?? benchmarks/results/20261111T102202Z-b1-sliding_window-5000-r1/
+  ?? benchmarks/results/20261111T102651Z-b1-sliding_window-5000-r2/
+  ?? benchmarks/results/20261111T103140Z-b1-sliding_window-5000-r3/
+  ?? benchmarks/results/20261111T103629Z-b1-token_bucket-7500-r1/
+  ?? benchmarks/results/20261111T104119Z-b1-token_bucket-7500-r2/
+  ?? benchmarks/results/20261111T104609Z-b1-token_bucket-7500-r3/
+  ?? benchmarks/results/20261111T105059Z-b1-fixed_window-7500-r1/
+  ?? benchmarks/results/20261111T105549Z-b1-fixed_window-7500-r2/
+  ?? benchmarks/results/20261111T110039Z-b1-fixed_window-7500-r3/
+  ?? benchmarks/results/20261111T110640Z-b1-token_bucket-7500-r4/
+  ?? benchmarks/results/20261111T111200Z-b6-token_bucket-1000-r6/
+  ?? benchmarks/results/20261111T111245Z-b1-token_bucket-7500-r5/
+  ?? benchmarks/results/20261111T111737Z-b1-token_bucket-7500-r6/
+  ?? benchmarks/results/20261111T112229Z-b1-fixed_window-7500-r4/
+  ?? benchmarks/results/20261111T112720Z-b1-fixed_window-7500-r5/
+  ?? benchmarks/results/20261111T113213Z-b1-fixed_window-7500-r6/
+  ?? benchmarks/results/20261111T113706Z-b1-sliding_window-7500-r1/
+  ?? benchmarks/results/20261111T114159Z-b1-sliding_window-7500-r2/
+  ?? benchmarks/results/20261111T114651Z-b1-sliding_window-7500-r3/
+  ?? benchmarks/results/20261111T115144Z-b1-sliding_window-7500-r4/
+  ?? benchmarks/results/20261111T115636Z-b1-sliding_window-7500-r5/
+  ?? benchmarks/results/20261111T120128Z-b1-token_bucket-10000-r1/
+  ?? benchmarks/results/20261111T120622Z-b1-token_bucket-10000-r2/
+  ?? benchmarks/results/20261111T121117Z-b1-token_bucket-10000-r3/
+  ?? benchmarks/results/20261111T121612Z-b1-fixed_window-10000-r1/
+  ?? benchmarks/results/20261111T122107Z-b1-fixed_window-10000-r2/
+  ?? benchmarks/results/20261111T122602Z-b1-fixed_window-10000-r3/
+  ?? benchmarks/results/20261111T123057Z-b1-fixed_window-10000-r4/
+  ?? benchmarks/results/20261111T123551Z-b1-fixed_window-10000-r5/
+  ?? benchmarks/results/20261111T124046Z-b1-sliding_window-10000-r1/
+  ?? benchmarks/results/20261111T124541Z-b1-sliding_window-10000-r2/
+  ?? benchmarks/results/20261111T125036Z-b1-sliding_window-10000-r3/
+  ?? benchmarks/results/20261111T125542Z-b4-token_bucket-5000-r1/
+  ?? benchmarks/results/20261111T130035Z-b4-token_bucket-5000-r2/
+  ?? benchmarks/results/20261111T130524Z-b4-token_bucket-5000-r3/
+  ?? benchmarks/results/20261111T131012Z-b4-token_bucket-5000-r4/
+  ?? benchmarks/results/20261111T131501Z-b4-token_bucket-5000-r5/
+  ?? benchmarks/results/20261111T131949Z-b4-fixed_window-5000-r1/
+  ?? benchmarks/results/20261111T132438Z-b4-fixed_window-5000-r2/
+  ?? benchmarks/results/20261111T132927Z-b4-fixed_window-5000-r3/
+  ?? benchmarks/results/20261111T133415Z-b4-fixed_window-5000-r4/
+  ?? benchmarks/results/20261111T133905Z-b4-fixed_window-5000-r5/
+  ?? benchmarks/results/20261111T134354Z-b4-sliding_window-5000-r1/
+  ?? benchmarks/results/20261111T134843Z-b4-sliding_window-5000-r2/
+  ?? benchmarks/results/20261111T135332Z-b4-sliding_window-5000-r3/
+  ?? benchmarks/results/20261111T135821Z-b4-sliding_window-5000-r4/
+  ?? benchmarks/results/20261111T140310Z-b4-token_bucket-5000-throttled-r1/
+  ?? benchmarks/results/20261111T140759Z-b4-token_bucket-5000-throttled-r2/
+  ?? benchmarks/results/20261111T141248Z-b4-token_bucket-5000-throttled-r3/
+  ?? benchmarks/results/20261111T141737Z-b4-fixed_window-5000-throttled-r1/
+  ?? benchmarks/results/20261111T142226Z-b4-fixed_window-5000-throttled-r2/
+  ?? benchmarks/results/20261111T142714Z-b4-fixed_window-5000-throttled-r3/
+  ?? benchmarks/results/20261111T143203Z-b4-sliding_window-5000-throttled-r1/
+  ?? benchmarks/results/20261111T143652Z-b4-sliding_window-5000-throttled-r2/
+  ?? benchmarks/results/20261111T144141Z-b4-sliding_window-5000-throttled-r3/
+  ?? benchmarks/results/20261111T144630Z-b8-token_bucket-2000-r1/
+  ?? benchmarks/results/20261111T145115Z-b8-token_bucket-2000-r2/
+  ?? benchmarks/results/20261111T145601Z-b8-token_bucket-2000-r3/
+  ?? benchmarks/results/20261111T150046Z-b8-fixed_window-2000-r1/
+  ?? benchmarks/results/20261111T150532Z-b8-fixed_window-2000-r2/
+  ?? benchmarks/results/20261111T151017Z-b8-fixed_window-2000-r3/
+  ?? benchmarks/results/20261111T151503Z-b8-sliding_window-2000-r1/
+  ?? benchmarks/results/20261111T151948Z-b8-sliding_window-2000-r2/
+  ?? benchmarks/results/20261111T152433Z-b8-sliding_window-2000-r3/
+  ?? benchmarks/results/20261111T152919Z-b8-token_bucket-5000-r1/
+  ?? benchmarks/results/20261111T153408Z-b8-token_bucket-5000-r2/
+  ?? benchmarks/results/20261111T153856Z-b8-token_bucket-5000-r3/
+  ?? benchmarks/results/20261111T154345Z-b8-fixed_window-5000-r1/
+  ?? benchmarks/results/20261111T154834Z-b8-fixed_window-5000-r2/
+  ?? benchmarks/results/20261111T155322Z-b8-fixed_window-5000-r3/
+  ?? benchmarks/results/20261111T155811Z-b8-sliding_window-5000-r1/
+  ?? benchmarks/results/20261111T160259Z-b8-sliding_window-5000-r2/
+  ?? benchmarks/results/20261111T160747Z-b8-sliding_window-5000-r3/
+  ?? benchmarks/results/20261111T161236Z-b8-sliding_window-5000-r4/
+  ?? benchmarks/results/20261111T161725Z-b7-token_bucket-5000-r1/
+  ?? benchmarks/results/20261111T162213Z-b7-token_bucket-5000-r2/
+  ?? benchmarks/results/20261111T162702Z-b7-token_bucket-5000-r3/
+  ?? benchmarks/results/20261111T163151Z-b7-token_bucket-5000-r4/
+  ?? benchmarks/results/20261111T163640Z-b7-fixed_window-5000-r1/
+  ?? benchmarks/results/20261111T164129Z-b7-fixed_window-5000-r2/
+  ?? benchmarks/results/20261111T164618Z-b7-fixed_window-5000-r3/
+  ?? benchmarks/results/20261111T165106Z-b7-sliding_window-5000-r1/
+  ?? benchmarks/results/20261111T165555Z-b7-sliding_window-5000-r2/
+  ?? benchmarks/results/20261111T170044Z-b7-sliding_window-5000-r3/
+  ?? benchmarks/results/20261111T170533Z-b7-sliding_window-5000-r4/
+  ?? benchmarks/results/20261111T171022Z-b7-token_bucket-5000-direct-r1/
+  ?? benchmarks/results/20261111T171507Z-b7-token_bucket-5000-direct-r2/
+  ?? benchmarks/results/20261111T171951Z-b7-token_bucket-5000-direct-r3/
+  ?? benchmarks/results/20261111T172436Z-b7-fixed_window-5000-direct-r1/
+  ?? benchmarks/results/20261111T172921Z-b7-fixed_window-5000-direct-r2/
+  ?? benchmarks/results/20261111T173405Z-b7-fixed_window-5000-direct-r3/
+  ?? benchmarks/results/20261111T173849Z-b7-sliding_window-5000-direct-r1/
+  ?? benchmarks/results/20261111T174334Z-b7-sliding_window-5000-direct-r2/
+  ?? benchmarks/results/20261111T174818Z-b7-sliding_window-5000-direct-r3/
+  ?? benchmarks/results/20261111T175303Z-b2-token_bucket-15000-r1/
+  ?? benchmarks/results/20261111T180231Z-b2-token_bucket-15000-r2/
+  ?? benchmarks/results/20261111T181201Z-b2-token_bucket-15000-r3/
+  ?? benchmarks/results/20261111T182604Z-b3-token_bucket-1000-r1/
+  ?? benchmarks/results/20261111T183049Z-b3-token_bucket-1000-r2/
+  ?? benchmarks/results/20261111T183534Z-b3-token_bucket-1000-r3/
+  ?? benchmarks/results/20261111T184331Z-b9-token_bucket-1000-r1/
+  ?? benchmarks/results/20261111T184816Z-b9-token_bucket-1000-r2/
+  ?? benchmarks/results/20261111T185300Z-b9-token_bucket-1000-r3/
+  ?? benchmarks/results/20261111T190005Z-b9-token_bucket-1000-pool-16-r1/
+  ?? benchmarks/results/20261111T190450Z-b9-token_bucket-1000-pool-16-r2/
+  ?? benchmarks/results/20261111T190934Z-b9-token_bucket-1000-pool-16-r3/
+  ?? benchmarks/results/20261111T191639Z-b9-token_bucket-5000-r1/
+  ?? benchmarks/results/20261111T192128Z-b9-token_bucket-5000-r2/
+  ?? benchmarks/results/20261111T192616Z-b9-token_bucket-5000-r3/
+  ?? benchmarks/results/20261111T193326Z-b9-token_bucket-5000-pool-16-r1/
+  ?? benchmarks/results/20261111T193815Z-b9-token_bucket-5000-pool-16-r2/
+  ?? benchmarks/results/20261111T194304Z-b9-token_bucket-5000-pool-16-r3/
+  ?? benchmarks/results/20261111T195013Z-f1-fixed_window-2000-r1/
+  ?? benchmarks/warmups/
+  ?? distributed-rate-limiter/
+  ?? load-tests/k6/b0-baseline.js
+  ?? load-tests/k6/b1-load-levels.js
+  ?? load-tests/k6/b10-correctness.js
+  ?? load-tests/k6/b2-stress.js
+  ?? load-tests/k6/b3-overhead.js
+  ?? load-tests/k6/b4-headroom-throttled.js
+  ?? load-tests/k6/b5-burst.js
+  ?? load-tests/k6/b6-concurrency.js
+  ?? load-tests/k6/b7-distributed.js
+  ?? load-tests/k6/b8-hot-key.js
+  ?? load-tests/k6/b9-pooling.js
+  ?? load-tests/k6/f-failure.js
+  ?? load-tests/k6/lib/
+  ?? scripts/bench/benchlib.py
+  ?? scripts/bench/campaign.py
+  ?? scripts/bench/collect.py
+  ?? scripts/bench/compose/
+  ?? scripts/bench/docker-stats.sh
+  ?? scripts/bench/reconcile.py
+  ?? scripts/bench/report.py
+  ?? scripts/bench/run.sh
+  ?? scripts/bench/runner.py
+  ?? scripts/bench/setup-policies.sh
+  ?? scripts/bench/tests/
+  ?? scripts/bench/validity.py
+host.platform: macOS-27.2.1-arm64-arm-64bit-Mach-O
+host.sw_vers:
+  ProductName:		macOS
+  ProductVersion:		27.2.1
+  BuildVersion:		26B131
+host.cpu: Apple M4
+host.ncpu: 10
+host.memsize: 17179869184
+host.pmset:
+  System-wide power settings:
+  Currently in use:
+   standby              1
+   Sleep On Power Button 1
+   hibernatefile        /var/vm/sleepimage
+   powernap             1
+   networkoversleep     0
+   disksleep            10
+   sleep                1 (sleep prevented by Claude, powerd)
+   hibernatemode        3
+   ttyskeepawake        1
+   displaysleep         10
+   tcpkeepalive         1
+   lowpowermode         0
+   womp                 1
+host.pmset_therm:
+  Note: No thermal warning level has been recorded
+  Note: No performance warning level has been recorded
+  Note: No CPU power status has been recorded
+host.uptime: 1:25  up 23:27, 1 user, load averages: 2.74 3.07 3.29
+host.python: 3.14.2 (main, Dec  5 2025, 16:49:16) [Clang 17.0.0 (clang-1700.4.4.1)]
+docker.version: 28.5.1
+docker.info: 10 CPUs, 8218034176 bytes, Docker Desktop
+docker.images: [{"ID":"sha256:a81d043930e51745522bd5c430961cf8286f0a23f0a9a2a6e0108f7ea71b0902","ContainerName":"ratelimiter-mysql-1","Repository":"mysql","Tag":"8.4","Platform":"linux/arm64/v8","Size":232925106,"LastTagTime":"2026-11-10T16:04:04.745818792Z"},{"ID":"sha256:63805ebb8d2b3920190daf1cb14a60871b16fd38bed42b857a3182bc621f4996","ContainerName":"ratelimiter-prometheus-1","Repository":"prom/prometheus","Tag":"v3.5.0","Platform":"linux/arm64","Size":117159012,"LastTagTime":"2026-11-10T18:18:47.055753676Z"},{"ID":"sha256:d91dd45706ba8b56770c1396a00e63d4f0b09bb785eee1ec5dc14c3ea30dd23a","ContainerName":"ratelimiter-app3-1","Repository":"ratelimiter-app","Tag":"local","Platform":"linux/arm64","Size":179246594,"LastTagTime":"2026-11-11T05:24:30.907300259Z"},{"ID":"sha256:d91dd45706ba8b56770c1396a00e63d4f0b09bb785eee1ec5dc14c3ea30dd23a","ContainerName":"ratelimiter-app2-1","Repository":"ratelimiter-app","Tag":"local","Platform":"linux/arm64","Size":179246594,"LastTagTime":"2026-11-11T05:24:30.907300259Z"},{"ID":"sha256:d91dd45706ba8b56770c1396a00e63d4f0b09bb785eee1ec5dc14c3ea30dd23a","ContainerName":"ratelimiter-app1-1","Repository":"ratelimiter-app","Tag":"local","Platform":"linux/arm64","Size":179246594,"LastTagTime":"2026-11-11T05:24:30.907300259Z"},{"ID":"sha256:7b1753b4c5ad8458906c272a8132b8c15f5557b000379eb115fb239706a384b7","ContainerName":"ratelimiter-redis-1","Repository":"redis","Tag":"7.4-alpine","Platform":"linux/arm64/v8","Size":16927338,"LastTagTime":"2026-11-10T16:03:53.669802926Z"},{"ID":"sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236","ContainerName":"ratelimiter-nginx-1","Repository":"nginx","Tag":"1.28-alpine","Platform":"linux/arm64/v8","Size":25801709,"LastTagTime":"2026-11-10T18:18:39.389724839Z"},{"ID":"sha256:bcedc3641b40d26b09d4962a9b7ba84d7582d83a90d224a9ee5aa63829f3aba7","ContainerName":"ratelimiter-redis-exporter-1","Repository":"oliver006/redis_exporter","Tag":"v1.78.0-alpine","Platform":"linux/arm64","Size":7848212,"LastTagTime":"2026-11-10T18:19:03.252885753Z"},{"ID":"sha256:74144189b38447facf737dfd0f3906e42e0776212bf575dc3334c3609183adf7","ContainerName":"ratelimiter-grafana-1","Repository":"grafana/grafana","Tag":"12.2.0","Platform":"linux/arm64","Size":188660915,"LastTagTime":"2026-11-10T18:18:56.760778833Z"}]
+compose_limits.app1.cpus: 1.5
+compose_limits.app1.memory: 1073741824
+compose_limits.app2.cpus: 1.5
+compose_limits.app2.memory: 1073741824
+compose_limits.app3.cpus: 1.5
+compose_limits.app3.memory: 1073741824
+compose_limits.grafana.cpus: 0.25
+compose_limits.grafana.memory: 268435456
+compose_limits.k6.cpus: 2
+compose_limits.k6.memory: 1073741824
+compose_limits.mysql.cpus: 0.5
+compose_limits.mysql.memory: 536870912
+compose_limits.nginx.cpus: 1
+compose_limits.nginx.memory: 134217728
+compose_limits.prometheus.cpus: 0.5
+compose_limits.prometheus.memory: 536870912
+compose_limits.redis.cpus: 1
+compose_limits.redis.memory: 536870912
+compose_limits.redis-exporter.cpus: 0.1
+compose_limits.redis-exporter.memory: 67108864
+apps.app1:
+  java org.springframework.boot.loader.launch.JarLauncher 
+  INSTANCE_ID=app-1
+  JAVA_TOOL_OPTIONS=-XX:MaxRAMPercentage=75 -XX:+ExitOnOutOfMemoryError
+  JAVA_VERSION=jdk-17.0.21+9
+  REDIS_COMMAND_TIMEOUT=250ms
+  REDIS_HOST=redis
+  REDIS_POOL_ENABLED=false
+  REDIS_PORT=6379
+  SERVER_TOMCAT_THREADS_MAX=200
+  SPRING_PROFILES_ACTIVE=prod
+apps.app1_image_id: sha256:d91dd45706ba8b56770c1396a00e63d4f0b09bb785eee1ec5dc14c3ea30dd23a
+apps.app2:
+  java org.springframework.boot.loader.launch.JarLauncher 
+  INSTANCE_ID=app-2
+  JAVA_TOOL_OPTIONS=-XX:MaxRAMPercentage=75 -XX:+ExitOnOutOfMemoryError
+  JAVA_VERSION=jdk-17.0.21+9
+  REDIS_COMMAND_TIMEOUT=250ms
+  REDIS_HOST=redis
+  REDIS_POOL_ENABLED=false
+  REDIS_PORT=6379
+  SERVER_TOMCAT_THREADS_MAX=200
+  SPRING_PROFILES_ACTIVE=prod
+apps.app2_image_id: sha256:d91dd45706ba8b56770c1396a00e63d4f0b09bb785eee1ec5dc14c3ea30dd23a
+apps.app3:
+  java org.springframework.boot.loader.launch.JarLauncher 
+  INSTANCE_ID=app-3
+  JAVA_TOOL_OPTIONS=-XX:MaxRAMPercentage=75 -XX:+ExitOnOutOfMemoryError
+  JAVA_VERSION=jdk-17.0.21+9
+  REDIS_COMMAND_TIMEOUT=250ms
+  REDIS_HOST=redis
+  REDIS_POOL_ENABLED=false
+  REDIS_PORT=6379
+  SERVER_TOMCAT_THREADS_MAX=200
+  SPRING_PROFILES_ACTIVE=prod
+apps.app3_image_id: sha256:d91dd45706ba8b56770c1396a00e63d4f0b09bb785eee1ec5dc14c3ea30dd23a
+redis_config.maxmemory: ['268435456']
+redis_config.maxmemory-policy: ['volatile-ttl']
+redis_config.save: ['']
+redis_config.appendonly: ['no']
+redis_config.io-threads: ['1']
+redis_config.slowlog-log-slower-than: ['5000']
+run_id: 20261111T195013Z-f1-fixed_window-2000-r1

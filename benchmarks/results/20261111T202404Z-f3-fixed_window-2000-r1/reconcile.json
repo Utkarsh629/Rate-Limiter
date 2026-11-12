@@ -1,0 +1,285 @@
+{
+  "checks": [
+    {
+      "expected": {
+        "200": 450115,
+        "429": 27910,
+        "non_200_429": 392
+      },
+      "explanation": "Nginx logged 478404 requests, k6 counted 478417; non-200/429 statuses in the log: {'503': 392}. 499 = client closed the connection (k6 timeout); 502/504 = upstream failure; a k6 request without a log line never reached Nginx.",
+      "name": "k6_vs_nginx",
+      "observed": {
+        "200": 450102,
+        "429": 27910,
+        "non_200_429": 392
+      },
+      "required": true,
+      "status": "fail"
+    },
+    {
+      "expected": {
+        "accepted": 450115,
+        "rejected": 27910
+      },
+      "explanation": "k6 responses and the instances' own decision counters differ (lost responses, timeouts or traffic from another client)",
+      "name": "k6_vs_raw_counters",
+      "observed": {
+        "accepted": -662224,
+        "rejected": -33903
+      },
+      "required": true,
+      "status": "fail"
+    },
+    {
+      "expected": 392,
+      "explanation": "503s in the access log that are not fail-closed decisions (or vice versa)",
+      "name": "nginx_503_vs_fail_closed",
+      "observed": -5318,
+      "required": true,
+      "status": "fail"
+    },
+    {
+      "expected": {
+        "fixed_window": {
+          "allowed": -550694,
+          "fail_closed": 0,
+          "fail_open": -47277,
+          "rejected": -33903
+        },
+        "sliding_window": {
+          "allowed": -64253,
+          "fail_closed": -5318,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "token_bucket": {
+          "allowed": -40032,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "explanation": null,
+      "name": "raw_vs_prometheus_total",
+      "observed": {
+        "fixed_window": {
+          "allowed": -550694,
+          "fail_closed": 0,
+          "fail_open": -47277,
+          "rejected": -33903
+        },
+        "sliding_window": {
+          "allowed": -64253,
+          "fail_closed": -5318,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "token_bucket": {
+          "allowed": -40032,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "app-1": {
+          "fixed_window": {
+            "allowed": 144753,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 9975
+          },
+          "sliding_window": {
+            "allowed": 17031,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-2": {
+          "fixed_window": {
+            "allowed": -840238,
+            "fail_closed": 0,
+            "fail_open": -47277,
+            "rejected": -53689
+          },
+          "sliding_window": {
+            "allowed": -98441,
+            "fail_closed": -5318,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": -40032,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-3": {
+          "fixed_window": {
+            "allowed": 144791,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 9811
+          },
+          "sliding_window": {
+            "allowed": 17157,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "explanation": null,
+      "name": "raw_vs_prometheus_per_instance",
+      "observed": {
+        "app-1": {
+          "fixed_window": {
+            "allowed": 144753,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 9975
+          },
+          "sliding_window": {
+            "allowed": 17031,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-2": {
+          "fixed_window": {
+            "allowed": -840238,
+            "fail_closed": 0,
+            "fail_open": -47277,
+            "rejected": -53689
+          },
+          "sliding_window": {
+            "allowed": -98441,
+            "fail_closed": -5318,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": -40032,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-3": {
+          "fixed_window": {
+            "allowed": 144791,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 9811
+          },
+          "sliding_window": {
+            "allowed": 17157,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {},
+      "explanation": "decisions for an algorithm this run does not use: another client (admin, probe) used the limiter between the idle snapshots",
+      "name": "no_foreign_decisions",
+      "observed": {
+        "token_bucket": {
+          "allowed": -40032,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "required": true,
+      "status": "fail"
+    },
+    {
+      "expected": {
+        "allowed": -550694,
+        "fail_closed": 0,
+        "fail_open": -47277,
+        "rejected": -33903
+      },
+      "explanation": "/stats differs from the instances' counters; last flush per instance: {'app-1': '2026-11-11T20:28:36.480Z', 'app-2': '2026-11-11T20:28:33.552Z', 'app-3': '2026-11-11T20:28:36.716Z'}. Causes: a flush still pending (each instance flushes every 5 s), a crashed instance (unflushed counts are lost by design), or counts flushed before the Redis reset.",
+      "name": "stats_vs_raw_policy_13",
+      "observed": {
+        "allowed": 398684,
+        "fail_closed": 0,
+        "fail_open": 3011,
+        "rejected": 27910
+      },
+      "required": true,
+      "status": "fail"
+    },
+    {
+      "expected": {
+        "allowed": -64253,
+        "fail_closed": -5318,
+        "fail_open": 0,
+        "rejected": 0
+      },
+      "explanation": "/stats differs from the instances' counters; last flush per instance: {'app-1': '2026-11-11T20:28:36.479Z', 'app-2': '2026-11-11T20:28:33.552Z', 'app-3': '2026-11-11T20:28:36.715Z'}. Causes: a flush still pending (each instance flushes every 5 s), a crashed instance (unflushed counts are lost by design), or counts flushed before the Redis reset.",
+      "name": "stats_vs_raw_policy_5",
+      "observed": {
+        "allowed": 47517,
+        "fail_closed": 392,
+        "fail_open": 0,
+        "rejected": 0
+      },
+      "required": true,
+      "status": "fail"
+    },
+    {
+      "explanation": "-52595 requests failed open/closed: timed-out commands may still have executed",
+      "name": "redis_evalsha_vs_decisions",
+      "required": false,
+      "status": "n/a"
+    }
+  ],
+  "failed": [
+    "k6_vs_nginx",
+    "k6_vs_raw_counters",
+    "nginx_503_vs_fail_closed",
+    "no_foreign_decisions",
+    "stats_vs_raw_policy_13",
+    "stats_vs_raw_policy_5"
+  ],
+  "notes": [],
+  "ok": false
+}

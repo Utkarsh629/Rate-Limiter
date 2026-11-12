@@ -1,0 +1,19 @@
+{
+  "benchmark": "B10",
+  "runId": "20261111T062701Z-b10-token_bucket-2000-r2",
+  "rate": 2000,
+  "warmupS": 60,
+  "measureS": 180,
+  "latencyMs": 200,
+  "preVUs": 400,
+  "maxVUs": 500,
+  "warmPreVUs": 200,
+  "algorithm": "token_bucket",
+  "profile": "throttled",
+  "baseUrl": "http://nginx:8080",
+  "baseUrls": [],
+  "uaUser": true,
+  "hotToken": "",
+  "tokensFile": "/tokens/bench.json",
+  "outDir": "/results"
+}

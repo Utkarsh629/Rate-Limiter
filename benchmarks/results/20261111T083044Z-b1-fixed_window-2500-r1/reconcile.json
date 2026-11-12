@@ -1,0 +1,255 @@
+{
+  "checks": [
+    {
+      "expected": {
+        "200": 553401,
+        "429": 44909,
+        "non_200_429": 0
+      },
+      "explanation": "Nginx logged 598309 requests, k6 counted 598310; non-200/429 statuses in the log: {}. 499 = client closed the connection (k6 timeout); 502/504 = upstream failure; a k6 request without a log line never reached Nginx.",
+      "name": "k6_vs_nginx",
+      "observed": {
+        "200": 553400,
+        "429": 44909,
+        "non_200_429": 0
+      },
+      "required": true,
+      "status": "fail"
+    },
+    {
+      "expected": {
+        "accepted": 553401,
+        "rejected": 44909
+      },
+      "explanation": null,
+      "name": "k6_vs_raw_counters",
+      "observed": {
+        "accepted": 553401,
+        "rejected": 44909
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": 0,
+      "explanation": null,
+      "name": "nginx_503_vs_fail_closed",
+      "observed": 0,
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "fixed_window": {
+          "allowed": 553400,
+          "fail_closed": 0,
+          "fail_open": 1,
+          "rejected": 44909
+        },
+        "sliding_window": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "token_bucket": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "explanation": null,
+      "name": "raw_vs_prometheus_total",
+      "observed": {
+        "fixed_window": {
+          "allowed": 553400,
+          "fail_closed": 0,
+          "fail_open": 1,
+          "rejected": 44909
+        },
+        "sliding_window": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "token_bucket": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "app-1": {
+          "fixed_window": {
+            "allowed": 185770,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 14815
+          },
+          "sliding_window": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-2": {
+          "fixed_window": {
+            "allowed": 182279,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 14860
+          },
+          "sliding_window": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-3": {
+          "fixed_window": {
+            "allowed": 185351,
+            "fail_closed": 0,
+            "fail_open": 1,
+            "rejected": 15234
+          },
+          "sliding_window": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "explanation": null,
+      "name": "raw_vs_prometheus_per_instance",
+      "observed": {
+        "app-1": {
+          "fixed_window": {
+            "allowed": 185770,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 14815
+          },
+          "sliding_window": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-2": {
+          "fixed_window": {
+            "allowed": 182279,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 14860
+          },
+          "sliding_window": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-3": {
+          "fixed_window": {
+            "allowed": 185351,
+            "fail_closed": 0,
+            "fail_open": 1,
+            "rejected": 15234
+          },
+          "sliding_window": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {},
+      "explanation": null,
+      "name": "no_foreign_decisions",
+      "observed": {},
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "allowed": 553400,
+        "fail_closed": 0,
+        "fail_open": 1,
+        "rejected": 44909
+      },
+      "explanation": null,
+      "name": "stats_vs_raw_policy_11",
+      "observed": {
+        "allowed": 553400,
+        "fail_closed": 0,
+        "fail_open": 1,
+        "rejected": 44909
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "explanation": "1 requests failed open/closed: timed-out commands may still have executed",
+      "name": "redis_evalsha_vs_decisions",
+      "required": false,
+      "status": "n/a"
+    }
+  ],
+  "failed": [
+    "k6_vs_nginx"
+  ],
+  "notes": [],
+  "ok": false
+}
