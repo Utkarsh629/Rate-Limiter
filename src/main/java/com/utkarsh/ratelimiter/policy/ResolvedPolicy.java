@@ -68,15 +68,45 @@ public record ResolvedPolicy(
                 failureMode, priority, version);
     }
 
+    /**
+     * Parses a policy's endpoint pattern. Supported: literal segments, {@code ?}, {@code *}, {@code **},
+     * {@code {var}} and {@code {*var}}. Rejected: {@code {var:regex}}, because an administrator-supplied regular
+     * expression would be evaluated against the path of every request (a costly regex is a CPU risk; security
+     * review SEC-3).
+     */
     public static PathPattern parsePattern(String endpointPattern) {
         if (endpointPattern == null || !endpointPattern.startsWith("/")) {
             throw new InvalidPolicyException("endpointPattern", "must start with '/'");
+        }
+        if (containsRegexVariable(endpointPattern)) {
+            throw new InvalidPolicyException("endpointPattern",
+                    "regular expressions in path variables ({name:regex}) are not supported; use {name}, *, ** or ?");
         }
         try {
             return PARSER.parse(endpointPattern);
         } catch (RuntimeException e) {
             throw new InvalidPolicyException("endpointPattern", "invalid path pattern: " + e.getMessage());
         }
+    }
+
+    /**
+     * True if any capture variable carries a regex: in Spring's syntax that is a ':' between a '{' and the
+     * next '}' (a variable name itself cannot contain ':'). Unclosed braces are left to the parser to reject.
+     */
+    static boolean containsRegexVariable(String pattern) {
+        int open = pattern.indexOf('{');
+        while (open >= 0) {
+            int close = pattern.indexOf('}', open);
+            String variable = close < 0 ? pattern.substring(open) : pattern.substring(open, close);
+            if (variable.indexOf(':') >= 0) {
+                return true;
+            }
+            if (close < 0) {
+                return false;
+            }
+            open = pattern.indexOf('{', close);
+        }
+        return false;
     }
 
     /** Does this policy apply to a request with this method, path and tier? */

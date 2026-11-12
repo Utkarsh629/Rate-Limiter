@@ -2,7 +2,7 @@
 
 > Status: **policy management, identity, the HTTP rate-limiting filter, and the 429/503 response contract are implemented and verified** (Phase 2, workstreams 2B and 2C). `/policies/{id}/stats` and `/actuator/prometheus` were added in Phase 3A.
 >
-> OpenAPI: in the `dev` profile, `GET /v3/api-docs` (JSON) and `/swagger-ui.html`. Disabled in every other profile.
+> OpenAPI: in the `dev` profile, `GET /v3/api-docs` (JSON) and `/swagger-ui.html`. Disabled in every other profile. A snapshot exported from the `dev` profile (2026-11-12, OpenAPI 3.1, 12 operations) is in [`api/openapi.json`](api/openapi.json); it includes the development-only `/api/v1/auth/demo-token` and `/api/v1/demo/whoami`, which do not exist in the `prod` profile.
 
 ## Endpoint overview
 
@@ -67,7 +67,7 @@ Spoofing consideration: anything left of the first untrusted hop is client-contr
 | `name` | string | yes | `[a-z0-9][a-z0-9-]*`, ≤ 100, unique |
 | `description` | string | no | ≤ 500 |
 | `httpMethod` | string | no | `GET HEAD POST PUT PATCH DELETE OPTIONS`; null = any |
-| `endpointPattern` | string | yes | Spring `PathPattern` starting with `/`, ≤ 255, must parse (e.g. `/api/v1/orders/**`, `/api/v1/orders/{id}`) |
+| `endpointPattern` | string | yes | Spring `PathPattern` starting with `/`, ≤ 255, must parse (e.g. `/api/v1/orders/**`, `/api/v1/orders/{id}`). Supported: literals, `?`, `*`, `**`, `{var}`, `{*var}`. **Rejected:** regular expressions in variables (`{var:regex}`), because they would run on every request (SEC-3) |
 | `tier` | enum | no | `ANONYMOUS FREE PREMIUM ENTERPRISE`; null = any |
 | `keyBy` | enum | yes | `USER` (anonymous → IP) or `IP` |
 | `algorithm` | enum | yes | `TOKEN_BUCKET FIXED_WINDOW SLIDING_WINDOW` |
@@ -99,7 +99,7 @@ Spoofing consideration: anything left of the first untrusted hop is client-contr
 | 201 | Created; `Location: /api/v1/policies/{id}` |
 | 200 | Read / updated |
 | 204 | Deleted |
-| 400 | Validation failed (field list in `errors`); unparsable pattern; unknown enum value; PUT without `version`; page size > 100; MySQL CHECK violation (error 3819, defence in depth) |
+| 400 | Validation failed (field list in `errors`); unparsable pattern or `{var:regex}` pattern; unknown enum value; PUT without `version`; page size > 100; MySQL CHECK violation (error 3819, defence in depth) |
 | 401 | Missing, malformed, expired, wrongly signed or wrong-issuer token |
 | 403 | Valid token without `ROLE_ADMIN` |
 | 404 | No policy with that id |

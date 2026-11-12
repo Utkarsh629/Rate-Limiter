@@ -70,7 +70,8 @@ MySQL reports CHECK violations as error **3819** (SQLState `HY000`). Spring's tr
 
 ### Constraint error handling (implemented)
 
-The API validates every field first (Bean Validation on `PolicyRequest`, plus `PathPattern` parsing in
+The API validates every field first (Bean Validation on `PolicyRequest`, plus `PathPattern` parsing and the
+rejection of `{var:regex}` variables in
 the service), so constraint errors normally can't happen. If they do, for example because of a manual
 insert or validation drifting from the schema, `PolicyStore` reads the vendor code from the cause chain
 (`MySqlErrors`):

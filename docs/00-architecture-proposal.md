@@ -1,6 +1,6 @@
 # Distributed Rate Limiter — Architecture Proposal (Phase 0)
 
-> Status: **DRAFT — awaiting approval.** No implementation code has been written.
+> Status: **approved at the end of Phase 0; kept as the historical design record.** The text below is unchanged from the approved proposal, which used an eight-phase plan; the project was later consolidated into four phases (Phase 3 = 3A + 3B). The implemented system is described in docs 01–14, decisions in docs 04 (D1–D50).
 > Once approved, this document gets split into `docs/01..15-*.md` and kept current as the build proceeds.
 
 ---

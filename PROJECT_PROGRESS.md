@@ -2,9 +2,9 @@
 
 A feature is checked only when it is **implemented and verified** (test or measured run), not when code exists.
 
-Last updated: 2026-11-12 — Phases 1, 2 and 3A approved. **Phase 3B (Performance & Optimization) completed and approved (2026-11-12)** (cold-start issue documented as open). Branch `phase-3b/benchmark-infrastructure`, nothing committed.
+Last updated: 2026-11-12 — Phases 1, 2, 3A and 3B approved. Phase 3B committed (d31f6cd, branch `phase-3b/benchmark-infrastructure`, not pushed). **Phase 4 (Documentation, Audit & Release) in progress** on branch `phase-4/documentation-release` (uncommitted): documentation, security review, README, interview preparation done; release audit passed; release steps pending approval.
 
-> **Phase 3B evidence:** `benchmarks/reports/phase-3b-final/` (`report.md` generated from `benchmarks/results/`, `analysis.md` with the acceptance checklist), `benchmarks/investigations/cold-start/`. Earlier handoff: [PROJECT_HANDOFF.md](PROJECT_HANDOFF.md). Latest verification (2026-11-12): `./mvnw clean verify` 310/310; smoke 37/37 on the warm stack (AC14 fails shortly after a restart: open cold-start issue).
+> **Phase 3B evidence:** `benchmarks/reports/phase-3b-final/` (`report.md` generated from `benchmarks/results/`, `analysis.md` with the acceptance checklist), `benchmarks/investigations/cold-start/`. Earlier handoff: [PROJECT_HANDOFF.md](PROJECT_HANDOFF.md). Latest verification (2026-11-12, after the approved Phase 4 security fixes SEC-1/3/6 and removal of the nested folder): `./mvnw clean verify` 318/318 (unit 165, integration 153); smoke 37/37 on a freshly rebuilt stack (report `benchmarks/smoke/20261112-102259/`; AC14 can still fail shortly after a restart under the open cold-start issue); benchmark evidence checksums 6,257/6,257 OK; no secrets in changed files. Before the fixes: 310/310 and 37/37 (`benchmarks/smoke/20261112-101056/`).
 
 ## Roadmap (four consolidated phases)
 
@@ -13,7 +13,7 @@ Last updated: 2026-11-12 — Phases 1, 2 and 3A approved. **Phase 3B (Performanc
 | 1 | Foundation & Architecture | ✅ Completed and approved |
 | 2 | Core Backend & Distributed Logic | ✅ **Completed and approved** (2A, 2B, 2C, 2D) |
 | 3 | Observability, Deployment & Performance (two parts: 3A, 3B) | ✅ **Completed and approved** (3A, 3B) |
-| 4 | Documentation, Audit & Release | ⏳ Not started |
+| 4 | Documentation, Audit & Release | 🔄 In progress (release steps await approval) |
 
 ### Phase 1 — Foundation & Architecture ✅
 Architecture proposal, requirements, Maven/Spring Boot skeleton, Redis + MySQL Compose services, Flyway, configuration and profiles, documentation structure, git initialisation. Checklist and evidence below.
@@ -72,20 +72,20 @@ Exactly two parts. **3A must be fully implemented, tested and approved before 3B
 
 Targets stay targets until a valid run shows them: 5,000 RPS throughput, limiter overhead < 5 / 10 / 20 ms (avg / P95 / P99), zero over-admission, < 0.1 % non-429 errors, load levels up to **10,000 RPS (target, not achieved)**.
 
-### Phase 4 — Documentation, Audit & Release ⏳
+### Phase 4 — Documentation, Audit & Release 🔄
 
 | Scope item | Status |
 |---|---|
-| Docs 01–15 complete and consistent with the code; architecture diagrams | 🔄 maintained per workstream; final pass ⏳ |
-| API documentation (incl. OpenAPI) | 🔄 current through 3A |
-| Benchmark report (measured results only, environment and same-machine limitations) | ⏳ |
-| Deployment instructions | 🔄 current through 3A |
-| Failure-handling documentation | 🔄 current through 3A |
-| Security review | ⏳ |
-| Interview preparation (2- and 5-minute explanations, 30 questions, trade-offs) | ⏳ |
-| Resume descriptions (ATS, technical, short; measured metrics only) | ⏳ |
-| README (recruiter-facing, with real results and screenshots) | ⏳ |
-| Final release audit against the acceptance criteria | ⏳ |
+| Docs 00–15 complete and consistent with the code; architecture diagrams | ✅ consistency pass done (statuses, D43–D50, results) |
+| API documentation (incl. OpenAPI) | ✅ docs/07 + exported `docs/api/openapi.json` |
+| Benchmark report (measured results only, environment and same-machine limitations) | ✅ docs/11, `benchmarks/README.md`, charts in `docs/assets/` (generated from saved data) |
+| Deployment instructions | ✅ docs/14 |
+| Failure-handling documentation | ✅ docs/13 (F1–F5, cold-start limitation) |
+| Security review | ✅ docs/16 (12 findings, none High); SEC-1 (local part), SEC-3, SEC-6 remediated and nested folder removed (approved 2026-11-12); others documented as deployment recommendations |
+| Interview preparation (2- and 5-minute explanations, 30 questions, trade-offs) | ✅ docs/15 |
+| Resume descriptions (ATS, technical, short; measured metrics only) | ✅ docs/15 |
+| README (recruiter-facing, with real results and charts) | ✅ |
+| Final release audit against the acceptance criteria | ✅ all criteria met; release steps (commit, merge, tag, push) await approval |
 
 ## Phase 1 checklist
 
@@ -261,7 +261,9 @@ Targets stay targets until a valid run shows them: 5,000 RPS throughput, limiter
 - [ ] Decide whether to keep the 3A smoke report (`benchmarks/smoke/20261111-091138/`, git-ignored) as committed evidence
 
 **Phase 4**
-- [ ] Final docs pass, security review, interview prep, resume, README with measured results, release audit
+- [x] Final docs pass, security review, interview prep, resume, README with measured results, release audit
+- [x] Security remediation A–D (approved and applied 2026-11-12; docs/16)
+- [ ] Approval: Phase 4 commit, merge to main, tag v1.0.0, push
 
 ## Final acceptance criteria (and the phase that closes each)
 
@@ -277,13 +279,13 @@ Targets stay targets until a valid run shows them: 5,000 RPS throughput, limiter
 | Distributed correctness is verified | 2 / 3A / 3B | ✅ HTTP, 3 instances; ✅ Compose + Nginx + k6 functional (3A); ✅ under benchmark load (3B: B6, B10, zero over-admission) |
 | Redis failure handling is tested | 2 | ✅ fail-open/closed, circuit breaker, pool exhaustion, NOSCRIPT |
 | Performance tests are executed | 3B | ✅ |
-| Actual benchmark results are documented | 3B / 4 | ✅ docs/11 (generated); README in Phase 4 |
-| Prometheus metrics are available | 3A | ✅ (awaiting 3A review) |
-| Grafana dashboard is functional | 3A | ✅ (awaiting 3A review) |
-| Docker Compose starts the complete environment | 3A | ✅ (awaiting 3A review) |
-| README is complete | 4 | ⏳ |
-| Technical documentation is complete | 4 | 🔄 |
-| Project can be explained in an SDE interview | 4 | ⏳ |
+| Actual benchmark results are documented | 3B / 4 | ✅ docs/11 (generated); README |
+| Prometheus metrics are available | 3A | ✅ |
+| Grafana dashboard is functional | 3A | ✅ |
+| Docker Compose starts the complete environment | 3A | ✅ |
+| README is complete | 4 | ✅ |
+| Technical documentation is complete | 4 | ✅ docs 00–16 |
+| Project can be explained in an SDE interview | 4 | ✅ docs/15 |
 
 ## Known limitations (2B)
 

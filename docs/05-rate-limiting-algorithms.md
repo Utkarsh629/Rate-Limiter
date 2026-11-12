@@ -202,7 +202,7 @@ At `e = 2 500`, 2 requests are admitted (8.5, then 9.5); the third would make 10
 | Accuracy | Approximate (above) | Exact |
 | Same-millisecond requests | No issue | Need unique members (extra counter) |
 
-The counter was chosen (decision D1) because its memory doesn't grow with the limit and its error is bounded and documented. (Memory figures are estimates; Phase 8 measures real `MEMORY USAGE` per key.)
+The counter was chosen (decision D1) because its memory doesn't grow with the limit and its error is bounded and documented. (The figures in this table are estimates. Measured in Phase 3B with `MEMORY USAGE` on the 120/60 s benchmark policy: 104 bytes per fixed-window key, 112 bytes per token-bucket or sliding-window key; see `11-performance-benchmarks.md`.)
 
 ### Trade-offs
 - ✅ O(1) memory and time, no boundary bursts, a single key.

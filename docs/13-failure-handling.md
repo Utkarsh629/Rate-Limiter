@@ -8,7 +8,7 @@
 | Redis stopped while app running | *Superseded by R1 (2D):* in Phase 1 readiness went 503. Now readiness stays 200 and `/actuator/health/dependencies` reports `redis` DOWN (verified: `CircuitBreakerIT`, manual Compose) |
 | SIGTERM | graceful shutdown, in-flight requests drained (20 s limit) |
 
-## Decided behaviour (to implement and test)
+## Behaviour (implemented; verified as marked)
 | Scenario | Behaviour |
 |---|---|
 | Redis down / timeout (50 ms) | ✅ FAIL_OPEN → 200 without rate-limit headers; FAIL_CLOSED (policy or global) → **503** + `Retry-After: 5`, never 429. Until the breaker opens, ~55–59 ms per request (9–10 requests); then **circuit breaker OPEN**: Redis not called, decision p99 19 µs in-process, HTTP p99 1.6 ms; recovery OPEN → CLOSED in 5.2–5.3 s via 3 successful probes (verified in `CircuitBreakerIT`, `FailureModeIT`, manual Compose) |

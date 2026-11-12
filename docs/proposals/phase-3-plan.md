@@ -1,6 +1,6 @@
 # Phase 3 — Observability, Deployment & Performance: Implementation Plan
 
-> Status: **Plan approved. Phase 3A IMPLEMENTED and verified (2026-11-11), awaiting review — see §9. Phase 3B not started. No performance number in this document is a result.**
+> Status: **Plan approved and executed. Phase 3A approved (2026-11-11); Phase 3B completed and approved (2026-11-12).** Results: `docs/11-performance-benchmarks.md`; analysis and acceptance checklist: `benchmarks/reports/phase-3b-final/analysis.md`. The text below is the approved plan; the targets in it are targets, the measured values are in docs/11.
 > Every target below is a target. Results appear only after they have been measured and saved under `benchmarks/results/`.
 >
 > **Structure: exactly two parts.**

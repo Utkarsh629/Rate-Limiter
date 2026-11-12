@@ -14,6 +14,10 @@ import com.utkarsh.ratelimiter.policy.PolicyResolver;
 import com.utkarsh.ratelimiter.policy.ResolvedPolicy;
 import java.time.Duration;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.server.PathContainer;
 
 class ResolvedPolicyTest {
 
@@ -42,6 +46,31 @@ class ResolvedPolicyTest {
                 .isInstanceOf(InvalidPolicyException.class).extracting("field").isEqualTo("limits");
         assertThatThrownBy(() -> compile(null, "/api/**", AlgorithmType.SLIDING_WINDOW, 10, 5))
                 .isInstanceOf(InvalidPolicyException.class);
+    }
+
+    @Test
+    void supportedWildcardsStillCompileAndMatch() {
+        assertMatches("/api/**", "/api/v1/demo/profile", true);
+        assertMatches("/api/v1/demo/prof?le", "/api/v1/demo/profile", true);
+        assertMatches("/api/*/demo/profile", "/api/v1/demo/profile", true);
+        assertMatches("/api/v1/users/{id}/orders", "/api/v1/users/42/orders", true);
+        assertMatches("/api/v1/files/{*path}", "/api/v1/files/a/b/c", true);
+        assertMatches("/api/v1/demo/enterprise", "/api/v1/demo/enterprise", true);
+        assertMatches("/api/v1/demo/prof?le", "/api/v1/demo/profiles", false);
+        assertMatches("/api/v1/time:now", "/api/v1/time:now", true); // ':' outside a variable is a literal
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"/api/v1/demo/{n:[a-z]+}", "/api/{v:v[0-9]}/**", "/api/v1/{n:(a+)+b}",
+            "/api/v1/{n:[a-z]{2}}", "/api/{id}/x/{n:.*}", "/api/v1/{:x}"})
+    void rejectsRegexInPathVariables(String pattern) {
+        assertThatThrownBy(() -> compile(null, pattern, AlgorithmType.FIXED_WINDOW, 1, null))
+                .isInstanceOf(InvalidPolicyException.class).extracting("field").isEqualTo("endpointPattern");
+    }
+
+    private static void assertMatches(String pattern, String path, boolean expected) {
+        assertThat(compile(null, pattern, AlgorithmType.FIXED_WINDOW, 1, null)
+                .matches(HttpMethod.GET, PathContainer.parsePath(path), null)).as(pattern + " vs " + path).isEqualTo(expected);
     }
 
     @Test

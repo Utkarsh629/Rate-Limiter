@@ -47,7 +47,7 @@ ratelimiter_request_duration_seconds_count{algorithm="token_bucket",application=
 ratelimiter_request_duration_seconds_bucket{algorithm="token_bucket",application="distributed-rate-limiter",result="allowed",le="5.0E-5"} 0
 ratelimiter_stats_flushes_total{application="distributed-rate-limiter",result="success"} 18.0
 ```
-These are counters from a functional smoke run, not benchmark results. Latency values are deliberately not quoted here; they are measured under controlled conditions in Phase 3B.
+These are counters from a functional smoke run, not benchmark results. Latency values are deliberately not quoted here; measured latency is in `11-performance-benchmarks.md` (Phase 3B).
 
 ## Statistics (`/stats`) versus metrics
 

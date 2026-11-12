@@ -35,6 +35,8 @@ PROM = "http://localhost:9090"
 GRAFANA = "http://localhost:3000"
 NGINX_IP = "172.28.0.10"
 APPS = ["app1", "app2", "app3"]
+UPSTREAM_APP = {"172.28.0.11": "app1", "172.28.0.12": "app2", "172.28.0.13": "app3"}   # static Compose addresses
+PROBE_UA = "ratelimiter-probe/"
 SERVICES = ["nginx", "app1", "app2", "app3", "redis", "mysql", "prometheus", "grafana", "redis-exporter"]
 
 RUN_ID = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -87,6 +89,25 @@ def http(method, url, token=None, body=None, headers=None, basic=None):
             return r.status, dict(r.headers), r.read().decode()
     except urllib.error.HTTPError as e:
         return e.code, dict(e.headers), e.read().decode()
+
+
+def nginx_upstreams(markers, since):
+    """Which instance served each request sent with User-Agent PROBE_UA + marker, read from Nginx's access log
+    (upstream=<addr>). Nginx no longer returns an X-Upstream header (security review SEC-6). With a retry the
+    address list is "a, b"; the last entry answered."""
+    want, found = set(markers), {}
+    deadline = time.time() + 5
+    pattern = re.compile(r'upstream=(\S+(?:, \S+)*) upstream_time=.* "' + re.escape(PROBE_UA) + r'([^"]+)"$')
+    while True:
+        out = sh("docker", "compose", "logs", "--no-log-prefix", "--since", str(int(since) - 2), "nginx").stdout
+        for line in out.splitlines():
+            m = pattern.search(line.strip())
+            if m and m.group(2) in want:
+                addr = m.group(1).split(",")[-1].strip().split(":")[0]
+                found[m.group(2)] = UPSTREAM_APP.get(addr, addr)
+        if want <= found.keys() or time.time() > deadline:
+            return found
+        time.sleep(0.2)
 
 
 def read_env():
@@ -184,13 +205,16 @@ def stack_up(clean):
 
 
 def distribution(tokens):
-    upstreams = []
-    for i in range(30):
-        _, headers, _ = http("GET", f"{NGINX}/api/v1/demo/profile", token=tokens["users"][i]["token"])
-        upstreams.append(headers.get("X-Upstream"))
+    since, markers = time.time(), [f"{RUN_ID}-dist-{i}" for i in range(30)]
+    for i, marker in enumerate(markers):
+        http("GET", f"{NGINX}/api/v1/demo/profile", token=tokens["users"][i]["token"],
+             headers={"User-Agent": PROBE_UA + marker})
+    served = nginx_upstreams(markers, since)
+    upstreams = [served.get(m) for m in markers]
     counts = {u: upstreams.count(u) for u in sorted(set(upstreams), key=str)}
     report["evidence"]["distribution"] = counts
-    check("AC10", "30 requests reach all 3 instances", len([u for u in counts if u]) == 3, counts)
+    check("AC10", "30 requests reach all 3 instances (Nginx access log)",
+          sorted(u for u in counts if u in APPS) == APPS and None not in counts, counts)
 
 
 def actuator_and_targets():
@@ -270,9 +294,10 @@ def concurrency(admin, tokens_file_env):
         deadline = time.time() + 40
         i = 0
         while len([u for u, lim in seen.items() if lim == "100"]) < 3 and time.time() < deadline:
+            marker, since = f"{RUN_ID}-probe-{i}", time.time()
             probe = mint_user(f"smoke-probe-{RUN_ID}-{i}", "FREE")
-            _, h, _ = http("GET", f"{NGINX}/api/v1/demo/profile", token=probe)
-            seen[h.get("X-Upstream")] = h.get("X-RateLimit-Limit")
+            _, h, _ = http("GET", f"{NGINX}/api/v1/demo/profile", token=probe, headers={"User-Agent": PROBE_UA + marker})
+            seen[nginx_upstreams([marker], since).get(marker)] = h.get("X-RateLimit-Limit")
             i += 1
         check("AC14", "deterministic policy active on all 3 instances", len([v for v in seen.values() if v == "100"]) == 3, seen)
         rounds = []

@@ -139,6 +139,17 @@ class PolicyApiIT extends ApiTestSupport {
     }
 
     @Test
+    void regexPathVariableIsRejected() {
+        Map<String, Object> bad = body("it-regex-pattern");
+        bad.put("endpointPattern", "/api/v1/demo/{n:[a-z]+}");
+
+        ResponseEntity<Map<String, Object>> response = callForMap(HttpMethod.POST, POLICIES, tokens.admin(), bad);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+        assertThat(errors(response)).extracting("field").containsExactly("endpointPattern");
+    }
+
+    @Test
     void unknownEnumValueIsRejected() {
         Map<String, Object> bad = body("it-bad-enum");
         bad.put("algorithm", "LEAKY_BUCKET");

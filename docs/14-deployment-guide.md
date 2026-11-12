@@ -200,7 +200,7 @@ Deployment settings (environment, `docker-compose.yml`):
 | `STACK_REDIS_COMMAND_TIMEOUT` | **250ms** | Redis command timeout for all three instances (D42). The application default is 50 ms |
 | `TOMCAT_MAX_THREADS` | 200 | Tomcat worker threads per instance |
 | `REDIS_POOL_ENABLED` | false | Lettuce pooling (pooling compared in 3B) |
-| `NGINX_HOST_PORT` | 8080 | Host port of Nginx |
+| `NGINX_HOST_PORT` | 8080 | Host port of Nginx, published on `127.0.0.1` only (SEC-1). For access from other machines, put TLS in front first (docs/16) |
 
 Infrastructure only (for `./mvnw spring-boot:run` on port 8080, which then conflicts with Nginx if the full stack is up):
 
@@ -298,5 +298,5 @@ docker compose down -v
 |---|---|---|
 | (none) | base | Secure defaults: MySQL TLS required, health details hidden, no fallback policies |
 | `dev` | local development | Reads `.env`, MySQL TLS off (local container only), `flyway` endpoint exposed, fallback policies allowed, demo token + whoami endpoints, Swagger UI at `/swagger-ui.html` |
-| `prod` | Compose stack (Phase 7) | Restates fallback disabled and hidden health details explicitly |
+| `prod` | Compose stack (Phase 3A) | Restates fallback disabled and hidden health details explicitly |
 | `test` | integration tests | Connection details injected by Testcontainers |

@@ -1,0 +1,748 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8090",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/v1/policies/{id}": {
+            "get": {
+                "tags": [
+                    "Policies"
+                ],
+                "summary": "Get one policy",
+                "operationId": "get",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PolicyResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Policies"
+                ],
+                "summary": "Replace a policy; 'version' must match the stored version",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PolicyRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PolicyResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Policies"
+                ],
+                "summary": "Delete a policy",
+                "operationId": "delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/policies": {
+            "get": {
+                "tags": [
+                    "Policies"
+                ],
+                "summary": "List policies (paged, ordered by id)",
+                "operationId": "list",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 0,
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 20,
+                            "maximum": 100,
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageResponsePolicyResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Policies"
+                ],
+                "summary": "Create a policy",
+                "operationId": "create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PolicyRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PolicyResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/auth/demo-token": {
+            "post": {
+                "tags": [
+                    "Development only"
+                ],
+                "summary": "DEV ONLY: mint a signed JWT for testing",
+                "operationId": "mint",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DemoTokenRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DemoTokenResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/policies/{id}/stats": {
+            "get": {
+                "tags": [
+                    "Policies"
+                ],
+                "summary": "Aggregated decisions for a policy across all instances (eventually consistent, \u2264 flush interval)",
+                "operationId": "stats",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PolicyStatsResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/demo/whoami": {
+            "get": {
+                "tags": [
+                    "Development only"
+                ],
+                "summary": "DEV ONLY: resolved identity and the policy that would apply to method+path",
+                "operationId": "whoami",
+                "parameters": [
+                    {
+                        "name": "method",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "GET"
+                        }
+                    },
+                    {
+                        "name": "path",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "/api/v1/demo/hello"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/demo/public": {
+            "get": {
+                "tags": [
+                    "Demo"
+                ],
+                "summary": "Open to anonymous callers (limited per IP)",
+                "operationId": "publicEndpoint",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/demo/profile": {
+            "get": {
+                "tags": [
+                    "Demo"
+                ],
+                "summary": "Any authenticated caller",
+                "operationId": "profile",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/demo/premium": {
+            "get": {
+                "tags": [
+                    "Demo"
+                ],
+                "summary": "PREMIUM or ENTERPRISE tier",
+                "operationId": "premium",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/demo/enterprise": {
+            "get": {
+                "tags": [
+                    "Demo"
+                ],
+                "summary": "ENTERPRISE tier",
+                "operationId": "enterprise",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "PolicyRequest": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "minLength": 0,
+                        "pattern": "[a-z0-9][a-z0-9-]*"
+                    },
+                    "description": {
+                        "type": "string",
+                        "maxLength": 500,
+                        "minLength": 0
+                    },
+                    "httpMethod": {
+                        "type": "string",
+                        "description": "null = any method",
+                        "pattern": "GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS"
+                    },
+                    "endpointPattern": {
+                        "type": "string",
+                        "description": "Spring PathPattern",
+                        "example": "/api/v1/**",
+                        "maxLength": 255,
+                        "minLength": 0,
+                        "pattern": "/.*"
+                    },
+                    "tier": {
+                        "type": "string",
+                        "description": "null = any tier",
+                        "enum": [
+                            "ANONYMOUS",
+                            "FREE",
+                            "PREMIUM",
+                            "ENTERPRISE"
+                        ]
+                    },
+                    "keyBy": {
+                        "type": "string",
+                        "enum": [
+                            "IP",
+                            "USER"
+                        ]
+                    },
+                    "algorithm": {
+                        "type": "string",
+                        "enum": [
+                            "TOKEN_BUCKET",
+                            "FIXED_WINDOW",
+                            "SLIDING_WINDOW"
+                        ]
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Bucket capacity, or max requests per window",
+                        "maximum": 1000000,
+                        "minimum": 1
+                    },
+                    "windowMs": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "Window length, or token-bucket refill period, in ms",
+                        "maximum": 86400000,
+                        "minimum": 100
+                    },
+                    "refillTokens": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "TOKEN_BUCKET only: tokens added per windowMs (default = limit)",
+                        "maximum": 1000000,
+                        "minimum": 1
+                    },
+                    "failureMode": {
+                        "type": "string",
+                        "description": "null = global default",
+                        "enum": [
+                            "FAIL_OPEN",
+                            "FAIL_CLOSED"
+                        ]
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "format": "int32",
+                        "maximum": 1000,
+                        "minimum": -1000
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "version": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Required on PUT: the version you read (optimistic locking)"
+                    }
+                },
+                "required": [
+                    "algorithm",
+                    "endpointPattern",
+                    "keyBy",
+                    "limit",
+                    "name",
+                    "windowMs"
+                ]
+            },
+            "PolicyResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "httpMethod": {
+                        "type": "string"
+                    },
+                    "endpointPattern": {
+                        "type": "string"
+                    },
+                    "tier": {
+                        "type": "string",
+                        "enum": [
+                            "ANONYMOUS",
+                            "FREE",
+                            "PREMIUM",
+                            "ENTERPRISE"
+                        ]
+                    },
+                    "keyBy": {
+                        "type": "string",
+                        "enum": [
+                            "IP",
+                            "USER"
+                        ]
+                    },
+                    "algorithm": {
+                        "type": "string",
+                        "enum": [
+                            "TOKEN_BUCKET",
+                            "FIXED_WINDOW",
+                            "SLIDING_WINDOW"
+                        ]
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "windowMs": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "refillTokens": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "failureMode": {
+                        "type": "string",
+                        "enum": [
+                            "FAIL_OPEN",
+                            "FAIL_CLOSED"
+                        ]
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "version": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "DemoTokenRequest": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "string",
+                        "minLength": 1,
+                        "pattern": "[A-Za-z0-9._@-]{1,64}"
+                    },
+                    "tier": {
+                        "type": "string",
+                        "enum": [
+                            "ANONYMOUS",
+                            "FREE",
+                            "PREMIUM",
+                            "ENTERPRISE"
+                        ]
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "pattern": "ADMIN"
+                        }
+                    },
+                    "ttlSeconds": {
+                        "type": "integer",
+                        "format": "int32",
+                        "maximum": 86400,
+                        "minimum": 1
+                    }
+                },
+                "required": [
+                    "tier",
+                    "userId"
+                ]
+            },
+            "DemoTokenResponse": {
+                "type": "object",
+                "properties": {
+                    "accessToken": {
+                        "type": "string"
+                    },
+                    "tokenType": {
+                        "type": "string"
+                    },
+                    "expiresIn": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "PageResponsePolicyResponse": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PolicyResponse"
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalElements": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "totalPages": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "InstanceStats": {
+                "type": "object",
+                "properties": {
+                    "instanceId": {
+                        "type": "string"
+                    },
+                    "allowed": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "rejected": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "failOpen": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "failClosed": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "lastFlushAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "PolicyStatsResponse": {
+                "type": "object",
+                "properties": {
+                    "policyId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "allowed": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "rejected": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "failOpen": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "failClosed": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "rejectionRate": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "instances": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InstanceStats"
+                        }
+                    },
+                    "consistency": {
+                        "type": "string"
+                    },
+                    "generatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            }
+        }
+    }
+}

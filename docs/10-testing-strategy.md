@@ -1,6 +1,6 @@
 # 10 — Testing Strategy
 
-> Status: **Phases 1, 2 and 3A test suites implemented and passing (310 tests); Phase 3B benchmark tooling tested (49 Python unit tests + 75-case policy-guard selftest) and the benchmark campaign executed (below).**
+> Status: **Phases 1, 2 and 3A test suites implemented and passing (310 tests; 318 after the Phase 4 security fixes); Phase 3B benchmark tooling tested (49 Python unit tests + 75-case policy-guard selftest) and the benchmark campaign executed (below).**
 
 ## Layout and commands
 
@@ -84,12 +84,12 @@ Done once, manually (not part of the build). Each planted bug was run against `S
 | Suite | Kind | Tests | Covers |
 |---|---|---|---|
 | `PolicySnapshotTest` | unit | 10 | Resolution precedence truth table (tier, path specificity, `{id}` vs `**`, method, priority, id), no match, empty snapshot |
-| `ResolvedPolicyTest` | unit | 4 | Compilation (refill default, invalid pattern/method/limits), USER vs IP quota keys, identity invariants |
+| `ResolvedPolicyTest` | unit | 11 | Compilation (refill default, invalid pattern/method/limits), USER vs IP quota keys, identity invariants; Phase 4: supported wildcards (`?`, `*`, `**`, `{var}`, `{*var}`, literal `:`) still compile and match, six `{var:regex}` forms rejected (SEC-3) |
 | `PolicyCacheTest` | unit (mock source) | 6 | Startup load; prod stays uninitialised when DB down; dev fallback then recovery to DATABASE; failed reload keeps last good; periodic reload; reload coalescing |
 | `ClientIdentityResolverTest` | unit | 10 | Anonymous by remote address; JWT subject + tier; tier claim never escalates (missing/unknown/ANONYMOUS → FREE); X-Forwarded-For never read directly |
 | `PolicyValidationTest` | unit | 4 | Bean Validation ranges mirror CHECK constraints; malformed fields; refill only for token bucket |
 | `PersistenceErrorTranslationTest` | unit | 6 | 3819 → `InvalidPolicyException` with field; 1062 → conflict; other errors unchanged; connection-failure detection; Flyway deferral and retry; broken migrations still fail |
-| `PolicyApiIT` | HTTP, MySQL, Redis | 11 | CRUD contract (201 + Location, 200, 204, 404), snapshot refresh after create/disable, field errors, refill rule, bad pattern, bad enum, page bound, duplicate 409, optimistic locking (idempotent no-op PUT, stale version 409, missing version 400), auth (none/expired/wrong key/wrong issuer/garbage → 401, non-admin → 403) |
+| `PolicyApiIT` | HTTP, MySQL, Redis | 12 | CRUD contract (201 + Location, 200, 204, 404), snapshot refresh after create/disable, field errors, refill rule, bad pattern, regex pattern rejected (Phase 4, SEC-3), bad enum, page bound, duplicate 409, optimistic locking (idempotent no-op PUT, stale version 409, missing version 400), auth (none/expired/wrong key/wrong issuer/garbage → 401, non-admin → 403) |
 | `PolicyConstraintIT` | MySQL | 4 | Entities bypassing validation: CHECK 3819 on limit, window, refill → 400-type exception naming the field; duplicate 1062 → conflict |
 | `IdentityAndResolutionIT` | HTTP, MySQL, Redis | 9 | Anonymous → ANONYMOUS tier, IP key; each tier → its seeded policy, user key; tier escalation blocked; invalid token not downgraded; spoofed XFF ignored; demo token works and validates input; resolved target drives `AlgorithmRegistry` (FREE: 20 allowed, then rejected); specific endpoint policy overrides tier default |
 | `TrustedProxyIT` | HTTP (own context) | 3 | With loopback trusted: client IP = right-most untrusted XFF hop; spoofed left entries and trusted hops ignored |
@@ -190,7 +190,7 @@ One command against the full Compose stack; `--clean` first deletes this project
 |---|---|---|
 | AC9 | All 9 services healthy; app health checks use readiness | ✅ |
 | D42 | Redis command timeout on app1/app2/app3 | ✅ 250ms / 250ms / 250ms |
-| AC10 | 30 requests through Nginx | ✅ 11 / 10 / 9 across the 3 instances |
+| AC10 | 30 requests through Nginx | ✅ 11 / 10 / 9 across the 3 instances (from Phase 4: instance read from the Nginx access log, not a response header) |
 | AC12 | `/actuator/health`, `/readiness`, `/prometheus` via Nginx; Prometheus targets | ✅ 404 ×3; app-1, app-2, app-3, redis up |
 | AC11 | Caller container 172.28.0.3 → key `rl:{1:ip:172.28.0.3}:sw`; with `X-Forwarded-For: 6.6.6.6` | ✅ same single key |
 | AC13 | 4 secret values vs 18 files and the image | ✅ none found |
@@ -231,6 +231,13 @@ scripts/bench/setup-policies.sh selftest
 
 Result (2026-11-12): 49/49 Python tests OK; selftest 75/75; `./mvnw clean verify` → unit 158/158, integration
 152/152 (**310**), BUILD SUCCESS (no application code changed in Phase 3B).
+
+Result after the Phase 4 security fixes (2026-11-12; SEC-1, SEC-3, SEC-6): `./mvnw clean verify` → unit 165/165,
+integration 153/153 (**318** = 310 + 8 new), BUILD SUCCESS; Python 49/49; selftest 75/75; stack smoke 37/37
+(`benchmarks/smoke/20261112-102259/`, distribution and propagation now read from the Nginx access log); benchmark
+policy probe (`setup-policies.sh apply` / `delete`) confirmed all three instances through the access log;
+`runner.verify_filter_off()` confirmed the limiter off on all three instances of the limiter-off variant and refused
+on the normal stack (negative control).
 
 **Dry run and safety evidence.** `scripts/bench/run.sh run … --dry-run` performs the preflight, policy verification
 and Redis identity check, then runs `k6 inspect` instead of `k6 run` (no request sent) and never resets Redis. Every
