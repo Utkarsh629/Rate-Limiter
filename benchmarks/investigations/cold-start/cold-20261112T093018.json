@@ -1,0 +1,233 @@
+{
+  "label": "cold",
+  "started": "2026-11-12T09:29:36",
+  "warmup_seconds": 0,
+  "warmup_rate": 1000,
+  "rounds": [
+    {
+      "round": 1,
+      "seconds": 3.3,
+      "k6": "accepted=100 rejected=900 unexpected=0",
+      "delta": {
+        "app1": {
+          "nr_throttled": 8,
+          "throttled_usec": 3234371,
+          "usage_usec": 1621562,
+          "jit_ms": 1509.0,
+          "fail_open": 0.0,
+          "gc_pause_s": 0.072,
+          "openings": 0.0,
+          "threads_after": 129.0,
+          "tomcat_threads_after": 111.0,
+          "redis_max_ms_after": 181.5,
+          "breaker_after": "closed"
+        },
+        "app2": {
+          "nr_throttled": 7,
+          "throttled_usec": 2491661,
+          "usage_usec": 1415533,
+          "jit_ms": 1406.0,
+          "fail_open": 0.0,
+          "gc_pause_s": 0.123,
+          "openings": 0.0,
+          "threads_after": 103.0,
+          "tomcat_threads_after": 85.0,
+          "redis_max_ms_after": 181.9,
+          "breaker_after": "closed"
+        },
+        "app3": {
+          "nr_throttled": 6,
+          "throttled_usec": 1281270,
+          "usage_usec": 1323132,
+          "jit_ms": 990.0,
+          "fail_open": 0.0,
+          "gc_pause_s": 0.076,
+          "openings": 0.0,
+          "threads_after": 90.0,
+          "tomcat_threads_after": 72.0,
+          "redis_max_ms_after": 103.8,
+          "breaker_after": "closed"
+        }
+      }
+    },
+    {
+      "round": 2,
+      "seconds": 3.3,
+      "k6": "accepted=100 rejected=900 unexpected=0",
+      "delta": {
+        "app1": {
+          "nr_throttled": 4,
+          "throttled_usec": 1347474,
+          "usage_usec": 1156427,
+          "jit_ms": 1024.0,
+          "fail_open": 0.0,
+          "gc_pause_s": 0.03,
+          "openings": 0.0,
+          "threads_after": 153.0,
+          "tomcat_threads_after": 135.0,
+          "redis_max_ms_after": 181.5,
+          "breaker_after": "closed"
+        },
+        "app2": {
+          "nr_throttled": 5,
+          "throttled_usec": 2478401,
+          "usage_usec": 961037,
+          "jit_ms": 1121.0,
+          "fail_open": 0.0,
+          "gc_pause_s": 0.053,
+          "openings": 0.0,
+          "threads_after": 163.0,
+          "tomcat_threads_after": 145.0,
+          "redis_max_ms_after": 187.0,
+          "breaker_after": "closed"
+        },
+        "app3": {
+          "nr_throttled": 4,
+          "throttled_usec": 1526202,
+          "usage_usec": 895279,
+          "jit_ms": 823.0,
+          "fail_open": 0.0,
+          "gc_pause_s": 0.024,
+          "openings": 0.0,
+          "threads_after": 139.0,
+          "tomcat_threads_after": 121.0,
+          "redis_max_ms_after": 175.8,
+          "breaker_after": "closed"
+        }
+      }
+    },
+    {
+      "round": 3,
+      "seconds": 3.0,
+      "k6": "accepted=100 rejected=900 unexpected=0",
+      "delta": {
+        "app1": {
+          "nr_throttled": 3,
+          "throttled_usec": 1563107,
+          "usage_usec": 841639,
+          "jit_ms": 741.0,
+          "fail_open": 0.0,
+          "gc_pause_s": 0.003,
+          "openings": 0.0,
+          "threads_after": 203.0,
+          "tomcat_threads_after": 185.0,
+          "redis_max_ms_after": 181.5,
+          "breaker_after": "closed"
+        },
+        "app2": {
+          "nr_throttled": 3,
+          "throttled_usec": 834823,
+          "usage_usec": 796816,
+          "jit_ms": 818.0,
+          "fail_open": 0.0,
+          "gc_pause_s": 0.079,
+          "openings": 0.0,
+          "threads_after": 218.0,
+          "tomcat_threads_after": 200.0,
+          "redis_max_ms_after": 187.0,
+          "breaker_after": "closed"
+        },
+        "app3": {
+          "nr_throttled": 4,
+          "throttled_usec": 1027681,
+          "usage_usec": 869095,
+          "jit_ms": 736.0,
+          "fail_open": 0.0,
+          "gc_pause_s": 0.008,
+          "openings": 0.0,
+          "threads_after": 218.0,
+          "tomcat_threads_after": 200.0,
+          "redis_max_ms_after": 193.2,
+          "breaker_after": "closed"
+        }
+      }
+    },
+    {
+      "round": 4,
+      "seconds": 3.1,
+      "k6": "accepted=100 rejected=900 unexpected=0",
+      "delta": {
+        "app1": {
+          "nr_throttled": 3,
+          "throttled_usec": 1212727,
+          "usage_usec": 614088,
+          "jit_ms": 681.0,
+          "fail_open": 0.0,
+          "gc_pause_s": 0.005,
+          "openings": 0.0,
+          "threads_after": 218.0,
+          "tomcat_threads_after": 200.0,
+          "redis_max_ms_after": 181.5,
+          "breaker_after": "closed"
+        },
+        "app2": {
+          "nr_throttled": 4,
+          "throttled_usec": 819639,
+          "usage_usec": 945167,
+          "jit_ms": 803.0,
+          "fail_open": 0.0,
+          "gc_pause_s": 0.007,
+          "openings": 0.0,
+          "threads_after": 218.0,
+          "tomcat_threads_after": 200.0,
+          "redis_max_ms_after": 187.0,
+          "breaker_after": "closed"
+        },
+        "app3": {
+          "nr_throttled": 4,
+          "throttled_usec": 1059062,
+          "usage_usec": 699438,
+          "jit_ms": 736.0,
+          "fail_open": 0.0,
+          "gc_pause_s": 0.006,
+          "openings": 0.0,
+          "threads_after": 218.0,
+          "tomcat_threads_after": 200.0,
+          "redis_max_ms_after": 193.2,
+          "breaker_after": "closed"
+        }
+      }
+    }
+  ],
+  "after_start": {
+    "app1": {
+      "nr_throttled": 56,
+      "throttled_usec": 4155242,
+      "usage_usec": 8898469,
+      "jit_ms": 6889.0,
+      "threads": 28.0,
+      "tomcat_threads": 10.0,
+      "fail_open": 0.0,
+      "redis_max_s": 0.0,
+      "gc_pause_s": 0.069,
+      "openings": 0.0,
+      "breaker": "closed"
+    },
+    "app2": {
+      "nr_throttled": 57,
+      "throttled_usec": 4295939,
+      "usage_usec": 9390790,
+      "jit_ms": 7722.0,
+      "threads": 28.0,
+      "tomcat_threads": 10.0,
+      "fail_open": 0.0,
+      "redis_max_s": 0.0,
+      "gc_pause_s": 0.014,
+      "openings": 0.0,
+      "breaker": "closed"
+    },
+    "app3": {
+      "nr_throttled": 59,
+      "throttled_usec": 4973737,
+      "usage_usec": 9564840,
+      "jit_ms": 7662.0,
+      "threads": 28.0,
+      "tomcat_threads": 10.0,
+      "fail_open": 0.0,
+      "redis_max_s": 0.0,
+      "gc_pause_s": 0.014,
+      "openings": 0.0,
+      "breaker": "closed"
+    }
+  }
+}

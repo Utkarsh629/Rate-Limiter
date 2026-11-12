@@ -1,0 +1,7 @@
+{
+  "accepted": 100,
+  "check": "exactly 100 of 1,000 accepted across 3 instances",
+  "pass": true,
+  "rejected": 900,
+  "unexpected": 0
+}

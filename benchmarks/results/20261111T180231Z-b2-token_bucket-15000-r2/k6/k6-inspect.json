@@ -1,0 +1,441 @@
+{
+  "batch": null,
+  "batchPerHost": null,
+  "blacklistIPs": null,
+  "blockHostnames": null,
+  "discardResponseBodies": true,
+  "dns": {
+    "policy": null,
+    "select": null,
+    "ttl": null
+  },
+  "duration": null,
+  "executionSegment": null,
+  "executionSegmentSequence": null,
+  "ext": null,
+  "features": null,
+  "handleSummaryTimeout": null,
+  "hosts": null,
+  "httpDebug": null,
+  "insecureSkipTLSVerify": null,
+  "iterations": null,
+  "maxRedirects": null,
+  "maxVUs": 1500,
+  "metricSamplesBufferSize": null,
+  "minIterationDuration": null,
+  "noConnectionReuse": null,
+  "noCookiesReset": null,
+  "noSetup": null,
+  "noTeardown": null,
+  "noVUConnectionReuse": null,
+  "paused": null,
+  "rps": null,
+  "scenarios": {
+    "b2_measure": {
+      "env": null,
+      "exec": null,
+      "executor": "ramping-arrival-rate",
+      "gracefulStop": "10s",
+      "maxVUs": 1250,
+      "preAllocatedVUs": 1000,
+      "stages": [
+        {
+          "duration": "1s",
+          "target": 1000
+        },
+        {
+          "duration": "29s",
+          "target": 1000
+        },
+        {
+          "duration": "1s",
+          "target": 2000
+        },
+        {
+          "duration": "29s",
+          "target": 2000
+        },
+        {
+          "duration": "1s",
+          "target": 3000
+        },
+        {
+          "duration": "29s",
+          "target": 3000
+        },
+        {
+          "duration": "1s",
+          "target": 4000
+        },
+        {
+          "duration": "29s",
+          "target": 4000
+        },
+        {
+          "duration": "1s",
+          "target": 5000
+        },
+        {
+          "duration": "29s",
+          "target": 5000
+        },
+        {
+          "duration": "1s",
+          "target": 6000
+        },
+        {
+          "duration": "29s",
+          "target": 6000
+        },
+        {
+          "duration": "1s",
+          "target": 7000
+        },
+        {
+          "duration": "29s",
+          "target": 7000
+        },
+        {
+          "duration": "1s",
+          "target": 8000
+        },
+        {
+          "duration": "29s",
+          "target": 8000
+        },
+        {
+          "duration": "1s",
+          "target": 9000
+        },
+        {
+          "duration": "29s",
+          "target": 9000
+        },
+        {
+          "duration": "1s",
+          "target": 10000
+        },
+        {
+          "duration": "29s",
+          "target": 10000
+        },
+        {
+          "duration": "1s",
+          "target": 11000
+        },
+        {
+          "duration": "29s",
+          "target": 11000
+        },
+        {
+          "duration": "1s",
+          "target": 12000
+        },
+        {
+          "duration": "29s",
+          "target": 12000
+        },
+        {
+          "duration": "1s",
+          "target": 13000
+        },
+        {
+          "duration": "29s",
+          "target": 13000
+        },
+        {
+          "duration": "1s",
+          "target": 14000
+        },
+        {
+          "duration": "29s",
+          "target": 14000
+        },
+        {
+          "duration": "1s",
+          "target": 15000
+        },
+        {
+          "duration": "29s",
+          "target": 15000
+        }
+      ],
+      "startRate": 1000,
+      "startTime": "1m0s",
+      "tags": {
+        "phase": "measure"
+      },
+      "timeUnit": "1s"
+    },
+    "b2_warmup": {
+      "duration": "1m0s",
+      "env": null,
+      "exec": null,
+      "executor": "constant-arrival-rate",
+      "gracefulStop": "10s",
+      "maxVUs": 250,
+      "preAllocatedVUs": 200,
+      "rate": 1000,
+      "startTime": null,
+      "tags": {
+        "phase": "warmup"
+      },
+      "timeUnit": "1s"
+    }
+  },
+  "setupTimeout": null,
+  "stages": null,
+  "summaryTimeUnit": null,
+  "summaryTrendStats": [
+    "avg",
+    "min",
+    "med",
+    "p(90)",
+    "p(95)",
+    "p(99)",
+    "max"
+  ],
+  "systemTags": [
+    "check",
+    "error",
+    "error_code",
+    "expected_response",
+    "group",
+    "method",
+    "name",
+    "proto",
+    "scenario",
+    "service",
+    "status",
+    "subproto",
+    "tls_version",
+    "url"
+  ],
+  "tags": {
+    "algorithm": "token_bucket",
+    "benchmark": "B2",
+    "profile": "mixed",
+    "rate": "15000"
+  },
+  "teardownTimeout": null,
+  "thresholds": {
+    "accepted{phase:measure}": [
+      "count>=0"
+    ],
+    "accepted{phase:warmup}": [
+      "count>=0"
+    ],
+    "accepted{step:10000}": [
+      "count>=0"
+    ],
+    "accepted{step:1000}": [
+      "count>=0"
+    ],
+    "accepted{step:11000}": [
+      "count>=0"
+    ],
+    "accepted{step:12000}": [
+      "count>=0"
+    ],
+    "accepted{step:13000}": [
+      "count>=0"
+    ],
+    "accepted{step:14000}": [
+      "count>=0"
+    ],
+    "accepted{step:15000}": [
+      "count>=0"
+    ],
+    "accepted{step:2000}": [
+      "count>=0"
+    ],
+    "accepted{step:3000}": [
+      "count>=0"
+    ],
+    "accepted{step:4000}": [
+      "count>=0"
+    ],
+    "accepted{step:5000}": [
+      "count>=0"
+    ],
+    "accepted{step:6000}": [
+      "count>=0"
+    ],
+    "accepted{step:7000}": [
+      "count>=0"
+    ],
+    "accepted{step:8000}": [
+      "count>=0"
+    ],
+    "accepted{step:9000}": [
+      "count>=0"
+    ],
+    "http_req_duration{phase:measure}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:10000}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:1000}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:11000}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:12000}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:13000}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:14000}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:15000}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:2000}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:3000}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:4000}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:5000}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:6000}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:7000}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:8000}": [
+      "max>=0"
+    ],
+    "http_req_duration{step:9000}": [
+      "max>=0"
+    ],
+    "http_req_failed{phase:measure}": [
+      "rate>=0"
+    ],
+    "http_reqs{phase:measure}": [
+      "count>=0"
+    ],
+    "http_reqs{phase:warmup}": [
+      "count>=0"
+    ],
+    "http_reqs{step:10000}": [
+      "count>=0"
+    ],
+    "http_reqs{step:1000}": [
+      "count>=0"
+    ],
+    "http_reqs{step:11000}": [
+      "count>=0"
+    ],
+    "http_reqs{step:12000}": [
+      "count>=0"
+    ],
+    "http_reqs{step:13000}": [
+      "count>=0"
+    ],
+    "http_reqs{step:14000}": [
+      "count>=0"
+    ],
+    "http_reqs{step:15000}": [
+      "count>=0"
+    ],
+    "http_reqs{step:2000}": [
+      "count>=0"
+    ],
+    "http_reqs{step:3000}": [
+      "count>=0"
+    ],
+    "http_reqs{step:4000}": [
+      "count>=0"
+    ],
+    "http_reqs{step:5000}": [
+      "count>=0"
+    ],
+    "http_reqs{step:6000}": [
+      "count>=0"
+    ],
+    "http_reqs{step:7000}": [
+      "count>=0"
+    ],
+    "http_reqs{step:8000}": [
+      "count>=0"
+    ],
+    "http_reqs{step:9000}": [
+      "count>=0"
+    ],
+    "rejected{phase:measure}": [
+      "count>=0"
+    ],
+    "rejected{phase:warmup}": [
+      "count>=0"
+    ],
+    "unexpected{phase:measure}": [
+      "count>=0"
+    ],
+    "unexpected{phase:warmup}": [
+      "count>=0"
+    ],
+    "unexpected{step:10000}": [
+      "count>=0"
+    ],
+    "unexpected{step:1000}": [
+      "count>=0"
+    ],
+    "unexpected{step:11000}": [
+      "count>=0"
+    ],
+    "unexpected{step:12000}": [
+      "count>=0"
+    ],
+    "unexpected{step:13000}": [
+      "count>=0"
+    ],
+    "unexpected{step:14000}": [
+      "count>=0"
+    ],
+    "unexpected{step:15000}": [
+      "count>=0"
+    ],
+    "unexpected{step:2000}": [
+      "count>=0"
+    ],
+    "unexpected{step:3000}": [
+      "count>=0"
+    ],
+    "unexpected{step:4000}": [
+      "count>=0"
+    ],
+    "unexpected{step:5000}": [
+      "count>=0"
+    ],
+    "unexpected{step:6000}": [
+      "count>=0"
+    ],
+    "unexpected{step:7000}": [
+      "count>=0"
+    ],
+    "unexpected{step:8000}": [
+      "count>=0"
+    ],
+    "unexpected{step:9000}": [
+      "count>=0"
+    ]
+  },
+  "throw": null,
+  "tlsAIAFetch": null,
+  "tlsAuth": null,
+  "tlsCipherSuites": null,
+  "tlsVersion": null,
+  "totalDuration": "8m40s",
+  "userAgent": null,
+  "vus": null
+}

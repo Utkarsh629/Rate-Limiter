@@ -1,0 +1,199 @@
+{
+  "errors": [],
+  "instant": {
+    "gc_pause_max": 0.005,
+    "gc_pause_seconds": 1.9357641404498098,
+    "gc_pauses": 899.996579284853,
+    "http_server_p99": 0.000996697808918005,
+    "redis_cmd_rate": 2.28,
+    "redis_cpu_cores": 0.004804685714286084,
+    "redis_main_thread_cpu_cores": 0.004804011428571552
+  },
+  "range": {
+    "breaker_state_half_open": {
+      "app-1": {
+        "avg": 0.0,
+        "max": 0.0,
+        "min": 0.0,
+        "samples": 37
+      },
+      "app-2": {
+        "avg": 0.0,
+        "max": 0.0,
+        "min": 0.0,
+        "samples": 37
+      },
+      "app-3": {
+        "avg": 0.0,
+        "max": 0.0,
+        "min": 0.0,
+        "samples": 37
+      }
+    },
+    "breaker_state_open": {
+      "app-1": {
+        "avg": 0.0,
+        "max": 0.0,
+        "min": 0.0,
+        "samples": 37
+      },
+      "app-2": {
+        "avg": 0.0,
+        "max": 0.0,
+        "min": 0.0,
+        "samples": 37
+      },
+      "app-3": {
+        "avg": 0.0,
+        "max": 0.0,
+        "min": 0.0,
+        "samples": 37
+      }
+    },
+    "heap_used_bytes": {
+      "app-1": {
+        "avg": 60680334.91891892,
+        "max": 70178160.0,
+        "min": 51032744.0,
+        "samples": 37
+      },
+      "app-2": {
+        "avg": 59826167.783783786,
+        "max": 71898680.0,
+        "min": 51622568.0,
+        "samples": 37
+      },
+      "app-3": {
+        "avg": 61063805.18918919,
+        "max": 70978632.0,
+        "min": 51081320.0,
+        "samples": 37
+      }
+    },
+    "process_cpu": {
+      "app-1": {
+        "avg": 0.08367890579655285,
+        "max": 0.09066666666666667,
+        "min": 0.07466666666666667,
+        "samples": 37
+      },
+      "app-2": {
+        "avg": 0.08382726063398332,
+        "max": 0.09115646258503401,
+        "min": 0.07466666666666667,
+        "samples": 37
+      },
+      "app-3": {
+        "avg": 0.08306306306306306,
+        "max": 0.088,
+        "min": 0.07733333333333334,
+        "samples": 37
+      }
+    },
+    "redis_clients": {
+      "redis": {
+        "avg": 7.0,
+        "max": 7.0,
+        "min": 7.0,
+        "samples": 37
+      }
+    },
+    "redis_cpu_cores": {
+      "redis": {
+        "avg": 0.004801321028969571,
+        "max": 0.00496870625875199,
+        "min": 0.004651234876511786,
+        "samples": 37
+      }
+    },
+    "redis_memory_bytes": {
+      "redis": {
+        "avg": 1342776.0,
+        "max": 1342776.0,
+        "min": 1342776.0,
+        "samples": 37
+      }
+    },
+    "redis_ops": {
+      "redis": {
+        "avg": 2.300012484648403,
+        "max": 2.300690207062119,
+        "min": 2.2993102069379185,
+        "samples": 37
+      }
+    },
+    "threads_live": {
+      "app-1": {
+        "avg": 40.0,
+        "max": 40.0,
+        "min": 40.0,
+        "samples": 37
+      },
+      "app-2": {
+        "avg": 47.0,
+        "max": 47.0,
+        "min": 47.0,
+        "samples": 37
+      },
+      "app-3": {
+        "avg": 40.0,
+        "max": 40.0,
+        "min": 40.0,
+        "samples": 37
+      }
+    },
+    "tomcat_busy": {
+      "app-1": {
+        "avg": 1.027027027027027,
+        "max": 2.0,
+        "min": 1.0,
+        "samples": 37
+      },
+      "app-2": {
+        "avg": 1.0810810810810811,
+        "max": 2.0,
+        "min": 1.0,
+        "samples": 37
+      },
+      "app-3": {
+        "avg": 1.135135135135135,
+        "max": 2.0,
+        "min": 1.0,
+        "samples": 37
+      }
+    },
+    "tomcat_current": {
+      "app-1": {
+        "avg": 22.0,
+        "max": 22.0,
+        "min": 22.0,
+        "samples": 37
+      },
+      "app-2": {
+        "avg": 29.0,
+        "max": 29.0,
+        "min": 29.0,
+        "samples": 37
+      },
+      "app-3": {
+        "avg": 22.0,
+        "max": 22.0,
+        "min": 22.0,
+        "samples": 37
+      }
+    }
+  },
+  "scrape": {
+    "expected_per_instance": 36.0,
+    "samples": {
+      "app-1": 36.0,
+      "app-2": 36.0,
+      "app-3": 36.0
+    }
+  },
+  "window": {
+    "end": 1794436971.322,
+    "seconds": 180,
+    "start": 1794436791.322
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "accepted_total": 121,
+  "bound_total": 125,
+  "check": "accepted <= algorithm bound for every user (zero over-admission)",
+  "min_utilisation": 0.968,
+  "over_admitted_requests": 0,
+  "over_admitted_users": [],
+  "pass": true,
+  "rows": [
+    {
+      "accepted": 121,
+      "bound": 125,
+      "first": 1794377374,
+      "last": 1794377375,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 9880,
+      "user": "hot"
+    }
+  ],
+  "users": 1
+}

@@ -1,0 +1,274 @@
+{
+  "checks": [
+    {
+      "expected": {
+        "200": 451248,
+        "429": 27650,
+        "non_200_429": 1052
+      },
+      "explanation": null,
+      "name": "k6_vs_nginx",
+      "observed": {
+        "200": 451248,
+        "429": 27650,
+        "non_200_429": 1052
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "accepted": 451248,
+        "rejected": 27650
+      },
+      "explanation": null,
+      "name": "k6_vs_raw_counters",
+      "observed": {
+        "accepted": 451248,
+        "rejected": 27650
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": 1052,
+      "explanation": null,
+      "name": "nginx_503_vs_fail_closed",
+      "observed": 1052,
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "fixed_window": {
+          "allowed": 394873,
+          "fail_closed": 0,
+          "fail_open": 9426,
+          "rejected": 27650
+        },
+        "sliding_window": {
+          "allowed": 46949,
+          "fail_closed": 1052,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "token_bucket": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "explanation": null,
+      "name": "raw_vs_prometheus_total",
+      "observed": {
+        "fixed_window": {
+          "allowed": 394873,
+          "fail_closed": 0,
+          "fail_open": 9426,
+          "rejected": 27650
+        },
+        "sliding_window": {
+          "allowed": 46949,
+          "fail_closed": 1052,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "token_bucket": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "app-1": {
+          "fixed_window": {
+            "allowed": 131532,
+            "fail_closed": 0,
+            "fail_open": 3149,
+            "rejected": 9245
+          },
+          "sliding_window": {
+            "allowed": 15712,
+            "fail_closed": 345,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-2": {
+          "fixed_window": {
+            "allowed": 131975,
+            "fail_closed": 0,
+            "fail_open": 3100,
+            "rejected": 9117
+          },
+          "sliding_window": {
+            "allowed": 15399,
+            "fail_closed": 393,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-3": {
+          "fixed_window": {
+            "allowed": 131366,
+            "fail_closed": 0,
+            "fail_open": 3177,
+            "rejected": 9288
+          },
+          "sliding_window": {
+            "allowed": 15838,
+            "fail_closed": 314,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "explanation": null,
+      "name": "raw_vs_prometheus_per_instance",
+      "observed": {
+        "app-1": {
+          "fixed_window": {
+            "allowed": 131532,
+            "fail_closed": 0,
+            "fail_open": 3149,
+            "rejected": 9245
+          },
+          "sliding_window": {
+            "allowed": 15712,
+            "fail_closed": 345,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-2": {
+          "fixed_window": {
+            "allowed": 131975,
+            "fail_closed": 0,
+            "fail_open": 3100,
+            "rejected": 9117
+          },
+          "sliding_window": {
+            "allowed": 15399,
+            "fail_closed": 393,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-3": {
+          "fixed_window": {
+            "allowed": 131366,
+            "fail_closed": 0,
+            "fail_open": 3177,
+            "rejected": 9288
+          },
+          "sliding_window": {
+            "allowed": 15838,
+            "fail_closed": 314,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {},
+      "explanation": null,
+      "name": "no_foreign_decisions",
+      "observed": {},
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "allowed": 394873,
+        "fail_closed": 0,
+        "fail_open": 9426,
+        "rejected": 27650
+      },
+      "explanation": "/stats differs from the instances' counters; last flush per instance: {'app-1': '2026-11-11T20:09:16.096Z', 'app-2': '2026-11-11T20:09:16.541Z', 'app-3': '2026-11-11T20:09:16.408Z'}. Causes: a flush still pending (each instance flushes every 5 s), a crashed instance (unflushed counts are lost by design), or counts flushed before the Redis reset.",
+      "name": "stats_vs_raw_policy_13",
+      "observed": {
+        "allowed": 243133,
+        "fail_closed": 0,
+        "fail_open": 9426,
+        "rejected": 19713
+      },
+      "required": true,
+      "status": "fail"
+    },
+    {
+      "expected": {
+        "allowed": 46949,
+        "fail_closed": 1052,
+        "fail_open": 0,
+        "rejected": 0
+      },
+      "explanation": "/stats differs from the instances' counters; last flush per instance: {'app-1': '2026-11-11T20:09:16.095Z', 'app-2': '2026-11-11T20:09:16.541Z', 'app-3': '2026-11-11T20:09:16.407Z'}. Causes: a flush still pending (each instance flushes every 5 s), a crashed instance (unflushed counts are lost by design), or counts flushed before the Redis reset.",
+      "name": "stats_vs_raw_policy_5",
+      "observed": {
+        "allowed": 29206,
+        "fail_closed": 1052,
+        "fail_open": 0,
+        "rejected": 0
+      },
+      "required": true,
+      "status": "fail"
+    },
+    {
+      "explanation": "10478 requests failed open/closed: timed-out commands may still have executed",
+      "name": "redis_evalsha_vs_decisions",
+      "required": false,
+      "status": "n/a"
+    }
+  ],
+  "failed": [
+    "stats_vs_raw_policy_13",
+    "stats_vs_raw_policy_5"
+  ],
+  "notes": [],
+  "ok": false
+}

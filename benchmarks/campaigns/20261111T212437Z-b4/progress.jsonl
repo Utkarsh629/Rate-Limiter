@@ -1,0 +1,11 @@
+{"event": "campaign_start", "plan": "b4", "configs": 6, "reps": 3, "at": "2026-11-12T02:54:37"}
+{"event": "run", "config": ["B4", "token_bucket", 5000, "headroom", "default", "nginx"], "attempt": 1, "rc": 0, "seconds": 288, "result": "RESULT 20261111T212640Z-b4-token_bucket-5000-r6: VALID", "valid_so_far": 2, "at": "2026-11-12T03:01:28"}
+{"event": "run", "config": ["B4", "token_bucket", 5000, "headroom", "default", "nginx"], "attempt": 2, "rc": 0, "seconds": 288, "result": "RESULT 20261111T213128Z-b4-token_bucket-5000-r7: VALID", "valid_so_far": 3, "at": "2026-11-12T03:06:16"}
+{"event": "config_done", "config": ["B4", "token_bucket", 5000, "headroom", "default", "nginx"], "valid": 3, "attempts": 2, "outcome": "complete", "at": "2026-11-12T03:06:16"}
+{"event": "run", "config": ["B4", "fixed_window", 5000, "headroom", "default", "nginx"], "attempt": 1, "rc": 0, "seconds": 289, "result": "RESULT 20261111T213616Z-b4-fixed_window-5000-r6: VALID", "valid_so_far": 3, "at": "2026-11-12T03:11:05"}
+{"event": "config_done", "config": ["B4", "fixed_window", 5000, "headroom", "default", "nginx"], "valid": 3, "attempts": 1, "outcome": "complete", "at": "2026-11-12T03:11:05"}
+{"event": "skip", "config": ["B4", "sliding_window", 5000, "headroom", "default", "nginx"], "valid": 3, "reason": "already has enough valid runs", "at": "2026-11-12T03:11:05"}
+{"event": "skip", "config": ["B4", "token_bucket", 5000, "throttled", "default", "nginx"], "valid": 3, "reason": "already has enough valid runs", "at": "2026-11-12T03:11:05"}
+{"event": "skip", "config": ["B4", "fixed_window", 5000, "throttled", "default", "nginx"], "valid": 3, "reason": "already has enough valid runs", "at": "2026-11-12T03:11:05"}
+{"event": "skip", "config": ["B4", "sliding_window", 5000, "throttled", "default", "nginx"], "valid": 3, "reason": "already has enough valid runs", "at": "2026-11-12T03:11:05"}
+{"event": "campaign_end", "at": "2026-11-12T03:11:05"}

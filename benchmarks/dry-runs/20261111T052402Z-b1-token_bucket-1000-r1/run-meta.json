@@ -1,0 +1,118 @@
+{
+  "algorithm": "token_bucket",
+  "algorithms_used": [
+    "token_bucket"
+  ],
+  "burst_s": null,
+  "dry_run": true,
+  "error": "BenchError: Redis safety check failed; no destructive command was sent: working_dir: expected '/Users/utkarshraj/Projects/distributed-rate-limiter', found '/Users/utkarshraj/Library/Application Support/Claude/scratch-workspaces/1f35def6-c60b-4b15-a565-886745e4a3f7/24e62994-43bb-4a23-b091-cfcd43c68deb/scratch-2026-11-10-30e0a8/distributed-rate-limiter'",
+  "expected_requests": 180000,
+  "filter_enabled": true,
+  "finished_at": 1794374657.520156,
+  "k6_env": {
+    "ALGORITHM": "token_bucket",
+    "MEASURE_S": "180",
+    "OUT_DIR": "/results",
+    "PROFILE": "mixed",
+    "RATE": "1000",
+    "RUN_ID": "20261111T052402Z-b1-token_bucket-1000-r1",
+    "TOKENS_FILE": "/tokens/bench.json",
+    "WARMUP_S": "60"
+  },
+  "kind": "constant",
+  "measure_s": 180,
+  "measure_scenarios": [
+    "b1_measure"
+  ],
+  "nonstandard_rate": false,
+  "planned_at": 1794374642.5610182,
+  "policies": {
+    "77": {
+      "algorithm": "token_bucket",
+      "name": "bench-profile"
+    }
+  },
+  "policy_setup_output": "created bench-profile (id 77, TOKEN_BUCKET)\nverifying bench-profile (id 77, TOKEN_BUCKET, limit 120 / 60000 ms) on every instance via http://localhost:8080\nall 3 instances confirmed in 2s (3 probes):\n  app1: status=200 limit=120 policy-keys=tb (upstream 172.28.0.11:8080, probes 1)\n  app2: status=200 limit=120 policy-keys=tb (upstream 172.28.0.12:8080, probes 1)\n  app3: status=200 limit=120 policy-keys=tb (upstream 172.28.0.13:8080, probes 1)\n",
+  "policy_variant": "default",
+  "preflight": {
+    "app_env": {
+      "app1": {
+        "RATELIMITER_FILTER_ENABLED": null,
+        "REDIS_COMMAND_TIMEOUT": "250ms",
+        "REDIS_POOL_ENABLED": "false",
+        "REDIS_POOL_MAX_ACTIVE": null,
+        "SERVER_TOMCAT_THREADS_MAX": "200"
+      },
+      "app2": {
+        "RATELIMITER_FILTER_ENABLED": null,
+        "REDIS_COMMAND_TIMEOUT": "250ms",
+        "REDIS_POOL_ENABLED": "false",
+        "REDIS_POOL_MAX_ACTIVE": null,
+        "SERVER_TOMCAT_THREADS_MAX": "200"
+      },
+      "app3": {
+        "RATELIMITER_FILTER_ENABLED": null,
+        "REDIS_COMMAND_TIMEOUT": "250ms",
+        "REDIS_POOL_ENABLED": "false",
+        "REDIS_POOL_MAX_ACTIVE": null,
+        "SERVER_TOMCAT_THREADS_MAX": "200"
+      }
+    },
+    "at": 1794374642.561315,
+    "breakers": {
+      "app1": "closed",
+      "app2": "closed",
+      "app3": "closed"
+    },
+    "prometheus_targets": {
+      "app-1": "1",
+      "app-2": "1",
+      "app-3": "1",
+      "redis": "1"
+    },
+    "stack_problems": [],
+    "tokens": {
+      "bench.json": {
+        "earliest_exp": 1794547442,
+        "groups": [
+          "free",
+          "hot"
+        ],
+        "users": 10100
+      }
+    }
+  },
+  "profile": "mixed",
+  "rate": 1000,
+  "redis_safety": {
+    "identity": {
+      "appendonly": "no",
+      "container_id": "f7cd69ab24d586c45025c87c38d2e3aff37aa0c3ccd52f32f65b7c506637f3e5",
+      "foreign_key_count": 0,
+      "foreign_keys_sample": [],
+      "image": "redis:7.4-alpine",
+      "key_count": 86,
+      "maxmemory": "268435456",
+      "name": "/ratelimiter-redis-1",
+      "project": "ratelimiter",
+      "redis_version": "7.4.12",
+      "running": true,
+      "save": "",
+      "service": "redis",
+      "tcp_port": "6379",
+      "working_dir": "/Users/utkarshraj/Library/Application Support/Claude/scratch-workspaces/1f35def6-c60b-4b15-a565-886745e4a3f7/24e62994-43bb-4a23-b091-cfcd43c68deb/scratch-2026-11-10-30e0a8/distributed-rate-limiter"
+    },
+    "violations": [
+      "working_dir: expected '/Users/utkarshraj/Projects/distributed-rate-limiter', found '/Users/utkarshraj/Library/Application Support/Claude/scratch-workspaces/1f35def6-c60b-4b15-a565-886745e4a3f7/24e62994-43bb-4a23-b091-cfcd43c68deb/scratch-2026-11-10-30e0a8/distributed-rate-limiter'"
+    ]
+  },
+  "rep": 1,
+  "run_dir": "benchmarks/dry-runs/20261111T052402Z-b1-token_bucket-1000-r1",
+  "run_id": "20261111T052402Z-b1-token_bucket-1000-r1",
+  "scenario": "B1",
+  "script": "b1-load-levels.js",
+  "status": "error",
+  "target": "nginx",
+  "variant": "default",
+  "warmup_s": 60
+}

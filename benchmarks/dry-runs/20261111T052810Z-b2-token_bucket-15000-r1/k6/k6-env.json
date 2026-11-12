@@ -1,0 +1,13 @@
+{
+  "ALGORITHM": "token_bucket",
+  "MEASURE_S": "180",
+  "OUT_DIR": "/results",
+  "PROFILE": "mixed",
+  "RATE": "15000",
+  "RUN_ID": "20261111T052810Z-b2-token_bucket-15000-r1",
+  "START_RATE": "1000",
+  "STEP_RATE": "1000",
+  "STEP_S": "30",
+  "TOKENS_FILE": "/tokens/bench.json",
+  "WARMUP_S": "60"
+}

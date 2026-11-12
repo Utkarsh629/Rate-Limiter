@@ -1,0 +1,13 @@
+{
+  "ALGORITHM": "fixed_window",
+  "ENT_TOKENS_FILE": "/tokens/bench-enterprise.json",
+  "FAULT": "F2",
+  "GOMEMLIMIT": "850MiB",
+  "MEASURE_S": "180",
+  "OUT_DIR": "/results",
+  "PROFILE": "mixed",
+  "RATE": "2000",
+  "RUN_ID": "20261111T200444Z-f2-fixed_window-2000-r1",
+  "TOKENS_FILE": "/tokens/bench.json",
+  "WARMUP_S": "60"
+}

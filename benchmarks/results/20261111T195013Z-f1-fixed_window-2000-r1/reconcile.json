@@ -1,0 +1,271 @@
+{
+  "checks": [
+    {
+      "expected": {
+        "200": 451398,
+        "429": 24359,
+        "non_200_429": 4205
+      },
+      "explanation": null,
+      "name": "k6_vs_nginx",
+      "observed": {
+        "200": 451398,
+        "429": 24359,
+        "non_200_429": 4205
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "accepted": 451398,
+        "rejected": 24359
+      },
+      "explanation": null,
+      "name": "k6_vs_raw_counters",
+      "observed": {
+        "accepted": 451398,
+        "rejected": 24359
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": 4205,
+      "explanation": null,
+      "name": "nginx_503_vs_fail_closed",
+      "observed": 4205,
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "fixed_window": {
+          "allowed": 369790,
+          "fail_closed": 0,
+          "fail_open": 37811,
+          "rejected": 24359
+        },
+        "sliding_window": {
+          "allowed": 43797,
+          "fail_closed": 4205,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "token_bucket": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "explanation": null,
+      "name": "raw_vs_prometheus_total",
+      "observed": {
+        "fixed_window": {
+          "allowed": 369790,
+          "fail_closed": 0,
+          "fail_open": 37811,
+          "rejected": 24359
+        },
+        "sliding_window": {
+          "allowed": 43797,
+          "fail_closed": 4205,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "token_bucket": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "app-1": {
+          "fixed_window": {
+            "allowed": 123166,
+            "fail_closed": 0,
+            "fail_open": 12591,
+            "rejected": 8091
+          },
+          "sliding_window": {
+            "allowed": 14726,
+            "fail_closed": 1413,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-2": {
+          "fixed_window": {
+            "allowed": 123431,
+            "fail_closed": 0,
+            "fail_open": 12573,
+            "rejected": 8127
+          },
+          "sliding_window": {
+            "allowed": 14424,
+            "fail_closed": 1433,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-3": {
+          "fixed_window": {
+            "allowed": 123193,
+            "fail_closed": 0,
+            "fail_open": 12647,
+            "rejected": 8141
+          },
+          "sliding_window": {
+            "allowed": 14647,
+            "fail_closed": 1359,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "explanation": null,
+      "name": "raw_vs_prometheus_per_instance",
+      "observed": {
+        "app-1": {
+          "fixed_window": {
+            "allowed": 123166,
+            "fail_closed": 0,
+            "fail_open": 12591,
+            "rejected": 8091
+          },
+          "sliding_window": {
+            "allowed": 14726,
+            "fail_closed": 1413,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-2": {
+          "fixed_window": {
+            "allowed": 123431,
+            "fail_closed": 0,
+            "fail_open": 12573,
+            "rejected": 8127
+          },
+          "sliding_window": {
+            "allowed": 14424,
+            "fail_closed": 1433,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-3": {
+          "fixed_window": {
+            "allowed": 123193,
+            "fail_closed": 0,
+            "fail_open": 12647,
+            "rejected": 8141
+          },
+          "sliding_window": {
+            "allowed": 14647,
+            "fail_closed": 1359,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {},
+      "explanation": null,
+      "name": "no_foreign_decisions",
+      "observed": {},
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "allowed": 369790,
+        "fail_closed": 0,
+        "fail_open": 37811,
+        "rejected": 24359
+      },
+      "explanation": null,
+      "name": "stats_vs_raw_policy_13",
+      "observed": {
+        "allowed": 369790,
+        "fail_closed": 0,
+        "fail_open": 37811,
+        "rejected": 24359
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "allowed": 43797,
+        "fail_closed": 4205,
+        "fail_open": 0,
+        "rejected": 0
+      },
+      "explanation": null,
+      "name": "stats_vs_raw_policy_5",
+      "observed": {
+        "allowed": 43797,
+        "fail_closed": 4205,
+        "fail_open": 0,
+        "rejected": 0
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "explanation": "42016 requests failed open/closed: timed-out commands may still have executed",
+      "name": "redis_evalsha_vs_decisions",
+      "required": false,
+      "status": "n/a"
+    }
+  ],
+  "failed": [],
+  "notes": [],
+  "ok": true
+}

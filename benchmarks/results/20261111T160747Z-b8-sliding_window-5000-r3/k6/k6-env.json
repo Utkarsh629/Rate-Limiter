@@ -1,0 +1,12 @@
+{
+  "ALGORITHM": "sliding_window",
+  "GOMEMLIMIT": "850MiB",
+  "HOT_TOKEN": "<redacted bearer token>",
+  "MEASURE_S": "180",
+  "OUT_DIR": "/results",
+  "PROFILE": "hotkey",
+  "RATE": "5000",
+  "RUN_ID": "20261111T160747Z-b8-sliding_window-5000-r3",
+  "TOKENS_FILE": "/tokens/bench.json",
+  "WARMUP_S": "60"
+}

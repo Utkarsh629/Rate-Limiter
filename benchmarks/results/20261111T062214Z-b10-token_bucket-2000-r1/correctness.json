@@ -1,0 +1,1012 @@
+{
+  "accepted_total": 59900,
+  "bound_total": 60300,
+  "check": "accepted <= algorithm bound for every user (zero over-admission)",
+  "min_utilisation": 0.9933665008291874,
+  "over_admitted_requests": 0,
+  "over_admitted_users": [],
+  "pass": true,
+  "rows": [
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4203,
+      "user": "t0"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t1"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t10"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t11"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t12"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t13"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t14"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t15"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t16"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t17"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t18"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t19"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t2"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t20"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t21"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t22"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t23"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t24"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t25"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t26"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t27"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t28"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t29"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t3"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t30"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t31"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t32"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t33"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t34"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t35"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t36"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t37"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t38"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t39"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t4"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t40"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t41"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t42"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t43"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t44"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t45"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t46"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t47"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t48"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t49"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t5"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t50"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t51"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t52"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t53"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t54"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t55"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t56"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t57"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t58"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t59"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t6"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t60"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t61"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t62"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t63"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t64"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t65"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t66"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t67"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t68"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t69"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t7"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t70"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t71"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t72"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t73"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t74"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t75"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t76"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t77"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t78"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t79"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t8"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t80"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t81"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t82"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t83"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t84"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t85"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t86"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t87"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t88"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t89"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t9"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t90"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t91"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t92"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t93"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t94"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t95"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t96"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t97"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t98"
+    },
+    {
+      "accepted": 599,
+      "bound": 603,
+      "first": 1794378162,
+      "last": 1794378402,
+      "other": 0,
+      "over_admitted": 0,
+      "rejected": 4201,
+      "user": "t99"
+    }
+  ],
+  "users": 100
+}

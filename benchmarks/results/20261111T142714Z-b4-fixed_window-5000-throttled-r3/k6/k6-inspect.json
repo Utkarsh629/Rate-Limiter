@@ -1,0 +1,149 @@
+{
+  "batch": null,
+  "batchPerHost": null,
+  "blacklistIPs": null,
+  "blockHostnames": null,
+  "discardResponseBodies": true,
+  "dns": {
+    "policy": null,
+    "select": null,
+    "ttl": null
+  },
+  "duration": null,
+  "executionSegment": null,
+  "executionSegmentSequence": null,
+  "ext": null,
+  "features": null,
+  "handleSummaryTimeout": null,
+  "hosts": null,
+  "httpDebug": null,
+  "insecureSkipTLSVerify": null,
+  "iterations": null,
+  "maxRedirects": null,
+  "maxVUs": 2250,
+  "metricSamplesBufferSize": null,
+  "minIterationDuration": null,
+  "noConnectionReuse": null,
+  "noCookiesReset": null,
+  "noSetup": null,
+  "noTeardown": null,
+  "noVUConnectionReuse": null,
+  "paused": null,
+  "rps": null,
+  "scenarios": {
+    "b4_measure": {
+      "duration": "3m0s",
+      "env": null,
+      "exec": null,
+      "executor": "constant-arrival-rate",
+      "gracefulStop": "10s",
+      "maxVUs": 1250,
+      "preAllocatedVUs": 1000,
+      "rate": 5000,
+      "startTime": "1m0s",
+      "tags": {
+        "phase": "measure"
+      },
+      "timeUnit": "1s"
+    },
+    "b4_warmup": {
+      "duration": "1m0s",
+      "env": null,
+      "exec": null,
+      "executor": "constant-arrival-rate",
+      "gracefulStop": "10s",
+      "maxVUs": 1000,
+      "preAllocatedVUs": 500,
+      "rate": 5000,
+      "startTime": null,
+      "tags": {
+        "phase": "warmup"
+      },
+      "timeUnit": "1s"
+    }
+  },
+  "setupTimeout": null,
+  "stages": null,
+  "summaryTimeUnit": null,
+  "summaryTrendStats": [
+    "avg",
+    "min",
+    "med",
+    "p(90)",
+    "p(95)",
+    "p(99)",
+    "max"
+  ],
+  "systemTags": [
+    "check",
+    "error",
+    "error_code",
+    "expected_response",
+    "group",
+    "method",
+    "name",
+    "proto",
+    "scenario",
+    "service",
+    "status",
+    "subproto",
+    "tls_version",
+    "url"
+  ],
+  "tags": {
+    "algorithm": "fixed_window",
+    "benchmark": "B4",
+    "profile": "throttled",
+    "rate": "5000"
+  },
+  "teardownTimeout": null,
+  "thresholds": {
+    "accepted{phase:measure}": [
+      "count>=0"
+    ],
+    "accepted{phase:warmup}": [
+      "count>=0"
+    ],
+    "dropped_iterations{scenario:b4_measure}": [
+      "count==0"
+    ],
+    "dropped_iterations{scenario:b4_warmup}": [
+      "count>=0"
+    ],
+    "http_req_duration{phase:measure}": [
+      "max>=0"
+    ],
+    "http_req_failed{phase:measure}": [
+      "rate>=0"
+    ],
+    "http_reqs{phase:measure}": [
+      "count>=891000"
+    ],
+    "http_reqs{phase:warmup}": [
+      "count>=0"
+    ],
+    "rejected{phase:measure}": [
+      "count>=0"
+    ],
+    "rejected{phase:warmup}": [
+      "count>=0"
+    ],
+    "unexpected_rate{phase:measure}": [
+      "rate<0.001"
+    ],
+    "unexpected{phase:measure}": [
+      "count>=0"
+    ],
+    "unexpected{phase:warmup}": [
+      "count>=0"
+    ]
+  },
+  "throw": null,
+  "tlsAIAFetch": null,
+  "tlsAuth": null,
+  "tlsCipherSuites": null,
+  "tlsVersion": null,
+  "totalDuration": "4m10s",
+  "userAgent": null,
+  "vus": null
+}

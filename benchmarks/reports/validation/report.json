@@ -1,0 +1,243 @@
+{
+  "knee": {},
+  "mst": {
+    "fixed_window": {
+      "evidence": [
+        "1000: not run",
+        "2500: not run",
+        "5000: not run",
+        "7500: not run",
+        "10000: not run"
+      ],
+      "max_sustainable_tested_rps": null
+    },
+    "sliding_window": {
+      "evidence": [
+        "1000: not run",
+        "2500: not run",
+        "5000: not run",
+        "7500: not run",
+        "10000: not run"
+      ],
+      "max_sustainable_tested_rps": null
+    },
+    "token_bucket": {
+      "evidence": [
+        "1000: meets the criteria in all 3 valid runs",
+        "2500: not run",
+        "5000: not run",
+        "7500: not run",
+        "10000: not run"
+      ],
+      "max_sustainable_tested_rps": 1000
+    }
+  },
+  "runs": 5,
+  "tables": {
+    "B1": [
+      {
+        "achieved_rps": {
+          "max": 1000.0055555555556,
+          "median": 1000.0055555555556,
+          "min": 1000.0,
+          "n": 3,
+          "noisy": false
+        },
+        "app_cpu_max_pct": {
+          "max": 13.218722222222222,
+          "median": 13.039694444444445,
+          "min": 12.433305555555554,
+          "n": 3,
+          "noisy": false
+        },
+        "app_cpu_peak_pct": {
+          "max": 22.28,
+          "median": 20.9,
+          "min": 20.24,
+          "n": 3,
+          "noisy": false
+        },
+        "e2e_max": {
+          "max": 47.895083,
+          "median": 42.645084,
+          "min": 6.764,
+          "n": 3,
+          "noisy": true
+        },
+        "e2e_p50": {
+          "max": 0.538625,
+          "median": 0.527542,
+          "min": 0.5226045,
+          "n": 3,
+          "noisy": false
+        },
+        "e2e_p95": {
+          "max": 0.8822910500000001,
+          "median": 0.855792,
+          "min": 0.779958,
+          "n": 3,
+          "noisy": true
+        },
+        "e2e_p99": {
+          "max": 1.7857579199999987,
+          "median": 1.632375,
+          "min": 1.472,
+          "n": 3,
+          "noisy": true
+        },
+        "error_rate": {
+          "max": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "noisy": false
+        },
+        "errors": 0,
+        "gc_pause_ms": {
+          "max": 1254.857072352996,
+          "median": 1252.783131774836,
+          "min": 1178.742710229573,
+          "n": 3,
+          "noisy": false
+        },
+        "heap_max_mib": {
+          "max": 112.54936218261719,
+          "median": 111.95149993896484,
+          "min": 111.65223693847656,
+          "n": 3,
+          "noisy": false
+        },
+        "invalid": 2,
+        "jvm_cpu_max": {
+          "max": 0.08518918918918919,
+          "median": 0.08425225225225225,
+          "min": 0.08259459459459459,
+          "n": 3,
+          "noisy": false
+        },
+        "k6_cpu_pct_limit": {
+          "max": 13.142727272727273,
+          "median": 12.75157894736842,
+          "min": 12.528000000000002,
+          "n": 3,
+          "noisy": false
+        },
+        "label": "token_bucket @ 1,000",
+        "nginx_cpu_pct": {
+          "max": 10.171444444444443,
+          "median": 9.855083333333333,
+          "min": 9.308416666666668,
+          "n": 3,
+          "noisy": false
+        },
+        "ovh_avg": {
+          "max": 0.15382073396043944,
+          "median": 0.1524516128682429,
+          "min": 0.15189311443539658,
+          "n": 3,
+          "noisy": false
+        },
+        "ovh_p50": {
+          "max": 0.1431555760236788,
+          "median": 0.1391458193678177,
+          "min": 0.13792791704880333,
+          "n": 3,
+          "noisy": false
+        },
+        "ovh_p95": {
+          "max": 0.2144710594441164,
+          "median": 0.2054226936803106,
+          "min": 0.20396976468515304,
+          "n": 3,
+          "noisy": false
+        },
+        "ovh_p99": {
+          "max": 0.5353789519530593,
+          "median": 0.5282935328548194,
+          "min": 0.5017644359982109,
+          "n": 3,
+          "noisy": false
+        },
+        "redis_clients_max": {
+          "max": 7.0,
+          "median": 7.0,
+          "min": 7.0,
+          "n": 3,
+          "noisy": false
+        },
+        "redis_cpu_pct": {
+          "max": 4.7451944444444445,
+          "median": 4.699916666666667,
+          "min": 4.622027777777778,
+          "n": 3,
+          "noisy": false
+        },
+        "redis_main_cpu": {
+          "max": 0.04616114949228281,
+          "median": 0.04454177309219734,
+          "min": 0.04397480557031755,
+          "n": 3,
+          "noisy": false
+        },
+        "redis_mem_mib": {
+          "max": 1.840911865234375,
+          "median": 1.8184356689453125,
+          "min": 1.814849853515625,
+          "n": 3,
+          "noisy": false
+        },
+        "redis_ops": {
+          "max": 5008.92005097172,
+          "median": 5008.92005097172,
+          "min": 5008.794034456158,
+          "n": 3,
+          "noisy": false
+        },
+        "rejected_share": {
+          "max": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "n": 3,
+          "noisy": false
+        },
+        "rtt_p50": {
+          "max": 0.14019372390391094,
+          "median": 0.1354055519244042,
+          "min": 0.13108169541389014,
+          "n": 3,
+          "noisy": false
+        },
+        "rtt_p99": {
+          "max": 0.5251877716051134,
+          "median": 0.5147027302248885,
+          "min": 0.48944282084271973,
+          "n": 3,
+          "noisy": false
+        },
+        "srv_p50_us": {
+          "max": 15.039,
+          "median": 14.015,
+          "min": 14.015,
+          "n": 3,
+          "noisy": false
+        },
+        "srv_p99_us": {
+          "max": 63.231,
+          "median": 63.231,
+          "min": 59.135,
+          "n": 3,
+          "noisy": false
+        },
+        "tomcat_busy_max": {
+          "max": 3.0,
+          "median": 3.0,
+          "min": 3.0,
+          "n": 3,
+          "noisy": false
+        },
+        "valid": 3
+      }
+    ]
+  },
+  "valid": 3
+}

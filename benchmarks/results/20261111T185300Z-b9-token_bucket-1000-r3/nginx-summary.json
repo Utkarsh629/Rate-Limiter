@@ -1,0 +1,25 @@
+{
+  "other_lines": 12,
+  "paths": {
+    "/api/v1/demo/profile": {
+      "200": 240000
+    }
+  },
+  "phases": {
+    "measure": {
+      "200": 179999
+    },
+    "warmup": {
+      "200": 60001
+    }
+  },
+  "total": {
+    "200": 240000
+  },
+  "unparsed_lines": 9,
+  "upstream": {
+    "app1": 80000,
+    "app2": 80000,
+    "app3": 80000
+  }
+}

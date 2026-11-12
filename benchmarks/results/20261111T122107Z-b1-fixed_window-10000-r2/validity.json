@@ -1,0 +1,90 @@
+{
+  "criteria": [
+    {
+      "name": "dropped_iterations",
+      "reason": "k6 dropped 18546 iterations: the load generator could not keep the arrival rate",
+      "required": true,
+      "status": "fail",
+      "threshold": "== 0",
+      "value": 18546
+    },
+    {
+      "name": "achieved_rate",
+      "reason": "1781455 of 1800000 expected requests (98.97%)",
+      "required": true,
+      "status": "fail",
+      "threshold": ">= 0.99",
+      "value": 0.9897
+    },
+    {
+      "name": "k6_cpu",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": "<= 85.0 % of 2 CPUs",
+      "value": 83.2
+    },
+    {
+      "name": "unexpected_statuses",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": "<= 0.001",
+      "value": 0.0
+    },
+    {
+      "name": "counts_reconcile",
+      "reason": "failed checks: k6_vs_nginx",
+      "required": true,
+      "status": "fail",
+      "threshold": null,
+      "value": [
+        "k6_vs_nginx"
+      ]
+    },
+    {
+      "name": "prometheus_complete",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": ">= 90% of 36",
+      "value": {
+        "app-1": 36.0,
+        "app-2": 36.0,
+        "app-3": 36.0
+      }
+    },
+    {
+      "name": "warmup_separated",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": null,
+      "value": {
+        "measure_starts_at_s": 60,
+        "warmup_requests": 599303,
+        "warmup_s": 60
+      }
+    },
+    {
+      "name": "redis_reset",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": null,
+      "value": {
+        "container_id": "4590f4650bad0df447db06ab4f9234549cd5a6c0de25761ea1d87158a18c876c",
+        "dbsize_after": 0,
+        "flushdb": "OK",
+        "resetstat": "OK",
+        "slowlog_reset": "OK"
+      }
+    }
+  ],
+  "reasons": [
+    "dropped_iterations: k6 dropped 18546 iterations: the load generator could not keep the arrival rate",
+    "achieved_rate: 1781455 of 1800000 expected requests (98.97%)",
+    "counts_reconcile: failed checks: k6_vs_nginx"
+  ],
+  "valid": false
+}

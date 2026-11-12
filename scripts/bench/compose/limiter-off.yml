@@ -1,0 +1,13 @@
+# Phase 3B benchmark stack variant "limiter-off" (B3 overhead A/B only). Applied by scripts/bench/run.sh as an
+# extra Compose file on top of docker-compose.yml; the main file is unchanged. Disables the HTTP rate-limit filter
+# with its existing master switch (ratelimiter.filter.enabled); JWT authentication stays on.
+services:
+  app1:
+    environment:
+      RATELIMITER_FILTER_ENABLED: "false"
+  app2:
+    environment:
+      RATELIMITER_FILTER_ENABLED: "false"
+  app3:
+    environment:
+      RATELIMITER_FILTER_ENABLED: "false"

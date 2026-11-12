@@ -1,0 +1,81 @@
+{
+  "criteria": [
+    {
+      "name": "dropped_iterations",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": "== 0",
+      "value": 0
+    },
+    {
+      "name": "achieved_rate",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": ">= 1.0",
+      "value": 1.0
+    },
+    {
+      "name": "k6_cpu",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": "<= 85.0 % of 2 CPUs",
+      "value": 0.0
+    },
+    {
+      "name": "unexpected_statuses",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": "<= 0.001",
+      "value": 0.0
+    },
+    {
+      "name": "counts_reconcile",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": null,
+      "value": []
+    },
+    {
+      "name": "prometheus_complete",
+      "reason": "incomplete scrapes: low={} missing=['app-1']",
+      "required": true,
+      "status": "fail",
+      "threshold": ">= 90% of 0",
+      "value": {
+        "app-2": 1.0,
+        "app-3": 1.0
+      }
+    },
+    {
+      "name": "warmup_separated",
+      "reason": "concurrency test has no warm-up (closed model)",
+      "required": false,
+      "status": "n/a",
+      "threshold": null,
+      "value": null
+    },
+    {
+      "name": "redis_reset",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": null,
+      "value": {
+        "container_id": "4590f4650bad0df447db06ab4f9234549cd5a6c0de25761ea1d87158a18c876c",
+        "dbsize_after": 0,
+        "flushdb": "OK",
+        "resetstat": "OK",
+        "slowlog_reset": "OK"
+      }
+    }
+  ],
+  "reasons": [
+    "prometheus_complete: incomplete scrapes: low={} missing=['app-1']"
+  ],
+  "valid": false
+}

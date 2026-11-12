@@ -1,0 +1,837 @@
+103
+1794429415
+388822
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:49978
+
+102
+1794429414
+381529
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:49940
+
+101
+1794429413
+382954
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:49908
+
+100
+1794429412
+381763
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:40772
+
+99
+1794429411
+381222
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:40752
+
+98
+1794429410
+379901
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:40726
+
+97
+1794429409
+381116
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:40700
+
+96
+1794429408
+380604
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:40674
+
+95
+1794429407
+381228
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:40646
+
+94
+1794429406
+380409
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:40622
+
+93
+1794429405
+381123
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:40580
+
+92
+1794429404
+379815
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:40554
+
+91
+1794429403
+382874
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:40524
+
+90
+1794429402
+381153
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:38230
+
+89
+1794429401
+380885
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:38200
+
+88
+1794429400
+381665
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:38174
+
+87
+1794429399
+381580
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:38140
+
+86
+1794429398
+379899
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:38104
+
+85
+1794429397
+381699
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:38070
+
+84
+1794429396
+380969
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:38058
+
+83
+1794429395
+382840
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:38038
+
+82
+1794429394
+380480
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:38014
+
+81
+1794429393
+383521
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:37994
+
+80
+1794429392
+381475
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:49656
+
+79
+1794429391
+382181
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:49634
+
+78
+1794429390
+383050
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:49598
+
+77
+1794429389
+382390
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:49568
+
+76
+1794429388
+380730
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:49534
+
+75
+1794429387
+380924
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:49494
+
+74
+1794429386
+381227
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+132880432
+127.0.0.1:49464
+
+73
+1794429375
+144834
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:51586
+
+72
+1794429375
+142893
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:51556
+
+71
+1794429374
+141958
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:51528
+
+70
+1794429374
+142105
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:51502
+
+69
+1794429373
+141906
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:51462
+
+68
+1794429373
+142111
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:51424
+
+67
+1794429372
+141978
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55392
+
+66
+1794429372
+142248
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55360
+
+65
+1794429371
+142140
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55336
+
+64
+1794429371
+142337
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55304
+
+63
+1794429370
+142473
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55268
+
+62
+1794429370
+142895
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55234
+
+61
+1794429369
+142005
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55218
+
+60
+1794429369
+142325
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55194
+
+59
+1794429368
+142517
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55168
+
+58
+1794429368
+142498
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55138
+
+57
+1794429367
+142263
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55120
+
+56
+1794429367
+142431
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55098
+
+55
+1794429366
+142018
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55064
+
+54
+1794429366
+142256
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55046
+
+53
+1794429365
+142033
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55030
+
+52
+1794429365
+142449
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:55000
+
+51
+1794429364
+142391
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:54964
+
+50
+1794429364
+141828
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:54934
+
+49
+1794429363
+142837
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:54904
+
+48
+1794429363
+142268
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:54884
+
+47
+1794429362
+142032
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:49146
+
+46
+1794429362
+142836
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:49122
+
+45
+1794429361
+142153
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:49086
+
+44
+1794429361
+142434
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:49056
+
+43
+1794429360
+142112
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:49034
+
+42
+1794429360
+143405
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:49004
+
+41
+1794429359
+145985
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:48970
+
+40
+1794429359
+142700
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:48934
+
+39
+1794429358
+143056
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:48904
+
+38
+1794429358
+142426
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:48880
+
+37
+1794429357
+142486
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:48846
+
+36
+1794429357
+142283
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:48806
+
+35
+1794429356
+142307
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:48774
+
+34
+1794429356
+141914
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:48742
+
+33
+1794429355
+142645
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:48722
+
+32
+1794429355
+143415
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:48698
+
+31
+1794429354
+142447
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:48662
+
+30
+1794429354
+142343
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:48626
+
+29
+1794429353
+142912
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:48602
+
+28
+1794429353
+142762
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:48588
+
+27
+1794429352
+142280
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:33344
+
+26
+1794429352
+143766
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:33326
+
+25
+1794429351
+142182
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:33296
+
+24
+1794429351
+142929
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:33268
+
+23
+1794429350
+142492
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:33246
+
+22
+1794429350
+142231
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:33228
+
+21
+1794429349
+142107
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:33192
+
+20
+1794429349
+142291
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:33170
+
+19
+1794429348
+142903
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:33144
+
+18
+1794429348
+142588
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:33122
+
+17
+1794429347
+142696
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:33080
+
+16
+1794429347
+142295
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:33052
+
+15
+1794429346
+142294
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:33032
+
+14
+1794429346
+143066
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+49830162
+127.0.0.1:33010
+
+13
+1794429242
+120409
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+40000000
+127.0.0.1:48504
+
+12
+1794429241
+119482
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+40000000
+127.0.0.1:48466
+
+11
+1794429240
+123052
+EVAL
+local n=tonumber(ARGV[1]) local x=0 for i=1,n do x=x+1 end return 1
+0
+40000000
+127.0.0.1:48440
+

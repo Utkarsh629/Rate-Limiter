@@ -1,0 +1,11 @@
+# HELP ratelimiter_requests_total Rate-limit decisions
+# TYPE ratelimiter_requests_total counter
+ratelimiter_requests_total{algorithm="token_bucket",application="distributed-rate-limiter",result="allowed"} 1500.0
+ratelimiter_requests_total{algorithm="token_bucket",application="distributed-rate-limiter",result="rejected"} 25.0
+ratelimiter_requests_total{algorithm="token_bucket",application="distributed-rate-limiter",result="fail_open"} 0.0
+ratelimiter_requests_total{algorithm="token_bucket",application="distributed-rate-limiter",result="fail_closed"} 0.0
+ratelimiter_requests_total{algorithm="sliding_window",application="distributed-rate-limiter",result="allowed"} 7.0
+resilience4j_circuitbreaker_state{name="rateLimitStore",state="closed"} 1.0
+resilience4j_circuitbreaker_state{name="rateLimitStore",state="open"} 0.0
+ratelimiter_circuit_breaker_transitions_total{from="closed",to="open"} 2.0
+jvm_info{runtime="OpenJDK Runtime Environment",vendor="Eclipse Adoptium",version="17.0.21+9"} 1

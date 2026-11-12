@@ -1,0 +1,255 @@
+{
+  "checks": [
+    {
+      "expected": {
+        "200": 49600,
+        "429": 1150401,
+        "non_200_429": 0
+      },
+      "explanation": null,
+      "name": "k6_vs_nginx",
+      "observed": {
+        "200": 49600,
+        "429": 1150401,
+        "non_200_429": 0
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "accepted": 49600,
+        "rejected": 1150401
+      },
+      "explanation": null,
+      "name": "k6_vs_raw_counters",
+      "observed": {
+        "accepted": 49600,
+        "rejected": 1150401
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": 0,
+      "explanation": null,
+      "name": "nginx_503_vs_fail_closed",
+      "observed": 0,
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "fixed_window": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "sliding_window": {
+          "allowed": 49600,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 1150401
+        },
+        "token_bucket": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "explanation": null,
+      "name": "raw_vs_prometheus_total",
+      "observed": {
+        "fixed_window": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        },
+        "sliding_window": {
+          "allowed": 49600,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 1150401
+        },
+        "token_bucket": {
+          "allowed": 0,
+          "fail_closed": 0,
+          "fail_open": 0,
+          "rejected": 0
+        }
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "app-1": {
+          "fixed_window": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "sliding_window": {
+            "allowed": 16542,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 383457
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-2": {
+          "fixed_window": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "sliding_window": {
+            "allowed": 16534,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 383467
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-3": {
+          "fixed_window": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "sliding_window": {
+            "allowed": 16524,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 383477
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "explanation": null,
+      "name": "raw_vs_prometheus_per_instance",
+      "observed": {
+        "app-1": {
+          "fixed_window": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "sliding_window": {
+            "allowed": 16542,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 383457
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-2": {
+          "fixed_window": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "sliding_window": {
+            "allowed": 16534,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 383467
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        },
+        "app-3": {
+          "fixed_window": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          },
+          "sliding_window": {
+            "allowed": 16524,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 383477
+          },
+          "token_bucket": {
+            "allowed": 0,
+            "fail_closed": 0,
+            "fail_open": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {},
+      "explanation": null,
+      "name": "no_foreign_decisions",
+      "observed": {},
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": {
+        "allowed": 49600,
+        "fail_closed": 0,
+        "fail_open": 0,
+        "rejected": 1150401
+      },
+      "explanation": null,
+      "name": "stats_vs_raw_policy_13",
+      "observed": {
+        "allowed": 49600,
+        "fail_closed": 0,
+        "fail_open": 0,
+        "rejected": 1150401
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": 1200001,
+      "explanation": null,
+      "name": "redis_evalsha_vs_decisions",
+      "observed": 1200001,
+      "required": false,
+      "status": "pass"
+    }
+  ],
+  "failed": [],
+  "notes": [],
+  "ok": true
+}

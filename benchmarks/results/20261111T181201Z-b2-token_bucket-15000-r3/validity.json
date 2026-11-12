@@ -1,0 +1,84 @@
+{
+  "criteria": [
+    {
+      "name": "dropped_iterations",
+      "reason": "ramp: drops are evaluated per step in the knee analysis",
+      "required": false,
+      "status": "n/a",
+      "threshold": null,
+      "value": null
+    },
+    {
+      "name": "achieved_rate",
+      "reason": "ramp: evaluated per step",
+      "required": false,
+      "status": "n/a",
+      "threshold": null,
+      "value": null
+    },
+    {
+      "name": "k6_cpu",
+      "reason": "ramp: evaluated per step",
+      "required": false,
+      "status": "n/a",
+      "threshold": "<= 85.0",
+      "value": 98.2127272727271
+    },
+    {
+      "name": "unexpected_statuses",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": "<= 0.001",
+      "value": 0.0
+    },
+    {
+      "name": "counts_reconcile",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": null,
+      "value": []
+    },
+    {
+      "name": "prometheus_complete",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": ">= 90% of 90",
+      "value": {
+        "app-1": 90.0,
+        "app-2": 90.0,
+        "app-3": 90.0
+      }
+    },
+    {
+      "name": "warmup_separated",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": null,
+      "value": {
+        "measure_starts_at_s": 60,
+        "warmup_requests": 60002,
+        "warmup_s": 60
+      }
+    },
+    {
+      "name": "redis_reset",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": null,
+      "value": {
+        "container_id": "4590f4650bad0df447db06ab4f9234549cd5a6c0de25761ea1d87158a18c876c",
+        "dbsize_after": 0,
+        "flushdb": "OK",
+        "resetstat": "OK",
+        "slowlog_reset": "OK"
+      }
+    }
+  ],
+  "reasons": [],
+  "valid": true
+}

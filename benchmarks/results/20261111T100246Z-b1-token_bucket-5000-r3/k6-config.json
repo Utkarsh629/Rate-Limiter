@@ -1,0 +1,19 @@
+{
+  "benchmark": "B1",
+  "runId": "20261111T100246Z-b1-token_bucket-5000-r3",
+  "rate": 5000,
+  "warmupS": 60,
+  "measureS": 180,
+  "latencyMs": 200,
+  "preVUs": 1000,
+  "maxVUs": 1250,
+  "warmPreVUs": 500,
+  "algorithm": "token_bucket",
+  "profile": "mixed",
+  "baseUrl": "http://nginx:8080",
+  "baseUrls": [],
+  "uaUser": false,
+  "hotToken": "",
+  "tokensFile": "/tokens/bench.json",
+  "outDir": "/results"
+}

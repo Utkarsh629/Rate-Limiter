@@ -1,0 +1,39 @@
+{
+  "checks": [
+    {
+      "expected": {
+        "200": 1200002,
+        "429": 0,
+        "non_200_429": 0
+      },
+      "explanation": null,
+      "name": "k6_vs_nginx",
+      "observed": {
+        "200": 1200002,
+        "429": 0,
+        "non_200_429": 0
+      },
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": 0,
+      "explanation": null,
+      "name": "no_decisions_with_limiter_off",
+      "observed": 0,
+      "required": true,
+      "status": "pass"
+    },
+    {
+      "expected": 1200002,
+      "explanation": null,
+      "name": "all_requests_accepted_with_limiter_off",
+      "observed": 1200002,
+      "required": true,
+      "status": "pass"
+    }
+  ],
+  "failed": [],
+  "notes": [],
+  "ok": true
+}

@@ -1,0 +1,11 @@
+{
+  "ALGORITHM": "sliding_window",
+  "MEASURE_S": "180",
+  "OUT_DIR": "/results",
+  "PROFILE": "throttled",
+  "RATE": "2000",
+  "RUN_ID": "20261111T065543Z-b10-sliding_window-2000-r2",
+  "TOKENS_FILE": "/tokens/bench.json",
+  "UA_USER": "1",
+  "WARMUP_S": "60"
+}

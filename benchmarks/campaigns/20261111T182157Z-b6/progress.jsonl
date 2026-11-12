@@ -1,0 +1,3 @@
+{"event": "campaign_start", "plan": "b6", "configs": 1, "reps": 3, "at": "2026-11-11T23:51:57"}
+{"event": "skip", "config": ["B6", "token_bucket", 1000, "hotkey", "default", "nginx"], "valid": 3, "reason": "already has enough valid runs", "at": "2026-11-11T23:54:01"}
+{"event": "campaign_end", "at": "2026-11-11T23:54:01"}

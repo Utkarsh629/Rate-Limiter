@@ -1,0 +1,24 @@
+{
+  "steps": [
+    {
+      "at": 1794375082.770138,
+      "step": "preflight"
+    },
+    {
+      "at": 1794375089.4948878,
+      "step": "policy setup and verification on all three instances (probes)"
+    },
+    {
+      "at": 1794375091.31587,
+      "step": "idle 6 s: pending statistics flushes complete"
+    },
+    {
+      "at": 1794375097.3259578,
+      "step": "Redis identity and safety check"
+    },
+    {
+      "at": 1794375098.126661,
+      "step": "dry run: k6 inspect only (no requests sent); docker-stats sampler test"
+    }
+  ]
+}

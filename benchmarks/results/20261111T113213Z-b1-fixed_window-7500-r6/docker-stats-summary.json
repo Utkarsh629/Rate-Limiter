@@ -1,0 +1,70 @@
+{
+  "containers": {
+    "ratelimiter-app1-1": {
+      "cpu_pct_avg": 76.16827777777779,
+      "cpu_pct_max": 89.75,
+      "mem_bytes_max": 611110092.8,
+      "samples": 720
+    },
+    "ratelimiter-app2-1": {
+      "cpu_pct_avg": 74.43258333333333,
+      "cpu_pct_max": 90.8,
+      "mem_bytes_max": 606601216.0,
+      "samples": 720
+    },
+    "ratelimiter-app3-1": {
+      "cpu_pct_avg": 74.66936111111112,
+      "cpu_pct_max": 88.9,
+      "mem_bytes_max": 611214950.4,
+      "samples": 720
+    },
+    "ratelimiter-grafana-1": {
+      "cpu_pct_avg": 0.3016111111111111,
+      "cpu_pct_max": 2.22,
+      "mem_bytes_max": 133274009.6,
+      "samples": 720
+    },
+    "ratelimiter-k6-run-cb7a7c99e9e6": {
+      "cpu_pct_avg": 104.65708333333335,
+      "cpu_pct_max": 127.99,
+      "mem_bytes_max": 967625932.8,
+      "samples": 720
+    },
+    "ratelimiter-mysql-1": {
+      "cpu_pct_avg": 0.6193055555555556,
+      "cpu_pct_max": 2.2,
+      "mem_bytes_max": 513592524.8,
+      "samples": 720
+    },
+    "ratelimiter-nginx-1": {
+      "cpu_pct_avg": 53.81363888888889,
+      "cpu_pct_max": 57.39,
+      "mem_bytes_max": 14071889.92,
+      "samples": 720
+    },
+    "ratelimiter-prometheus-1": {
+      "cpu_pct_avg": 0.24102777777777776,
+      "cpu_pct_max": 2.11,
+      "mem_bytes_max": 107374182.4,
+      "samples": 720
+    },
+    "ratelimiter-redis-1": {
+      "cpu_pct_avg": 21.996166666666667,
+      "cpu_pct_max": 24.16,
+      "mem_bytes_max": 14134804.48,
+      "samples": 720
+    },
+    "ratelimiter-redis-exporter-1": {
+      "cpu_pct_avg": 0.2925833333333333,
+      "cpu_pct_max": 3.0,
+      "mem_bytes_max": 19042140.16,
+      "samples": 720
+    }
+  },
+  "k6": {
+    "cpu_limit_cores": 2.0,
+    "cpu_pct_of_limit_max_5s": 55.477380952380955,
+    "samples": 720
+  },
+  "samples": 7200
+}

@@ -1,0 +1,186 @@
+{
+  "batch": null,
+  "batchPerHost": null,
+  "blacklistIPs": null,
+  "blockHostnames": null,
+  "discardResponseBodies": true,
+  "dns": {
+    "policy": null,
+    "select": null,
+    "ttl": null
+  },
+  "duration": null,
+  "executionSegment": null,
+  "executionSegmentSequence": null,
+  "ext": null,
+  "features": null,
+  "handleSummaryTimeout": null,
+  "hosts": null,
+  "httpDebug": null,
+  "insecureSkipTLSVerify": null,
+  "iterations": null,
+  "maxRedirects": null,
+  "maxVUs": 800,
+  "metricSamplesBufferSize": null,
+  "minIterationDuration": null,
+  "noConnectionReuse": null,
+  "noCookiesReset": null,
+  "noSetup": null,
+  "noTeardown": null,
+  "noVUConnectionReuse": null,
+  "paused": null,
+  "rps": null,
+  "scenarios": {
+    "f_enterprise_measure": {
+      "duration": "3m0s",
+      "env": null,
+      "exec": "enterprise",
+      "executor": "constant-arrival-rate",
+      "gracefulStop": "10s",
+      "maxVUs": 200,
+      "preAllocatedVUs": 50,
+      "rate": 200,
+      "startTime": "1m0s",
+      "tags": {
+        "endpoint": "enterprise",
+        "phase": "measure"
+      },
+      "timeUnit": "1s"
+    },
+    "f_enterprise_warmup": {
+      "duration": "1m0s",
+      "env": null,
+      "exec": "enterprise",
+      "executor": "constant-arrival-rate",
+      "gracefulStop": "10s",
+      "maxVUs": 200,
+      "preAllocatedVUs": 50,
+      "rate": 200,
+      "startTime": null,
+      "tags": {
+        "endpoint": "enterprise",
+        "phase": "warmup"
+      },
+      "timeUnit": "1s"
+    },
+    "f_profile_measure": {
+      "duration": "3m0s",
+      "env": null,
+      "exec": "default",
+      "executor": "constant-arrival-rate",
+      "gracefulStop": "10s",
+      "maxVUs": 200,
+      "preAllocatedVUs": 50,
+      "rate": 1800,
+      "startTime": "1m0s",
+      "tags": {
+        "endpoint": "profile",
+        "phase": "measure"
+      },
+      "timeUnit": "1s"
+    },
+    "f_profile_warmup": {
+      "duration": "1m0s",
+      "env": null,
+      "exec": "default",
+      "executor": "constant-arrival-rate",
+      "gracefulStop": "10s",
+      "maxVUs": 200,
+      "preAllocatedVUs": 50,
+      "rate": 1800,
+      "startTime": null,
+      "tags": {
+        "endpoint": "profile",
+        "phase": "warmup"
+      },
+      "timeUnit": "1s"
+    }
+  },
+  "setupTimeout": null,
+  "stages": null,
+  "summaryTimeUnit": null,
+  "summaryTrendStats": [
+    "avg",
+    "min",
+    "med",
+    "p(90)",
+    "p(95)",
+    "p(99)",
+    "max"
+  ],
+  "systemTags": [
+    "check",
+    "error",
+    "error_code",
+    "expected_response",
+    "group",
+    "method",
+    "name",
+    "proto",
+    "scenario",
+    "service",
+    "status",
+    "subproto",
+    "tls_version",
+    "url"
+  ],
+  "tags": {
+    "algorithm": "fixed_window",
+    "benchmark": "F5",
+    "profile": "mixed",
+    "rate": "2000"
+  },
+  "teardownTimeout": null,
+  "thresholds": {
+    "accepted{phase:measure}": [
+      "count>=0"
+    ],
+    "accepted{phase:warmup}": [
+      "count>=0"
+    ],
+    "dropped_iterations{scenario:f_enterprise_measure}": [
+      "count==0"
+    ],
+    "dropped_iterations{scenario:f_profile_measure}": [
+      "count==0"
+    ],
+    "http_req_duration{phase:measure,endpoint:enterprise}": [
+      "max>=0"
+    ],
+    "http_req_duration{phase:measure,endpoint:profile}": [
+      "max>=0"
+    ],
+    "http_req_duration{phase:measure}": [
+      "max>=0"
+    ],
+    "http_req_failed{phase:measure}": [
+      "rate>=0"
+    ],
+    "http_reqs{phase:measure}": [
+      "count>=356400"
+    ],
+    "http_reqs{phase:warmup}": [
+      "count>=0"
+    ],
+    "rejected{phase:measure}": [
+      "count>=0"
+    ],
+    "rejected{phase:warmup}": [
+      "count>=0"
+    ],
+    "unexpected{phase:measure}": [
+      "count>=0"
+    ],
+    "unexpected{phase:warmup}": [
+      "count>=0"
+    ]
+  },
+  "throw": null,
+  "tlsAIAFetch": null,
+  "tlsAuth": null,
+  "tlsCipherSuites": null,
+  "tlsVersion": null,
+  "totalDuration": "4m10s",
+  "userAgent": null,
+  "vus": null
+}

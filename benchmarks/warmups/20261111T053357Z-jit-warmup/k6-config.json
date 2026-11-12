@@ -1,0 +1,18 @@
+{
+  "benchmark": "B1",
+  "runId": "20261111T053357Z-jit-warmup",
+  "rate": 1000,
+  "warmupS": 0,
+  "measureS": 120,
+  "latencyMs": 10,
+  "preVUs": 50,
+  "maxVUs": 200,
+  "algorithm": "token_bucket",
+  "profile": "mixed",
+  "baseUrl": "http://nginx:8080",
+  "baseUrls": [],
+  "uaUser": false,
+  "hotToken": "",
+  "tokensFile": "/tokens/bench.json",
+  "outDir": "/results"
+}

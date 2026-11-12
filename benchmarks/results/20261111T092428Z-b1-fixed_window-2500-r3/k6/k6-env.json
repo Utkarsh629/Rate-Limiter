@@ -1,0 +1,10 @@
+{
+  "ALGORITHM": "fixed_window",
+  "MEASURE_S": "180",
+  "OUT_DIR": "/results",
+  "PROFILE": "mixed",
+  "RATE": "2500",
+  "RUN_ID": "20261111T092428Z-b1-fixed_window-2500-r3",
+  "TOKENS_FILE": "/tokens/bench.json",
+  "WARMUP_S": "60"
+}

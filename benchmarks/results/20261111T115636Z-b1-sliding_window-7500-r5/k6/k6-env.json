@@ -1,0 +1,11 @@
+{
+  "ALGORITHM": "sliding_window",
+  "GOMEMLIMIT": "850MiB",
+  "MEASURE_S": "180",
+  "OUT_DIR": "/results",
+  "PROFILE": "mixed",
+  "RATE": "7500",
+  "RUN_ID": "20261111T115636Z-b1-sliding_window-7500-r5",
+  "TOKENS_FILE": "/tokens/bench.json",
+  "WARMUP_S": "60"
+}

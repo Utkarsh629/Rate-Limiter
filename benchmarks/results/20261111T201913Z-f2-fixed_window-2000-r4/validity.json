@@ -1,0 +1,90 @@
+{
+  "criteria": [
+    {
+      "name": "dropped_iterations",
+      "reason": "k6 dropped 39 iterations: the load generator could not keep the arrival rate",
+      "required": true,
+      "status": "fail",
+      "threshold": "== 0",
+      "value": 39
+    },
+    {
+      "name": "achieved_rate",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": ">= 0.99",
+      "value": 0.9999
+    },
+    {
+      "name": "k6_cpu",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": "<= 85.0 % of 2 CPUs",
+      "value": 21.1
+    },
+    {
+      "name": "unexpected_statuses",
+      "reason": "failure campaign: non-200/429 responses are the measured outcome",
+      "required": false,
+      "status": "n/a",
+      "threshold": null,
+      "value": null
+    },
+    {
+      "name": "counts_reconcile",
+      "reason": "failed checks: stats_vs_raw_policy_13, stats_vs_raw_policy_5",
+      "required": true,
+      "status": "fail",
+      "threshold": null,
+      "value": [
+        "stats_vs_raw_policy_13",
+        "stats_vs_raw_policy_5"
+      ]
+    },
+    {
+      "name": "prometheus_complete",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": ">= 90% of 36",
+      "value": {
+        "app-1": 36.0,
+        "app-2": 36.0,
+        "app-3": 36.0
+      }
+    },
+    {
+      "name": "warmup_separated",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": null,
+      "value": {
+        "measure_starts_at_s": 60,
+        "warmup_requests": 120001,
+        "warmup_s": 60
+      }
+    },
+    {
+      "name": "redis_reset",
+      "reason": null,
+      "required": true,
+      "status": "pass",
+      "threshold": null,
+      "value": {
+        "container_id": "4590f4650bad0df447db06ab4f9234549cd5a6c0de25761ea1d87158a18c876c",
+        "dbsize_after": 0,
+        "flushdb": "OK",
+        "resetstat": "OK",
+        "slowlog_reset": "OK"
+      }
+    }
+  ],
+  "reasons": [
+    "dropped_iterations: k6 dropped 39 iterations: the load generator could not keep the arrival rate",
+    "counts_reconcile: failed checks: stats_vs_raw_policy_13, stats_vs_raw_policy_5"
+  ],
+  "valid": false
+}

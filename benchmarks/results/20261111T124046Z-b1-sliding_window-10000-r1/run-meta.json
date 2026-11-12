@@ -1,0 +1,252 @@
+{
+  "algorithm": "sliding_window",
+  "algorithms_used": [
+    "sliding_window"
+  ],
+  "burst_s": null,
+  "correctness_pass": null,
+  "dry_run": false,
+  "environment": {
+    "apps": {
+      "app1": "java org.springframework.boot.loader.launch.JarLauncher \nINSTANCE_ID=app-1\nJAVA_TOOL_OPTIONS=-XX:MaxRAMPercentage=75 -XX:+ExitOnOutOfMemoryError\nJAVA_VERSION=jdk-17.0.21+9\nREDIS_COMMAND_TIMEOUT=250ms\nREDIS_HOST=redis\nREDIS_POOL_ENABLED=false\nREDIS_PORT=6379\nSERVER_TOMCAT_THREADS_MAX=200\nSPRING_PROFILES_ACTIVE=prod",
+      "app1_image_id": "sha256:d91dd45706ba8b56770c1396a00e63d4f0b09bb785eee1ec5dc14c3ea30dd23a",
+      "app2": "java org.springframework.boot.loader.launch.JarLauncher \nINSTANCE_ID=app-2\nJAVA_TOOL_OPTIONS=-XX:MaxRAMPercentage=75 -XX:+ExitOnOutOfMemoryError\nJAVA_VERSION=jdk-17.0.21+9\nREDIS_COMMAND_TIMEOUT=250ms\nREDIS_HOST=redis\nREDIS_POOL_ENABLED=false\nREDIS_PORT=6379\nSERVER_TOMCAT_THREADS_MAX=200\nSPRING_PROFILES_ACTIVE=prod",
+      "app2_image_id": "sha256:d91dd45706ba8b56770c1396a00e63d4f0b09bb785eee1ec5dc14c3ea30dd23a",
+      "app3": "java org.springframework.boot.loader.launch.JarLauncher \nINSTANCE_ID=app-3\nJAVA_TOOL_OPTIONS=-XX:MaxRAMPercentage=75 -XX:+ExitOnOutOfMemoryError\nJAVA_VERSION=jdk-17.0.21+9\nREDIS_COMMAND_TIMEOUT=250ms\nREDIS_HOST=redis\nREDIS_POOL_ENABLED=false\nREDIS_PORT=6379\nSERVER_TOMCAT_THREADS_MAX=200\nSPRING_PROFILES_ACTIVE=prod",
+      "app3_image_id": "sha256:d91dd45706ba8b56770c1396a00e63d4f0b09bb785eee1ec5dc14c3ea30dd23a"
+    },
+    "compose_limits": {
+      "app1": {
+        "cpus": 1.5,
+        "memory": "1073741824"
+      },
+      "app2": {
+        "cpus": 1.5,
+        "memory": "1073741824"
+      },
+      "app3": {
+        "cpus": 1.5,
+        "memory": "1073741824"
+      },
+      "grafana": {
+        "cpus": 0.25,
+        "memory": "268435456"
+      },
+      "k6": {
+        "cpus": 2,
+        "memory": "1073741824"
+      },
+      "mysql": {
+        "cpus": 0.5,
+        "memory": "536870912"
+      },
+      "nginx": {
+        "cpus": 1,
+        "memory": "134217728"
+      },
+      "prometheus": {
+        "cpus": 0.5,
+        "memory": "536870912"
+      },
+      "redis": {
+        "cpus": 1,
+        "memory": "536870912"
+      },
+      "redis-exporter": {
+        "cpus": 0.1,
+        "memory": "67108864"
+      }
+    },
+    "docker": {
+      "images": "[{\"ID\":\"sha256:74144189b38447facf737dfd0f3906e42e0776212bf575dc3334c3609183adf7\",\"ContainerName\":\"ratelimiter-grafana-1\",\"Repository\":\"grafana/grafana\",\"Tag\":\"12.2.0\",\"Platform\":\"linux/arm64\",\"Size\":188660915,\"LastTagTime\":\"2026-11-10T18:18:56.760778833Z\"},{\"ID\":\"sha256:63805ebb8d2b3920190daf1cb14a60871b16fd38bed42b857a3182bc621f4996\",\"ContainerName\":\"ratelimiter-prometheus-1\",\"Repository\":\"prom/prometheus\",\"Tag\":\"v3.5.0\",\"Platform\":\"linux/arm64\",\"Size\":117159012,\"LastTagTime\":\"2026-11-10T18:18:47.055753676Z\"},{\"ID\":\"sha256:7b1753b4c5ad8458906c272a8132b8c15f5557b000379eb115fb239706a384b7\",\"ContainerName\":\"ratelimiter-redis-1\",\"Repository\":\"redis\",\"Tag\":\"7.4-alpine\",\"Platform\":\"linux/arm64/v8\",\"Size\":16927338,\"LastTagTime\":\"2026-11-10T16:03:53.669802926Z\"},{\"ID\":\"sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236\",\"ContainerName\":\"ratelimiter-nginx-1\",\"Repository\":\"nginx\",\"Tag\":\"1.28-alpine\",\"Platform\":\"linux/arm64/v8\",\"Size\":25801709,\"LastTagTime\":\"2026-11-10T18:18:39.389724839Z\"},{\"ID\":\"sha256:bcedc3641b40d26b09d4962a9b7ba84d7582d83a90d224a9ee5aa63829f3aba7\",\"ContainerName\":\"ratelimiter-redis-exporter-1\",\"Repository\":\"oliver006/redis_exporter\",\"Tag\":\"v1.78.0-alpine\",\"Platform\":\"linux/arm64\",\"Size\":7848212,\"LastTagTime\":\"2026-11-10T18:19:03.252885753Z\"},{\"ID\":\"sha256:a81d043930e51745522bd5c430961cf8286f0a23f0a9a2a6e0108f7ea71b0902\",\"ContainerName\":\"ratelimiter-mysql-1\",\"Repository\":\"mysql\",\"Tag\":\"8.4\",\"Platform\":\"linux/arm64/v8\",\"Size\":232925106,\"LastTagTime\":\"2026-11-10T16:04:04.745818792Z\"},{\"ID\":\"sha256:d91dd45706ba8b56770c1396a00e63d4f0b09bb785eee1ec5dc14c3ea30dd23a\",\"ContainerName\":\"ratelimiter-app1-1\",\"Repository\":\"ratelimiter-app\",\"Tag\":\"local\",\"Platform\":\"linux/arm64\",\"Size\":179246594,\"LastTagTime\":\"2026-11-11T05:24:30.907300259Z\"},{\"ID\":\"sha256:d91dd45706ba8b56770c1396a00e63d4f0b09bb785eee1ec5dc14c3ea30dd23a\",\"ContainerName\":\"ratelimiter-app2-1\",\"Repository\":\"ratelimiter-app\",\"Tag\":\"local\",\"Platform\":\"linux/arm64\",\"Size\":179246594,\"LastTagTime\":\"2026-11-11T05:24:30.907300259Z\"},{\"ID\":\"sha256:d91dd45706ba8b56770c1396a00e63d4f0b09bb785eee1ec5dc14c3ea30dd23a\",\"ContainerName\":\"ratelimiter-app3-1\",\"Repository\":\"ratelimiter-app\",\"Tag\":\"local\",\"Platform\":\"linux/arm64\",\"Size\":179246594,\"LastTagTime\":\"2026-11-11T05:24:30.907300259Z\"}]",
+      "info": "10 CPUs, 8218034176 bytes, Docker Desktop",
+      "version": "28.5.1"
+    },
+    "git": {
+      "branch": "phase-3b/benchmark-infrastructure",
+      "commit": "5d938e1006c21e7dbe18da981838a238431a5da3",
+      "status_porcelain": "?? benchmarks/campaigns/\n?? benchmarks/dry-runs/\n?? benchmarks/reports/\n?? benchmarks/results/20261111T053559Z-b1-token_bucket-1000-r1/\n?? benchmarks/results/20261111T054044Z-b1-token_bucket-1000-r2/\n?? benchmarks/results/20261111T054529Z-b1-token_bucket-1000-r3/\n?? benchmarks/results/20261111T055014Z-b1-token_bucket-1000-r4/\n?? benchmarks/results/20261111T055531Z-b1-token_bucket-1000-r5/\n?? benchmarks/results/20261111T060049Z-b6-token_bucket-1000-r1/\n?? benchmarks/results/20261111T060135Z-b6-token_bucket-1000-r2/\n?? benchmarks/results/20261111T060221Z-b6-token_bucket-1000-r3/\n?? benchmarks/results/20261111T060305Z-b6-token_bucket-1000-r4/\n?? benchmarks/results/20261111T060349Z-b6-token_bucket-1000-r5/\n?? benchmarks/results/20261111T060433Z-b5-token_bucket-10000-r1/\n?? benchmarks/results/20261111T060620Z-b5-token_bucket-10000-r2/\n?? benchmarks/results/20261111T060805Z-b5-token_bucket-10000-r3/\n?? benchmarks/results/20261111T060951Z-b5-token_bucket-10000-r4/\n?? benchmarks/results/20261111T061136Z-b5-fixed_window-10000-r1/\n?? benchmarks/results/20261111T061323Z-b5-fixed_window-10000-r2/\n?? benchmarks/results/20261111T061509Z-b5-fixed_window-10000-r3/\n?? benchmarks/results/20261111T061655Z-b5-sliding_window-10000-r1/\n?? benchmarks/results/20261111T061842Z-b5-sliding_window-10000-r2/\n?? benchmarks/results/20261111T062028Z-b5-sliding_window-10000-r3/\n?? benchmarks/results/20261111T062214Z-b10-token_bucket-2000-r1/\n?? benchmarks/results/20261111T062701Z-b10-token_bucket-2000-r2/\n?? benchmarks/results/20261111T063148Z-b10-token_bucket-2000-r3/\n?? benchmarks/results/20261111T063635Z-b10-fixed_window-2000-r1/\n?? benchmarks/results/20261111T064122Z-b10-fixed_window-2000-r2/\n?? benchmarks/results/20261111T064608Z-b10-fixed_window-2000-r3/\n?? benchmarks/results/20261111T065055Z-b10-sliding_window-2000-r1/\n?? benchmarks/results/20261111T065543Z-b10-sliding_window-2000-r2/\n?? benchmarks/results/20261111T070030Z-b10-sliding_window-2000-r3/\n?? benchmarks/results/20261111T070517Z-b0-token_bucket-100-r1/\n?? benchmarks/results/20261111T071001Z-b0-token_bucket-100-r2/\n?? benchmarks/results/20261111T071445Z-b0-token_bucket-100-r3/\n?? benchmarks/results/20261111T071929Z-b0-fixed_window-100-r1/\n?? benchmarks/results/20261111T072412Z-b0-fixed_window-100-r2/\n?? benchmarks/results/20261111T072857Z-b0-fixed_window-100-r3/\n?? benchmarks/results/20261111T073341Z-b0-sliding_window-100-r1/\n?? benchmarks/results/20261111T073825Z-b0-sliding_window-100-r2/\n?? benchmarks/results/20261111T074310Z-b0-sliding_window-100-r3/\n?? benchmarks/results/20261111T074755Z-b1-fixed_window-1000-r1/\n?? benchmarks/results/20261111T075240Z-b1-fixed_window-1000-r2/\n?? benchmarks/results/20261111T075725Z-b1-fixed_window-1000-r3/\n?? benchmarks/results/20261111T080209Z-b1-sliding_window-1000-r1/\n?? benchmarks/results/20261111T080655Z-b1-sliding_window-1000-r2/\n?? benchmarks/results/20261111T081140Z-b1-sliding_window-1000-r3/\n?? benchmarks/results/20261111T081625Z-b1-token_bucket-2500-r1/\n?? benchmarks/results/20261111T082111Z-b1-token_bucket-2500-r2/\n?? benchmarks/results/20261111T082558Z-b1-token_bucket-2500-r3/\n?? benchmarks/results/20261111T083044Z-b1-fixed_window-2500-r1/\n?? benchmarks/results/20261111T091941Z-b1-fixed_window-2500-r2/\n?? benchmarks/results/20261111T092428Z-b1-fixed_window-2500-r3/\n?? benchmarks/results/20261111T092914Z-b1-fixed_window-2500-r4/\n?? benchmarks/results/20261111T093401Z-b1-fixed_window-2500-r5/\n?? benchmarks/results/20261111T093847Z-b1-sliding_window-2500-r1/\n?? benchmarks/results/20261111T094334Z-b1-sliding_window-2500-r2/\n?? benchmarks/results/20261111T094820Z-b1-sliding_window-2500-r3/\n?? benchmarks/results/20261111T095307Z-b1-token_bucket-5000-r1/\n?? benchmarks/results/20261111T095756Z-b1-token_bucket-5000-r2/\n?? benchmarks/results/20261111T100246Z-b1-token_bucket-5000-r3/\n?? benchmarks/results/20261111T100735Z-b1-fixed_window-5000-r1/\n?? benchmarks/results/20261111T101224Z-b1-fixed_window-5000-r2/\n?? benchmarks/results/20261111T101713Z-b1-fixed_window-5000-r3/\n?? benchmarks/results/20261111T102202Z-b1-sliding_window-5000-r1/\n?? benchmarks/results/20261111T102651Z-b1-sliding_window-5000-r2/\n?? benchmarks/results/20261111T103140Z-b1-sliding_window-5000-r3/\n?? benchmarks/results/20261111T103629Z-b1-token_bucket-7500-r1/\n?? benchmarks/results/20261111T104119Z-b1-token_bucket-7500-r2/\n?? benchmarks/results/20261111T104609Z-b1-token_bucket-7500-r3/\n?? benchmarks/results/20261111T105059Z-b1-fixed_window-7500-r1/\n?? benchmarks/results/20261111T105549Z-b1-fixed_window-7500-r2/\n?? benchmarks/results/20261111T110039Z-b1-fixed_window-7500-r3/\n?? benchmarks/results/20261111T110640Z-b1-token_bucket-7500-r4/\n?? benchmarks/results/20261111T111200Z-b6-token_bucket-1000-r6/\n?? benchmarks/results/20261111T111245Z-b1-token_bucket-7500-r5/\n?? benchmarks/results/20261111T111737Z-b1-token_bucket-7500-r6/\n?? benchmarks/results/20261111T112229Z-b1-fixed_window-7500-r4/\n?? benchmarks/results/20261111T112720Z-b1-fixed_window-7500-r5/\n?? benchmarks/results/20261111T113213Z-b1-fixed_window-7500-r6/\n?? benchmarks/results/20261111T113706Z-b1-sliding_window-7500-r1/\n?? benchmarks/results/20261111T114159Z-b1-sliding_window-7500-r2/\n?? benchmarks/results/20261111T114651Z-b1-sliding_window-7500-r3/\n?? benchmarks/results/20261111T115144Z-b1-sliding_window-7500-r4/\n?? benchmarks/results/20261111T115636Z-b1-sliding_window-7500-r5/\n?? benchmarks/results/20261111T120128Z-b1-token_bucket-10000-r1/\n?? benchmarks/results/20261111T120622Z-b1-token_bucket-10000-r2/\n?? benchmarks/results/20261111T121117Z-b1-token_bucket-10000-r3/\n?? benchmarks/results/20261111T121612Z-b1-fixed_window-10000-r1/\n?? benchmarks/results/20261111T122107Z-b1-fixed_window-10000-r2/\n?? benchmarks/results/20261111T122602Z-b1-fixed_window-10000-r3/\n?? benchmarks/results/20261111T123057Z-b1-fixed_window-10000-r4/\n?? benchmarks/results/20261111T123551Z-b1-fixed_window-10000-r5/\n?? benchmarks/results/20261111T124046Z-b1-sliding_window-10000-r1/\n?? benchmarks/warmups/\n?? distributed-rate-limiter/\n?? load-tests/k6/b0-baseline.js\n?? load-tests/k6/b1-load-levels.js\n?? load-tests/k6/b10-correctness.js\n?? load-tests/k6/b2-stress.js\n?? load-tests/k6/b3-overhead.js\n?? load-tests/k6/b4-headroom-throttled.js\n?? load-tests/k6/b5-burst.js\n?? load-tests/k6/b6-concurrency.js\n?? load-tests/k6/b7-distributed.js\n?? load-tests/k6/b8-hot-key.js\n?? load-tests/k6/b9-pooling.js\n?? load-tests/k6/f-failure.js\n?? load-tests/k6/lib/\n?? scripts/bench/benchlib.py\n?? scripts/bench/campaign.py\n?? scripts/bench/collect.py\n?? scripts/bench/compose/\n?? scripts/bench/docker-stats.sh\n?? scripts/bench/reconcile.py\n?? scripts/bench/report.py\n?? scripts/bench/run.sh\n?? scripts/bench/runner.py\n?? scripts/bench/setup-policies.sh\n?? scripts/bench/tests/\n?? scripts/bench/validity.py"
+    },
+    "host": {
+      "cpu": "Apple M4",
+      "memsize": "17179869184",
+      "ncpu": "10",
+      "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+      "pmset": "System-wide power settings:\nCurrently in use:\n standby              1\n Sleep On Power Button 1\n hibernatefile        /var/vm/sleepimage\n powernap             1\n networkoversleep     0\n disksleep            10\n sleep                1 (sleep prevented by Claude)\n hibernatemode        3\n ttyskeepawake        1\n displaysleep         10\n tcpkeepalive         1\n lowpowermode         0\n womp                 1",
+      "pmset_therm": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+      "python": "3.14.2 (main, Dec  5 2025, 16:49:16) [Clang 17.0.0 (clang-1700.4.4.1)]",
+      "sw_vers": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2.1\nBuildVersion:\t\t26B131",
+      "uptime": "18:15  up 16:18, 2 users, load averages: 5.84 6.31 6.16"
+    },
+    "redis_config": {
+      "appendonly": [
+        "no"
+      ],
+      "io-threads": [
+        "1"
+      ],
+      "maxmemory": [
+        "268435456"
+      ],
+      "maxmemory-policy": [
+        "volatile-ttl"
+      ],
+      "save": [
+        ""
+      ],
+      "slowlog-log-slower-than": [
+        "5000"
+      ]
+    },
+    "run_id": "20261111T124046Z-b1-sliding_window-10000-r1"
+  },
+  "expected_requests": 1800000,
+  "filter_enabled": true,
+  "finished_at": 1794401141.365851,
+  "invalid_reasons": [
+    "dropped_iterations: k6 dropped 19214 iterations: the load generator could not keep the arrival rate",
+    "achieved_rate: 1780788 of 1800000 expected requests (98.93%)"
+  ],
+  "k6_end": 1794401116.6744199,
+  "k6_env": {
+    "ALGORITHM": "sliding_window",
+    "GOMEMLIMIT": "850MiB",
+    "MEASURE_S": "180",
+    "OUT_DIR": "/results",
+    "PROFILE": "mixed",
+    "RATE": "10000",
+    "RUN_ID": "20261111T124046Z-b1-sliding_window-10000-r1",
+    "TOKENS_FILE": "/tokens/bench.json",
+    "WARMUP_S": "60"
+  },
+  "k6_env_actual": {
+    "ALGORITHM": "sliding_window",
+    "GOMEMLIMIT": "850MiB",
+    "MEASURE_S": "180",
+    "OUT_DIR": "/results",
+    "PROFILE": "mixed",
+    "RATE": "10000",
+    "RUN_ID": "20261111T124046Z-b1-sliding_window-10000-r1",
+    "TOKENS_FILE": "/tokens/bench.json",
+    "WARMUP_S": "60"
+  },
+  "k6_exit_code": 99,
+  "k6_start": 1794400874.9283788,
+  "k6_total_duration": "4m10s",
+  "key_memory_usage": {
+    "rl:{13:u:run-887c9e6a-free-174}:sw": 112,
+    "rl:{13:u:run-887c9e6a-free-4234}:sw": 112,
+    "rl:{13:u:run-887c9e6a-free-4731}:sw": 112,
+    "rl:{13:u:run-887c9e6a-free-527}:sw": 112,
+    "rl:{13:u:run-887c9e6a-free-7630}:sw": 112
+  },
+  "kind": "constant",
+  "measure_s": 180,
+  "measure_scenarios": [
+    "b1_measure"
+  ],
+  "measure_start_offset_s": 60,
+  "measure_window": {
+    "end": 1794401115.523,
+    "source": "setup t0 + warm-up",
+    "start": 1794400935.523
+  },
+  "nonstandard_rate": false,
+  "planned_at": 1794400846.732488,
+  "policies": {
+    "13": {
+      "algorithm": "sliding_window",
+      "name": "bench-profile"
+    }
+  },
+  "policy_setup_output": "updated bench-profile (id 13) FIXED_WINDOW -> SLIDING_WINDOW (version 4 -> 5)\nverifying bench-profile (id 13, SLIDING_WINDOW, limit 120 / 60000 ms) on every instance via http://localhost:8080\nall 3 instances confirmed in 1s (3 probes):\n  app1: status=200 limit=120 policy-keys=sw (upstream 172.28.0.11:8080, probes 1)\n  app2: status=200 limit=120 policy-keys=sw (upstream 172.28.0.12:8080, probes 1)\n  app3: status=200 limit=120 policy-keys=sw (upstream 172.28.0.13:8080, probes 1)\n",
+  "policy_variant": "default",
+  "preflight": {
+    "app_env": {
+      "app1": {
+        "RATELIMITER_FILTER_ENABLED": null,
+        "REDIS_COMMAND_TIMEOUT": "250ms",
+        "REDIS_POOL_ENABLED": "false",
+        "REDIS_POOL_MAX_ACTIVE": null,
+        "SERVER_TOMCAT_THREADS_MAX": "200"
+      },
+      "app2": {
+        "RATELIMITER_FILTER_ENABLED": null,
+        "REDIS_COMMAND_TIMEOUT": "250ms",
+        "REDIS_POOL_ENABLED": "false",
+        "REDIS_POOL_MAX_ACTIVE": null,
+        "SERVER_TOMCAT_THREADS_MAX": "200"
+      },
+      "app3": {
+        "RATELIMITER_FILTER_ENABLED": null,
+        "REDIS_COMMAND_TIMEOUT": "250ms",
+        "REDIS_POOL_ENABLED": "false",
+        "REDIS_POOL_MAX_ACTIVE": null,
+        "SERVER_TOMCAT_THREADS_MAX": "200"
+      }
+    },
+    "at": 1794400846.732759,
+    "breakers": {
+      "app1": "closed",
+      "app2": "closed",
+      "app3": "closed"
+    },
+    "prometheus_targets": {
+      "app-1": "1",
+      "app-2": "1",
+      "app-3": "1",
+      "redis": "1"
+    },
+    "stack_problems": [],
+    "tokens": {
+      "bench.json": {
+        "earliest_exp": 1794547442,
+        "groups": [
+          "free",
+          "hot"
+        ],
+        "users": 10100
+      }
+    }
+  },
+  "profile": "mixed",
+  "rate": 10000,
+  "redis_reset": {
+    "container_id": "4590f4650bad0df447db06ab4f9234549cd5a6c0de25761ea1d87158a18c876c",
+    "dbsize_after": 0,
+    "flushdb": "OK",
+    "resetstat": "OK",
+    "slowlog_reset": "OK"
+  },
+  "redis_safety": {
+    "identity": {
+      "appendonly": "no",
+      "container_id": "4590f4650bad0df447db06ab4f9234549cd5a6c0de25761ea1d87158a18c876c",
+      "foreign_key_count": 0,
+      "foreign_keys_sample": [],
+      "image": "redis:7.4-alpine",
+      "key_count": 11,
+      "maxmemory": "268435456",
+      "name": "/ratelimiter-redis-1",
+      "project": "ratelimiter",
+      "redis_version": "7.4.12",
+      "running": true,
+      "save": "",
+      "service": "redis",
+      "tcp_port": "6379",
+      "working_dir": "/Users/utkarshraj/Projects/distributed-rate-limiter"
+    },
+    "violations": []
+  },
+  "rep": 1,
+  "run_dir": "benchmarks/results/20261111T124046Z-b1-sliding_window-10000-r1",
+  "run_id": "20261111T124046Z-b1-sliding_window-10000-r1",
+  "scenario": "B1",
+  "script": "b1-load-levels.js",
+  "status": "complete",
+  "t0": 1794400875.523,
+  "target": "nginx",
+  "valid": false,
+  "variant": "default",
+  "warmup_s": 60
+}

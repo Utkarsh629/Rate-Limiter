@@ -1,0 +1,9 @@
+{
+  "containers": {},
+  "k6": {
+    "cpu_limit_cores": 2.0,
+    "cpu_pct_of_limit_max_5s": null,
+    "samples": 0
+  },
+  "samples": 0
+}

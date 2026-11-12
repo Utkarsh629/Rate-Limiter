@@ -1,0 +1,12 @@
+{
+  "ALGORITHM": "sliding_window",
+  "BASE_URLS": "http://app1:8080,http://app2:8080,http://app3:8080",
+  "GOMEMLIMIT": "850MiB",
+  "MEASURE_S": "180",
+  "OUT_DIR": "/results",
+  "PROFILE": "mixed",
+  "RATE": "5000",
+  "RUN_ID": "20261111T174334Z-b7-sliding_window-5000-direct-r2",
+  "TOKENS_FILE": "/tokens/bench.json",
+  "WARMUP_S": "60"
+}

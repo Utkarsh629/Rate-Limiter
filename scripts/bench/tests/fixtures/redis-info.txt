@@ -1,0 +1,20 @@
+# Server
+redis_version:7.4.7
+tcp_port:6379
+
+# Memory
+used_memory:1234567
+
+# CPU
+used_cpu_sys:1.50
+used_cpu_user:2.25
+
+# Commandstats
+cmdstat_evalsha:calls=15025,usec=200000,usec_per_call=13.31,rejected_calls=0,failed_calls=0
+cmdstat_eval:calls=12,usec=900,usec_per_call=75.00,rejected_calls=0,failed_calls=0
+
+# Latencystats
+latency_percentiles_usec_evalsha:p50=12.031,p99=61.183,p99.9=117.247
+
+# Keyspace
+db0:keys=10103,expires=10103,avg_ttl=61000
