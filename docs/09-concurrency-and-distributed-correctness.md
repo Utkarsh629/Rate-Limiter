@@ -1,6 +1,6 @@
 # 09 — Concurrency and Distributed Correctness
 
-> Status: **verified at algorithm level (2A) and over real HTTP across three application instances (2C).** The load-balanced Docker Compose deployment is verified when the full stack is built.
+> Status: **verified at algorithm level (2A), over real HTTP across three instances (2C), behind Nginx (3A smoke test) and under benchmark load (3B: B5, B6, B10; below).**
 
 ## Invariants
 1. Redis is the only authoritative rate-limit state. Instances hold no counters.
@@ -82,7 +82,7 @@ Fixed and sliding window concurrency tests use a frozen clock so a real window b
 |---|---|
 | No over-admission from concurrent requests, on any number of instances | During Redis failover, async replication can lose recent counts → brief over-admission |
 | No lost updates | A Redis restart (persistence off) resets all quotas |
-| Instance clock skew has no effect | Fail-open (Phase 5) does not enforce limits during a Redis outage |
+| Instance clock skew has no effect | Fail-open does not enforce limits during a Redis outage (by design; per-policy fail-closed available) |
 | Keys never expire while their state matters (+1 s grace) | Sliding-window counter is an approximation (see 05) |
 
 ## Distributed correctness over HTTP (2C)
@@ -135,3 +135,18 @@ instance's breaker reflects what that instance observes.
 
 ## Still to verify
 - Behind Nginx in the full Docker Compose deployment, and with k6 load across the instances.
+
+## Correctness under benchmark load (Phase 3B)
+
+Measured through Nginx on the full Compose stack (`11-performance-benchmarks.md`, correctness section; per-run
+`correctness.json`):
+
+| Scenario | Check | Result |
+|---|---|---|
+| B6 — 1,000 simultaneous requests, one user, token bucket capacity 100 | exactly 100 accepted / 900 rejected across 3 instances | ✅ all 6 runs (warm instances) |
+| B5 — 10,000 requests in 1 s from one fresh user | accepted ≤ bound (token bucket 120 + ⌊2·D⌋ + 1; windows 120 × windows touched) | ✅ 9 valid runs, zero over-admission (token bucket 121–122 of 125; fixed and sliding window 120 of 120) |
+| B10 — 100 users, each at 10× the allowance, 2,000 RPS for 4 minutes | per-user accepted ≤ bound, from the Nginx log | ✅ 9 runs, zero over-admission; token bucket 599 of 603 per user |
+| Every valid run | k6 = Nginx = per-instance counters = Prometheus = `/stats` (= EVALSHA) | ✅ exact |
+
+Limitation: shortly after an instance restart, a 1,000-request burst can exceed the 250 ms Redis command timeout and
+fail open, which admits requests without limits by design (`13-failure-handling.md`, open issue).

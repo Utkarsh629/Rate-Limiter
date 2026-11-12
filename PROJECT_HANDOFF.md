@@ -1,3 +1,9 @@
+> **Historical document (written 2026-11-11, between Phase 3A and Phase 3B). Superseded.** Current status:
+> `PROJECT_PROGRESS.md`. Since this handoff: Phase 3A and Phase 3B were completed and approved; the project moved to
+> `~/Projects/distributed-rate-limiter` and was committed (initial commit, then Phase 3B on
+> `phase-3b/benchmark-infrastructure`); Phase 3B results are in `docs/11-performance-benchmarks.md`. The text below is
+> kept unchanged as a record of the state at that time.
+
 # PROJECT HANDOFF — Distributed Rate Limiter
 
 > Written 2026-11-11 at the end of the build session. Source of truth for progress: `PROJECT_PROGRESS.md` (kept consistent with this file).

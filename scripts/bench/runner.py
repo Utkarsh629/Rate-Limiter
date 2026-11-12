@@ -267,9 +267,11 @@ def prepare_policy(meta):
 def verify_filter_off():
     seen = {}
     for i in range(30):
-        tok = mint_user(f"filteroff-probe-{int(time.time())}-{i}", "FREE")
-        status, h, _ = bl.http("GET", f"{bl.NGINX}/api/v1/demo/profile", token=tok)
-        seen[bl.UPSTREAM_APP.get(h.get("X-Upstream", "").split(":")[0], "?")] = {
+        user, since = f"filteroff-probe-{int(time.time())}-{i}", time.time()
+        tok = mint_user(user, "FREE")
+        status, h, _ = bl.http("GET", f"{bl.NGINX}/api/v1/demo/profile", token=tok,
+                               headers={"User-Agent": bl.PROBE_UA + user})
+        seen[bl.nginx_upstreams([user], since).get(user, "?")] = {
             "status": status, "ratelimit_header": h.get("X-RateLimit-Limit")}
         if len([a for a, v in seen.items() if a in bl.APPS and v["status"] == 200 and v["ratelimit_header"] is None]) == 3:
             return seen

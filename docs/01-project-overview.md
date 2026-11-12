@@ -1,6 +1,6 @@
 # 01 — Project Overview
 
-> Status: **current as of Phase 1.** Feature list reflects the approved design; see `PROJECT_PROGRESS.md` for what is implemented and verified.
+> Status: **current (Phases 1–3 complete).** All features below are implemented and verified; evidence is in docs 09–13 and `PROJECT_PROGRESS.md`. Phase 4 (documentation, audit, release) is in progress.
 
 ## Problem statement
 
@@ -25,18 +25,34 @@ policy store, JWT-based identity with a development-only token endpoint.
 
 **Out of scope:** Kubernetes, multi-region quota sharing, a user/account system, a UI.
 
-## Features (approved design)
+## Features and where they were built
 
-| Feature | Phase |
-|---|---|
-| Project skeleton, Redis + MySQL infrastructure, Flyway schema | 1 |
-| Three algorithms as atomic Redis Lua scripts (Strategy pattern) | 2 |
-| Policy CRUD API, in-memory snapshot cache, cross-instance invalidation | 3 |
-| Servlet filter, JWT identity, trusted-proxy client IP, `X-RateLimit-*` headers, 429 responses | 4 |
-| Redis timeouts, circuit breaker, fail-open / fail-closed (503) | 5 |
-| Micrometer metrics, per-instance statistics shards, `/stats` endpoint | 6 |
-| Full Docker Compose stack: Nginx, 3 instances, Prometheus, Grafana | 7 |
-| k6 benchmarks with recorded results | 8 |
+The project runs in four phases (Phase 3 has two parts, 3A and 3B).
+
+| Feature | Phase | Status |
+|---|---|---|
+| Project skeleton, Redis + MySQL infrastructure, Flyway schema, profiles | 1 Foundation & Architecture | ✅ |
+| Three algorithms as atomic Redis Lua scripts (Strategy pattern) | 2 Core Backend & Distributed Logic | ✅ |
+| Policy CRUD API, in-memory snapshot cache, cross-instance invalidation (Pub/Sub + periodic reload) | 2 | ✅ |
+| Servlet filter, JWT identity, trusted-proxy client IP, `X-RateLimit-*` headers, 429 responses | 2 | ✅ |
+| Redis timeouts, circuit breaker, fail-open / fail-closed (503) | 2 | ✅ |
+| Micrometer metrics, per-instance statistics shards, `/stats` endpoint | 3A Observability & Deployment | ✅ |
+| Full Docker Compose stack: Nginx, 3 instances, Prometheus, Grafana, smoke test | 3A | ✅ |
+| k6 benchmark tooling, B0–B10 benchmarks and F1–F5 failure campaigns with recorded results | 3B Performance & Optimization | ✅ |
+| Documentation, security review, release | 4 Documentation, Audit & Release | 🔄 |
+
+## Results at a glance
+
+Measured on one Apple M4 laptop running Docker Desktop, with all services and the load generator on the same
+machine; relative results, not production capacity. Details and evidence: `11-performance-benchmarks.md`.
+
+- **7,500 RPS** is the highest validated load level and the maximum sustainable throughput for all three algorithms
+  (3 valid runs each). 10,000 RPS was attempted and not achieved. The stress-ramp knee of 11,000 RPS was set by the
+  load generator and is **not** a sustainable-throughput claim.
+- 212 benchmark runs: **153 valid**, **59 invalid** (kept with their reasons, never used in results).
+- Zero over-admission in every correctness run; exactly 100 of 1,000 simultaneous requests admitted across three
+  instances.
+- Known limitation: shortly after an instance restart, a 1,000-request burst can fail open (`13-failure-handling.md`).
 
 ## Technology stack
 

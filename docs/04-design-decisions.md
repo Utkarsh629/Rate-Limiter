@@ -1,6 +1,6 @@
 # 04 — Design Decisions
 
-> Status: **decisions D1–D12 approved at the end of Phase 0**, D13–D15 recorded in Phase 1, D16–D20 in Phase 2 (algorithms), D21–D27 in Phase 2 (policy management & identity), D28–D32 in Phase 2 (HTTP filter), D33–D37 in Phase 2 (circuit breaker, 2D), D38–D42 in Phase 3A. Each entry follows: problem → decision → alternatives → trade-offs → scalability.
+> Status: **decisions D1–D12 approved at the end of Phase 0**, D13–D15 recorded in Phase 1, D16–D20 in Phase 2 (algorithms), D21–D27 in Phase 2 (policy management & identity), D28–D32 in Phase 2 (HTTP filter), D33–D37 in Phase 2 (circuit breaker, 2D), D38–D42 in Phase 3A, D43–D50 in Phase 3B, D51 in Phase 4. Each entry follows: problem → decision → alternatives → trade-offs → scalability. D43–D50 record the Phase 3B benchmark and release decisions (approved).
 
 ## D1. Sliding Window Counter, not Sliding Window Log
 - **Problem:** a sliding window needs per-client history.
@@ -52,7 +52,7 @@
 - k6's `constant-arrival-rate` executor (open model) avoids coordinated omission. Closed-model tests with a fixed number of virtual users are used only for the "N simultaneous requests" correctness tests.
 
 ## D13. Lettuce without pooling by default (Phase 1)
-- Lettuce multiplexes commands over one thread-safe connection. `commons-pool2` is on the classpath, so pooling can be switched on with `REDIS_POOL_ENABLED=true`. It stays off until the Phase 8 benchmark shows whether it helps.
+- Lettuce multiplexes commands over one thread-safe connection. `commons-pool2` is on the classpath, so pooling can be switched on with `REDIS_POOL_ENABLED=true`. It stays off; the Phase 3B benchmark (B9) showed a 16-connection pool did not help (D48).
 
 ## D14. Short Redis command timeout (Phase 1)
 - `spring.data.redis.timeout=50ms` (env `REDIS_COMMAND_TIMEOUT`). The limiter is on every request, so a slow Redis must hand over to the failure policy quickly rather than hold Tomcat threads. The 2 s connect timeout is separate and only affects (re)connection.
@@ -153,3 +153,69 @@
 - **Decision (approved):** `REDIS_COMMAND_TIMEOUT=${STACK_REDIS_COMMAND_TIMEOUT:-250ms}` for all three instances in `docker-compose.yml`. The application default stays 50 ms. The value stays configurable; nothing is hardcoded in Java.
 - **Scope:** 250 ms is **validated for this deployment** (this laptop, these CPU limits). It is not established as the universal production optimum; Phase 3B measures latency under load and may refine it.
 - **Trade-off:** in a real Redis outage, the requests before the breaker opens (about 10 per instance) can each wait up to 250 ms instead of 50 ms; after that the breaker answers in microseconds.
+
+## D43. Benchmark method details (Phase 3B, decisions O1–O5)
+- **O1:** report tables only during the campaign (no new Python dependency); charts for the README are generated later
+  as dependency-free SVG from the saved results.
+- **O2:** request counts are reconciled **exactly over the whole k6 run** (warm-up + measurement) from raw
+  per-instance counters read while the instances are idle; latency and resource queries cover only the 180 s
+  measurement window. Prometheus cannot split counts exactly at a warm-up/measurement boundary that is not
+  scrape-aligned.
+- **O3/O4:** `benchmarks/results` is mounted into k6 at run time (no Compose change); warm-up and measurement requests
+  carry distinct `User-Agent` markers (`k6/… phase=… run=…`), so the Nginx log is split by phase and run.
+- **O5:** one benchmark policy, `bench-profile`, 120 requests per 60 s per user for every algorithm (token bucket
+  capacity 120, refill 120 per 60 s). With a fixed allowance, the throttling ratio grows with the arrival rate
+  (documented per level in `11-performance-benchmarks.md`).
+
+## D44. Destructive Redis commands only against the verified Compose Redis
+- `FLUSHDB`, `CONFIG RESETSTAT` and `SLOWLOG RESET` are on an allow-list and run only after the Compose project,
+  service, image, working directory, Redis configuration fingerprint and key prefixes are verified, and only against
+  that container id (re-checked before each command). The check refused a stack created from another directory.
+
+## D45. Benchmark-policy conflict guard is a superset matcher
+- `setup-policies.sh` rejects every enabled FREE-tier policy that could match the benchmark endpoint, except the `/api/**`
+  seed. Pattern matching is a deliberate superset of Spring's `PathPattern` (`**` anywhere, `{var}` possibly empty);
+  `{var:regex}` is evaluated only within a subset with identical Java and Python semantics (verified by a 4,545-case
+  differential test), and anything uncertain counts as a conflict.
+
+## D46. Load-generator settings (tooling only)
+- k6 keeps every latency sample in memory; at 7,500 RPS it reached its 1 GiB limit and collapsed (3,094 RPS achieved).
+  Fix: `GOMEMLIMIT=850MiB` and pre-allocated VUs sized for a 200 ms latency tail (200–1,000). The approved k6 container
+  limits (2 CPU / 1 GiB) and every validity rule are unchanged.
+
+## D47. Throughput levels reported
+- 10,000 RPS: attempted for every algorithm (11 runs, all invalid); not retried. **7,500 RPS** is the highest validated
+  level and the maximum sustainable throughput on this laptop. The B2 knee (11,000 RPS) is load-generator bound and is
+  not a sustainable-throughput claim; the constant-rate confirmation at 9,000 RPS produced no valid run. B9's
+  "at the knee" comparison ran at 7,500 RPS.
+
+## D48. No optimisation of the system under test
+- Every candidate from the plan was evaluated against the measurements and rejected: Redis pooling (pool-16 slightly
+  worse than the shared connection), GC flags (pauses do not explain the stalls), Tomcat threads (≤ 24 of 200 busy),
+  Nginx (≈ 50 % CPU), Redis io-threads (≈ 0.2 core). The shared Lettuce connection stays the default.
+
+## D49. Failure campaigns: F5 without `DEBUG`; one run per fault
+- Redis `DEBUG` stays disabled; F5 slows Redis with a calibrated pure-CPU Lua loop sent with `EVAL` (Redis 7 freezes
+  `TIME` inside scripts, so the loop length is calibrated from `INFO commandstats`). F1–F5 deliver timelines; retries
+  of failure runs were skipped by decision (F1/F2 ran 3–4 times before that).
+
+## D50. Cold-start fail-open left open; evidence storage
+- Shortly after an instance restart, a 1,000-request burst can exceed the 250 ms Redis timeout (CPU-quota throttling
+  during JIT compilation; `13-failure-handling.md`). Not fixed in Phase 3B: the timeout (D42) and failure semantics
+  are unchanged; options are listed for a separate, approved change.
+- Benchmark evidence: compact per-run artifacts are committed; bulky raw samples stay local and are covered by
+  `benchmarks/results/MANIFEST.sha256`. Expired test JWTs in 73 evidence files were redacted (originals archived
+  locally), and the tooling no longer records tokens.
+
+## D51. Phase 4 security remediation (approved 2026-11-12)
+- **SEC-1 (local part):** Nginx is published on `127.0.0.1` only. The local demo has no TLS, so it must not be
+  reachable from the network; TLS termination remains a deployment requirement (`16-security-review.md`).
+- **SEC-3:** policy patterns may not contain `{var:regex}`. Supported syntax is unchanged (`?`, `*`, `**`, `{var}`,
+  `{*var}`); no seeded, fallback or documented policy used a regex variable. Enforced in
+  `ResolvedPolicy.parsePattern`, so it covers the API (400), rows loaded from MySQL (skipped with an error log) and
+  fallback configuration.
+- **SEC-6:** Nginx no longer returns `X-Upstream`. The smoke test and benchmark tooling identify the serving instance
+  from the Nginx access log (`upstream=`), matching their probes by a unique `User-Agent`. The load-distribution and
+  per-instance propagation checks are unchanged in what they verify.
+- Benchmark results from Phase 3B were produced with the earlier configuration (header present, port on all
+  interfaces); neither change is on the rate-limiting path, and the evidence is left as recorded.

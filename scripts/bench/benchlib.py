@@ -18,6 +18,7 @@ PROJECT = "ratelimiter"                      # docker-compose.yml: name: ratelim
 APPS = ["app1", "app2", "app3"]
 APP_INSTANCE = {"app1": "app-1", "app2": "app-2", "app3": "app-3"}   # Prometheus "instance" label
 UPSTREAM_APP = {"172.28.0.11": "app1", "172.28.0.12": "app2", "172.28.0.13": "app3"}
+PROBE_UA = "ratelimiter-probe/"              # User-Agent prefix of tooling probes (see nginx_upstreams)
 SERVICES = ["nginx", "app1", "app2", "app3", "redis", "mysql", "redis-exporter", "prometheus", "grafana"]
 NGINX = "http://localhost:8080"
 PROM = "http://localhost:9090"
@@ -407,3 +408,23 @@ def read_json(path, default=None):
 
 def now():
     return time.time()
+
+
+def nginx_upstreams(markers, since):
+    """Which instance served each request sent with User-Agent PROBE_UA + marker, read from Nginx's access log
+    (upstream=<addr>). Nginx no longer returns an X-Upstream header (security review SEC-6). With a retry the
+    address list is "a, b"; the last entry answered. Returns {marker: app1|app2|app3 or the raw address}."""
+    want, found = set(markers), {}
+    deadline = time.time() + 5
+    pattern = re.compile(r'upstream=(\S+(?:, \S+)*) upstream_time=.* "' + re.escape(PROBE_UA) + r'([^"]+)"$')
+    while True:
+        out = subprocess.run(["docker", "compose", "logs", "--no-log-prefix", "--since", str(int(since) - 2), "nginx"],
+                             cwd=ROOT, capture_output=True, text=True, timeout=60).stdout
+        for line in out.splitlines():
+            m = pattern.search(line.strip())
+            if m and m.group(2) in want:
+                addr = m.group(1).split(",")[-1].strip().split(":")[0]
+                found[m.group(2)] = UPSTREAM_APP.get(addr, addr)
+        if want <= found.keys() or time.time() > deadline:
+            return found
+        time.sleep(0.2)

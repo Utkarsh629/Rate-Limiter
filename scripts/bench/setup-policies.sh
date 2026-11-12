@@ -17,7 +17,8 @@
 # tokens on /api/v1/demo/profile resolve to this policy instead of the free-tier seed policy (20/min).
 #
 # Propagation evidence per instance: a fresh probe user (FREE token minted offline from JWT_SECRET) is sent through
-# Nginx until each of app1/app2/app3 (X-Upstream) has answered with X-RateLimit-Limit=120 AND created the Redis key
+# Nginx until each of app1/app2/app3 (identified from Nginx's access log by the probe's User-Agent; Nginx returns
+# no X-Upstream header, security review SEC-6) has answered with X-RateLimit-Limit=120 AND created the Redis key
 # of this policy with the expected algorithm suffix (rl:{<policyId>:u:<user>}:tb|fw|sw) and no other suffix.
 # Probe requests use fresh users only, never benchmark users; they are counted in metrics and /stats like any request,
 # so run them before a run's idle counter snapshot (run.sh), never during a run.
@@ -425,7 +426,22 @@ field() { python3 -c 'import json,sys; v=json.loads(sys.argv[1])[sys.argv[2]]; p
 
 redis_exists() { docker compose exec -T redis redis-cli EXISTS "$1" | tr -d '\r'; }
 
-# X-Upstream address -> instance number 1..3 (static Compose addresses), 0 if unknown
+# Upstream address of the probe request with this User-Agent marker, from Nginx's access log (upstream=<addr>;
+# after a retry the list is "a, b" and the last entry answered). Prints "none" if no log line appears within ~5 s.
+probe_upstream() {
+  local marker=$1 since=$2 tries=0 line
+  while [ "$tries" -lt 25 ]; do
+    line=$(docker compose logs --no-log-prefix --since "$since" nginx 2>/dev/null | grep -F "\"ratelimiter-probe/$marker\"" | tail -1)
+    if [ -n "$line" ]; then
+      echo "$line" | sed -n 's/.* upstream=\(.*\) upstream_time=.*/\1/p' | awk -F', ' '{print $NF}'
+      return
+    fi
+    tries=$((tries + 1)); sleep 0.2
+  done
+  echo none
+}
+
+# Upstream address -> instance number 1..3 (static Compose addresses), 0 if unknown
 instance_number() {
   case "${1%%:*}" in 172.28.0.11) echo 1 ;; 172.28.0.12) echo 2 ;; 172.28.0.13) echo 3 ;; *) echo 0 ;; esac
 }
@@ -435,7 +451,7 @@ instance_number() {
 #   EXPECT=absent:  every instance answers without creating any key of POLICY_ID (policy no longer applied)
 # An instance counts as confirmed only while its MOST RECENT probe shows the expected state.
 probe_until() {
-  local expect=$1 id=$2 want=${3:-} start i=0 user token headers upstream n limit status found s confirmed
+  local expect=$1 id=$2 want=${3:-} start i=0 user token headers upstream n limit status found s confirmed since
   local ok=(0 0 0 0) probes=(0 0 0 0) last=("" "" "" "")
   start=$(date +%s)
   while :; do
@@ -449,9 +465,11 @@ probe_until() {
     fi
     user="bench-probe-$(date +%s)-$$-$i"; i=$((i + 1))
     token=$(python3 scripts/bench/mint-tokens.py --print-user "$user" FREE --ttl 300)
-    headers=$(curl -s --noproxy '*' -o /dev/null -D - "$BASE$ENDPOINT" -H "Authorization: Bearer $token" | tr -d '\r')
+    since=$(( $(date +%s) - 2 ))
+    headers=$(curl -s --noproxy '*' -o /dev/null -D - -A "ratelimiter-probe/$user" "$BASE$ENDPOINT" \
+      -H "Authorization: Bearer $token" | tr -d '\r')
     status=$(echo "$headers" | awk 'NR==1{print $2}')
-    upstream=$(echo "$headers" | awk -F': ' 'tolower($1)=="x-upstream"{print $2}')
+    upstream=$(probe_upstream "$user" "$since")
     limit=$(echo "$headers" | awk -F': ' 'tolower($1)=="x-ratelimit-limit"{print $2}')
     n=$(instance_number "${upstream:-none}")
     probes[n]=$(( probes[n] + 1 ))

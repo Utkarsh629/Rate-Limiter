@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="330" viewBox="0 0 900 330" role="img" aria-labelledby="t d">
+<title id="t">B1 latency by load level</title><desc id="d">Median of 3 valid runs per point; P99 end-to-end latency and P99 in-process limiter overhead for three algorithms at 1,000 to 7,500 requests per second.</desc>
+<rect width="900" height="330" fill="#fcfcfb"/>
+<text x="70" y="34" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#0b0b0b">End-to-end P99 (k6)</text>
+<text x="70" y="50" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">milliseconds</text>
+<line x1="70" y1="270.0" x2="370" y2="270.0" stroke="#e6e5e1" stroke-width="1"/>
+<text x="64" y="274.0" text-anchor="end" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">0</text>
+<line x1="70" y1="217.5" x2="370" y2="217.5" stroke="#e6e5e1" stroke-width="1"/>
+<text x="64" y="221.5" text-anchor="end" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">12.5</text>
+<line x1="70" y1="165.0" x2="370" y2="165.0" stroke="#e6e5e1" stroke-width="1"/>
+<text x="64" y="169.0" text-anchor="end" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">25</text>
+<line x1="70" y1="112.5" x2="370" y2="112.5" stroke="#e6e5e1" stroke-width="1"/>
+<text x="64" y="116.5" text-anchor="end" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">37.5</text>
+<line x1="70" y1="60.0" x2="370" y2="60.0" stroke="#e6e5e1" stroke-width="1"/>
+<text x="64" y="64.0" text-anchor="end" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">50</text>
+<line x1="70" y1="270" x2="370" y2="270" stroke="#b9b8b2" stroke-width="1"/>
+<text x="70.0" y="286" text-anchor="middle" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">1,000</text>
+<text x="139.2" y="286" text-anchor="middle" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">2,500</text>
+<text x="254.6" y="286" text-anchor="middle" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">5,000</text>
+<text x="370.0" y="286" text-anchor="middle" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">7,500</text>
+<text x="220.0" y="304" text-anchor="middle" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">requests per second</text>
+<path d="M70.0,263.1 L139.2,262.1 L254.6,242.0 L370.0,218.4" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="70.0" cy="263.1" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>Token bucket, 1,000 RPS: E2E P99 1.6 ms (median of 3 valid runs)</title></circle>
+<circle cx="139.2" cy="262.1" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>Token bucket, 2,500 RPS: E2E P99 1.9 ms (median of 3 valid runs)</title></circle>
+<circle cx="254.6" cy="242.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>Token bucket, 5,000 RPS: E2E P99 6.7 ms (median of 3 valid runs)</title></circle>
+<circle cx="370.0" cy="218.4" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>Token bucket, 7,500 RPS: E2E P99 12.3 ms (median of 3 valid runs)</title></circle>
+<text x="378.0" y="228.4" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600" fill="#0b0b0b">Token bucket</text>
+<path d="M70.0,261.7 L139.2,260.1 L254.6,243.7 L370.0,184.3" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="70.0" cy="261.7" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>Fixed window, 1,000 RPS: E2E P99 2.0 ms (median of 3 valid runs)</title></circle>
+<circle cx="139.2" cy="260.1" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>Fixed window, 2,500 RPS: E2E P99 2.4 ms (median of 3 valid runs)</title></circle>
+<circle cx="254.6" cy="243.7" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>Fixed window, 5,000 RPS: E2E P99 6.3 ms (median of 3 valid runs)</title></circle>
+<circle cx="370.0" cy="184.3" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>Fixed window, 7,500 RPS: E2E P99 20.4 ms (median of 3 valid runs)</title></circle>
+<text x="378.0" y="188.3" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600" fill="#0b0b0b">Fixed window</text>
+<path d="M70.0,263.5 L139.2,260.1 L254.6,246.3 L370.0,143.8" fill="none" stroke="#1baf7a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="70.0" cy="263.5" r="4" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"><title>Sliding window, 1,000 RPS: E2E P99 1.5 ms (median of 3 valid runs)</title></circle>
+<circle cx="139.2" cy="260.1" r="4" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"><title>Sliding window, 2,500 RPS: E2E P99 2.4 ms (median of 3 valid runs)</title></circle>
+<circle cx="254.6" cy="246.3" r="4" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"><title>Sliding window, 5,000 RPS: E2E P99 5.6 ms (median of 3 valid runs)</title></circle>
+<circle cx="370.0" cy="143.8" r="4" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"><title>Sliding window, 7,500 RPS: E2E P99 30.1 ms (median of 3 valid runs)</title></circle>
+<text x="378.0" y="141.8" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600" fill="#0b0b0b">Sliding window</text>
+<text x="480" y="34" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#0b0b0b">Rate-limiter overhead P99 (in-process)</text>
+<text x="480" y="50" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">milliseconds</text>
+<line x1="480" y1="270.0" x2="780" y2="270.0" stroke="#e6e5e1" stroke-width="1"/>
+<text x="474" y="274.0" text-anchor="end" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">0</text>
+<line x1="480" y1="217.5" x2="780" y2="217.5" stroke="#e6e5e1" stroke-width="1"/>
+<text x="474" y="221.5" text-anchor="end" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">0.5</text>
+<line x1="480" y1="165.0" x2="780" y2="165.0" stroke="#e6e5e1" stroke-width="1"/>
+<text x="474" y="169.0" text-anchor="end" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">1</text>
+<line x1="480" y1="112.5" x2="780" y2="112.5" stroke="#e6e5e1" stroke-width="1"/>
+<text x="474" y="116.5" text-anchor="end" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">1.5</text>
+<line x1="480" y1="60.0" x2="780" y2="60.0" stroke="#e6e5e1" stroke-width="1"/>
+<text x="474" y="64.0" text-anchor="end" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">2</text>
+<line x1="480" y1="270" x2="780" y2="270" stroke="#b9b8b2" stroke-width="1"/>
+<text x="480.0" y="286" text-anchor="middle" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">1,000</text>
+<text x="549.2" y="286" text-anchor="middle" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">2,500</text>
+<text x="664.6" y="286" text-anchor="middle" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">5,000</text>
+<text x="780.0" y="286" text-anchor="middle" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">7,500</text>
+<text x="630.0" y="304" text-anchor="middle" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px" fill="#52514e">requests per second</text>
+<path d="M480.0,214.5 L549.2,226.8 L664.6,157.6 L780.0,136.4" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="480.0" cy="214.5" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>Token bucket, 1,000 RPS: limiter P99 0.53 ms (median of 3 valid runs)</title></circle>
+<circle cx="549.2" cy="226.8" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>Token bucket, 2,500 RPS: limiter P99 0.41 ms (median of 3 valid runs)</title></circle>
+<circle cx="664.6" cy="157.6" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>Token bucket, 5,000 RPS: limiter P99 1.07 ms (median of 3 valid runs)</title></circle>
+<circle cx="780.0" cy="136.4" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"><title>Token bucket, 7,500 RPS: limiter P99 1.27 ms (median of 3 valid runs)</title></circle>
+<text x="788.0" y="146.4" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600" fill="#0b0b0b">Token bucket</text>
+<path d="M480.0,212.0 L549.2,224.9 L664.6,173.8 L780.0,134.7" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="480.0" cy="212.0" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>Fixed window, 1,000 RPS: limiter P99 0.55 ms (median of 3 valid runs)</title></circle>
+<circle cx="549.2" cy="224.9" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>Fixed window, 2,500 RPS: limiter P99 0.43 ms (median of 3 valid runs)</title></circle>
+<circle cx="664.6" cy="173.8" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>Fixed window, 5,000 RPS: limiter P99 0.92 ms (median of 3 valid runs)</title></circle>
+<circle cx="780.0" cy="134.7" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"><title>Fixed window, 7,500 RPS: limiter P99 1.29 ms (median of 3 valid runs)</title></circle>
+<text x="788.0" y="138.7" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600" fill="#0b0b0b">Fixed window</text>
+<path d="M480.0,220.4 L549.2,219.0 L664.6,188.5 L780.0,92.3" fill="none" stroke="#1baf7a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="480.0" cy="220.4" r="4" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"><title>Sliding window, 1,000 RPS: limiter P99 0.47 ms (median of 3 valid runs)</title></circle>
+<circle cx="549.2" cy="219.0" r="4" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"><title>Sliding window, 2,500 RPS: limiter P99 0.49 ms (median of 3 valid runs)</title></circle>
+<circle cx="664.6" cy="188.5" r="4" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"><title>Sliding window, 5,000 RPS: limiter P99 0.78 ms (median of 3 valid runs)</title></circle>
+<circle cx="780.0" cy="92.3" r="4" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"><title>Sliding window, 7,500 RPS: limiter P99 1.69 ms (median of 3 valid runs)</title></circle>
+<text x="788.0" y="90.3" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600" fill="#0b0b0b">Sliding window</text>
+<text x="16" y="320" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:10px" fill="#52514e">Median of 3 valid runs per point. Apple M4 laptop, Docker Desktop, all services and k6 on one machine. Source: benchmarks/results (B1).</text>
+</svg>

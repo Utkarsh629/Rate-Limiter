@@ -1,6 +1,6 @@
 # 02 — Requirements
 
-> Status: **baseline agreed in Phase 0.** Each requirement is marked verified only once a test or measurement proves it (see `PROJECT_PROGRESS.md`).
+> Status: **baseline agreed in Phase 0; verification recorded at the end of this page** (Phases 1–3 complete).
 
 ## Functional requirements
 
@@ -56,3 +56,22 @@ and reported **separately**. HTTP 429 is an expected outcome and is never counte
 - `X-Forwarded-For` is honoured only from configured trusted proxies.
 - Policy management endpoints require an admin role.
 - Error responses do not expose internal policy ids or Redis details.
+
+## Verification (status after Phase 3B)
+
+| Requirement | Verified by | Status |
+|---|---|---|
+| FR-1, FR-8 | `RateLimitFilterIT`, 2C/3A smoke tests (headers, 429 body, `Retry-After`) | ✅ |
+| FR-2 | `DistributedHttpRateLimitIT` (3 instances, exact quota); B6 (exactly 100 of 1,000 across 3 instances, 6 runs) | ✅ |
+| FR-3 | Script ITs, differential test, B1/B4/B5/B8/B10 for all three algorithms | ✅ |
+| FR-4, FR-5 | `IdentityAndResolutionIT`, `TrustedProxyIT`, policy resolution unit tests | ✅ |
+| FR-6 | `PolicyApiIT`, `StatsDistributedIT`; `/stats` reconciled exactly in every valid benchmark run | ✅ |
+| FR-7 | `PolicyPropagationIT`; benchmark policy switching verified on all three instances before every run | ✅ |
+| FR-9 | `FailureModeIT`, `CircuitBreakerIT`; F1, F2 and F5 under load (fail-open 200s, fail-closed 503s, no 429s) | ✅ |
+| NFR-1 – NFR-6 | Design and tests above; bounded labels checked in `ObservabilityIT` | ✅ |
+| NFR-7 | 3A secret scan (no secrets in files or image); Phase 4 security review (`16-security-review.md`) | ✅ |
+| Throughput 5,000 RPS (3 instances) | B1: valid for all three algorithms, within every criterion (`11-performance-benchmarks.md`) | ✅ met (laptop) |
+| Limiter overhead avg < 5 / P95 < 10 / P99 < 20 ms | B1 in-process histogram: P99 ≤ 1.7 ms up to 7,500 RPS | ✅ met |
+| Enforcement accuracy 100 % | B5, B6, B10: zero over-admission in every run | ✅ met |
+| Concurrency ≥ 1,000 | B6 and smoke AC14: 1,000 simultaneous requests | ✅ met (warm instances; cold-start limitation in `13-failure-handling.md`) |
+| Non-429 error rate < 0.1 % | 0 non-429 errors in every valid B1 run | ✅ met |

@@ -1,6 +1,6 @@
 # 2D — Redis Circuit Breaker: Design and Acceptance Criteria
 
-> Status: **IMPLEMENTED and verified (2026-11-10), awaiting review.** Design approved (D1, R1–R5, R5 = option B). Implementation notes and measured results: §17. One correction to the original §7 text is marked there.
+> Status: **IMPLEMENTED, verified and approved (Phase 2, 2026-11-10).** Design approved (D1, R1–R5, R5 = option B). Implementation notes and measured results: §17. One correction to the original §7 text is marked there.
 > Phase 2 (Core Backend & Distributed Logic), workstream 2D. Also closes the remaining Phase 2 failure-handling items: Redis connection-pool exhaustion, and readiness behaviour during outages.
 
 | Amendment from review | Where |

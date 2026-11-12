@@ -70,24 +70,24 @@ sequenceDiagram
 - `EVALSHA` / `NOSCRIPT` fallback is provided by Spring Data Redis (`RedisTemplate.execute(RedisScript, …)`), so the script body crosses the network only on a cache miss.
 - **Atomicity:** Redis runs one script at a time on its main thread. The read, the decision and the write in one script cannot interleave with another client's script on the same key. See `09-concurrency-and-distributed-correctness.md`.
 - **Replies are integers only.** Lua numbers are truncated to integers in RESP replies, so scripts return whole milliseconds and counts. The executor rejects any non-integer element.
-- **Failures** (connection refused, 50 ms command timeout, unexpected reply) surface as `RateLimitStoreException`. Fail-open/closed handling is Phase 5.
+- **Failures** (connection refused, command timeout, unexpected reply) surface as `RateLimitStoreException` and are handled by the failure mode and circuit breaker (Phase 2; `13-failure-handling.md`). The command timeout is 50 ms by default and 250 ms in the Compose deployment (D14, D42).
 
-## Memory considerations (estimates; measured in Phase 8)
-- One small hash per *active* (policy, subject). Redis stores small hashes as listpacks, roughly 100 bytes each including key overhead. 1 million active subjects ≈ 100 MB.
+## Memory considerations
+- One small hash per *active* (policy, subject). Redis stores small hashes as listpacks. **Measured in Phase 3B** (`MEMORY USAGE`, valid B1 runs, `11-performance-benchmarks.md`): 104 bytes per fixed-window key and 112 bytes per token-bucket or sliding-window key. 1 million active subjects ≈ 105–112 MB.
 - Idle subjects cost nothing: keys expire once equivalent to fresh.
 - `volatile-ttl` eviction under memory pressure drops nearly-expired keys first. Those are the ones closest to being fresh anyway, so eviction causes the least over-admission it can.
 
-## Planned keys (later phases)
+## Statistics and invalidation keys (Phase 3A)
 
 | Purpose | Key | Type | TTL | Phase |
 |---|---|---|---|---|
 | Statistics shard | `rl:stats:{<policyId>}:<instanceId>` | Hash `allowed`, `rejected`, `fail_open`, `fail_closed`, `boot`, `seq`, `last_flush_ms` | 24 h, refreshed on each flush | ✅ 3A |
 | Statistics instance index | `rl:stats:{<policyId>}:instances` | Set of instance ids | 24 h, refreshed on each flush | ✅ 3A |
-| Policy invalidation | `rl:policy-events` | Pub/Sub channel | — | 3 |
+| Policy invalidation | `rl:policy-events` | Pub/Sub channel | — | ✅ 2 |
 
 Statistics are **sharded per instance** (decision D9, implemented in 3A). Each instance writes only its own key every **5 s**, so no key is incremented by all traffic. `/stats` sums the shards. Counts not yet flushed are lost if an instance crashes; enforcement never reads them.
 
 **`stats_apply.lua`** (sent with plain `EVAL`, decision D41) applies one batch to one shard atomically and **at most once**. If the shard's stored `(boot, seq)` already covers the batch, it returns 0 and changes nothing. Otherwise it runs `HINCRBY` on the four counters, stores `boot`/`seq`/`last_flush_ms` (from Redis `TIME`), refreshes the TTL, and adds the instance to the index set. Both keys share the `{policyId}` hash tag. Verified against real Redis, including a flush that timed out while Redis was paused and then executed later (`StatsApplyScriptIT`): no double count.
 
 ## Hot keys
-A single very active subject maps to a single key, and therefore a single Redis thread and Cluster slot. Sharding does not help one key. Mitigations (documented, advanced phase): local negative caching of rejections until `retryAfter`, and per-instance pre-limits.
+A single very active subject maps to a single key, and therefore a single Redis thread and Cluster slot. Sharding does not help one key. Measured in Phase 3B (B8: one user at 2,000 and 5,000 RPS, all valid; `11-performance-benchmarks.md`). Possible mitigations (not implemented): local negative caching of rejections until `retryAfter`, and per-instance pre-limits.
